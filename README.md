@@ -160,3 +160,4 @@ npm run preview
 - **LinkedIn** : [linkedin.com/in/serck-david](https://linkedin.com/in/serck-david)
 - **GitHub** : [@daverck](https://github.com/daverck)
 - **Localisation** : Wavre, Belgique
+
