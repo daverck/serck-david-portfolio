@@ -1,10 +1,13 @@
 import React from 'react';
 import { EmployerDetails } from '../../types/resume';
+import { useLanguage } from '../../context/LanguageContext';
 import { ExternalLink } from '../common/ExternalLink';
 import { RichHtml } from '../common/RichHtml';
 import { Calendar, MapPin, Briefcase, Sparkles } from 'lucide-react';
 
 export const EmployerHero: React.FC<{ employer: EmployerDetails }> = ({ employer }) => {
+  const { t } = useLanguage();
+
   return (
     <div className="relative pt-6 pb-12 overflow-hidden border-b border-slate-200/80 dark:border-slate-800/80 bg-gradient-to-b from-slate-100/60 to-transparent dark:from-slate-900/40">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
@@ -28,7 +31,7 @@ export const EmployerHero: React.FC<{ employer: EmployerDetails }> = ({ employer
               href={employer.websiteUrl}
               className="text-xs font-semibold text-brand-600 dark:text-brand-400 hover:underline"
             >
-              <span>Site officiel {employer.name}</span>
+              <span>{t('detail.officialSite')} {employer.name}</span>
             </ExternalLink>
           )}
         </div>
@@ -48,7 +51,7 @@ export const EmployerHero: React.FC<{ employer: EmployerDetails }> = ({ employer
           <div className="mt-6 p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm max-w-3xl">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2.5 flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-brand-500" />
-              <span>Synthèse des responsabilités & périmètre</span>
+              <span>{t('detail.synthesis')}</span>
             </h3>
             <RichHtml html={employer.overviewHtml} />
           </div>
@@ -58,4 +61,3 @@ export const EmployerHero: React.FC<{ employer: EmployerDetails }> = ({ employer
     </div>
   );
 };
-

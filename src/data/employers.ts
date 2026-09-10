@@ -1,29 +1,39 @@
-import rawResumeData from './resume.json';
+import rawResumeEn from './resume.en.json';
+import rawResumeFr from './resume.fr.json';
 import { ResumeData, EmployerSlug, EmployerDetails, ParsedProject, ResumeProjectItem } from '../types/resume';
 
-export const resumeData = rawResumeData as unknown as ResumeData;
+export const resumeDataEn = rawResumeEn as unknown as ResumeData;
+export const resumeDataFr = rawResumeFr as unknown as ResumeData;
+
+// Fallback image pour le français si vide
+if (!resumeDataFr.picture.url && resumeDataEn.picture.url) {
+  resumeDataFr.picture.url = resumeDataEn.picture.url;
+}
+
+// Par défaut
+export const resumeData = resumeDataFr;
 
 function parseProject(item: ResumeProjectItem): ParsedProject {
   const title = item.name || item.company || 'Projet';
   const rawDescription = item.description || '';
   
-  // Extraire les technologies depuis la section Technical environment si présente
+  // Extraire les technologies depuis la section Technical environment / Environnement technique
   let techStack: string[] = [];
-  const techMatch = rawDescription.match(/<h4>(?:Technical [Ee]nvironment(?: and [Tt]ools)?|Environnement technique)[^<]*:?<\/h4>\s*<p>(.*?)<\/p>/i);
+  const techMatch = rawDescription.match(/<h4>(?:Technical [Ee]nvironment(?: and [Tt]ools)?|Environnement technique(?: et outils)?)[^<]*:?<\/h4>\s*<p>(.*?)<\/p>/i);
   if (techMatch && techMatch[1]) {
     techStack = techMatch[1]
-      .split(/[,•+&]|\band\b|\bet\b/i)
+      .split(/[,•+&]|\band\b|\bet\b|\bavec\b/i)
       .map(t => t.replace(/<[^>]*>/g, '').trim())
       .filter(t => t.length > 0 && t.length < 35);
   }
 
-  // Si pas trouvé avec regex standard, essayer de deviner quelques technos clés ou conserver les fragments
+  // Si pas trouvé avec regex standard, scanner les mots-clés reconnus
   if (techStack.length === 0) {
     const knownTechs = [
       'Angular', 'React', 'TypeScript', 'Java', 'Spring Boot', 'Python', 'FastAPI',
-      'Tornado', 'C#', '.NET Core', 'SQL Server', 'T-SQL', 'Docker', 'GitLab CI',
+      'Tornado', 'C#', '.NET Core', '.Net Core', 'SQL Server', 'T-SQL', 'Docker', 'GitLab CI',
       'Ansible', 'Keycloak', 'PEPPOL', 'UBL', 'CockroachDB', 'Redis', 'OpenAI API',
-      'YOLO', 'Flutter', 'Dart', 'iText', 'wkhtmltopdf', 'PostgreSQL', 'Jenkins'
+      'YOLO', 'Flutter', 'Dart', 'iText', 'wkhtmltopdf', 'PostgreSQL', 'Jenkins', 'Kong', 'MobX'
     ];
     techStack = knownTechs.filter(tech => 
       new RegExp(`\\b${tech.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(rawDescription)
@@ -40,88 +50,134 @@ function parseProject(item: ResumeProjectItem): ParsedProject {
   };
 }
 
-export const employersList: EmployerDetails[] = [
-  {
-    slug: 'konekto',
-    name: 'Konekto',
-    fullName: 'Konekto',
-    position: 'Full-Stack Developer',
-    period: 'Mars 2024 - Avril 2026',
-    location: 'Bruxelles / Wavre, Belgique',
-    websiteUrl: 'https://konekto.be',
-    overviewHtml: resumeData.sections.experience.items.find(i => i.company.toLowerCase().includes('konekto'))?.description || '',
-    tagline: 'Facturation électronique PEPPOL/UBL, migrations Angular 21 / Spring Boot 4.0.1, et intégrations IA (YOLO & OpenAI).',
-    accentColor: '#0d9488', // Teal
-    badgeBg: 'bg-teal-500/10 dark:bg-teal-500/20 text-teal-700 dark:text-teal-300 border-teal-500/30',
-    badgeText: 'Konekto (2024 - 2026)',
-    keyHighlights: [
-      'Facturation électronique PEPPOL (format UBL) & validation budgétaire',
-      'Système de pointage RH automatisé avec secrétariat social & exports iText',
-      'Migrations techniques vers Java 21, Spring Boot 4.0.1 et Angular 21',
-      'Intégration d\'IA : computer vision YOLO (retail seconde main) et ChatGPT (optimisation plannings)',
-      'Authentification unifiée et gestion fine des habilitations avec Keycloak'
-    ],
-    projects: (resumeData.customSections.find(s => s.id === 'ucavvtmvs72zt1df8hb4xxg8')?.items || []).map(parseProject)
-  },
-  {
-    slug: 'dstny',
-    name: 'Dstny',
-    fullName: 'Dstny (Entreprise Télécom & Cloud)',
-    position: 'Cloud Developer',
-    period: '2021 - 2024',
-    location: 'Wavre, Belgique',
-    websiteUrl: 'https://www.dstny.be',
-    overviewHtml: resumeData.sections.experience.items.find(i => i.company.toLowerCase().includes('dstny'))?.description || '',
-    tagline: 'Architecture d\'APIs distribuées Python à haute disponibilité, télécom SIP/PBX, CockroachDB & interfaces d\'administration React.',
-    accentColor: '#0284c7', // Sky blue
-    badgeBg: 'bg-sky-500/10 dark:bg-sky-500/20 text-sky-700 dark:text-sky-300 border-sky-500/30',
-    badgeText: 'Dstny (2021 - 2024)',
-    keyHighlights: [
-      'Serveur de lookup de numéros de téléphone haute performance avec CockroachDB & cache Redis',
-      'APIs Python Tornado pour la gestion des abonnés, clusters, pbx et calendriers',
-      'Plateforme d\'administration React pour relier les abonnés à Teams, Zoom et SIP providers',
-      'Intégration aux serveurs Asterisk via protocoles AMI & ARI',
-      'Observabilité avec OpenTelemetry, tests automatisés Gitlab CI et déploiements Ansible'
-    ],
-    projects: (resumeData.customSections.find(s => s.id === 'qcsv9azb26fi6yz6rrefha6c')?.items || []).map(parseProject)
-  },
-  {
-    slug: 'mba',
-    name: 'Micro Belgium Application',
-    fullName: 'Micro Belgium Application (Fiduciaire & Logiciels de gestion)',
-    position: 'Junior Developer',
-    period: '2017 - 2020',
-    location: 'Wavre, Belgique',
-    websiteUrl: '',
-    overviewHtml: resumeData.sections.experience.items.find(i => i.company.toLowerCase().includes('micro belgium'))?.description || '',
-    tagline: 'Automatisation de flux comptables, dématérialisation e-fff & CODA, procédures stockées SQL Server complexes et développement .NET.',
-    accentColor: '#4f46e5', // Indigo
-    badgeBg: 'bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border-indigo-500/30',
-    badgeText: 'MBA (2017 - 2020)',
-    keyHighlights: [
-      'Import automatique des factures électroniques belges (e-fff) dans Winbooks',
-      'Génération automatisée de relevés de compte bancaires CODA en PDF avec wkhtmltopdf',
-      'Générateur de procédures de synchronisation de fichiers .dbf vers SQL Server',
-      'Synchronisation multi-bases de données d\'écoles vers Google Classroom, Groupes et Drupal',
-      'Transcription vocale à la demande avec Google Speech-to-Text intégrée à C# .NET Core MVC'
-    ],
-    projects: (resumeData.sections.projects?.items || []).map(parseProject)
-  }
-];
+export function getEmployersList(lang: 'fr' | 'en' = 'fr'): EmployerDetails[] {
+  const data = lang === 'fr' ? resumeDataFr : resumeDataEn;
+  const isFr = lang === 'fr';
 
-export function getEmployerBySlug(slug: string): EmployerDetails | undefined {
-  return employersList.find(e => e.slug === slug.toLowerCase());
+  const konektoExp = data.sections.experience.items.find(i => i.company.toLowerCase().includes('konekto'));
+  const dstnyExp = data.sections.experience.items.find(i => i.company.toLowerCase().includes('dstny'));
+  const mbaExp = data.sections.experience.items.find(i => i.company.toLowerCase().includes('micro belgium'));
+
+  const konektoProjects = (data.customSections.find(s => s.id === 'ucavvtmvs72zt1df8hb4xxg8')?.items || []).map(parseProject);
+  const dstnyProjects = (data.customSections.find(s => s.id === 'qcsv9azb26fi6yz6rrefha6c')?.items || []).map(parseProject);
+  const mbaProjects = (data.sections.projects?.items || []).map(parseProject);
+
+  return [
+    {
+      slug: 'konekto',
+      name: 'Konekto',
+      fullName: isFr ? 'Konekto (Agence IT)' : 'Konekto (IT Agency)',
+      position: isFr ? 'Développeur Full-Stack' : 'Full-Stack Developer',
+      period: isFr ? 'Mars 2024 - Avril 2026' : 'March 2024 - April 2026',
+      location: isFr ? 'Ottignies / Wavre, Belgique' : 'Ottignies / Wavre, Belgium',
+      websiteUrl: 'https://konekto.be',
+      overviewHtml: konektoExp?.description || '',
+      tagline: isFr
+        ? 'Facturation électronique PEPPOL/UBL, migrations Angular 21 / Spring Boot 4.0.1, et intégrations IA (YOLO & OpenAI).'
+        : 'PEPPOL/UBL e-invoicing, migrations to Angular 21 & Spring Boot 4.0.1, and AI integrations (YOLO & OpenAI).',
+      accentColor: '#0d9488',
+      badgeBg: 'bg-teal-500/10 dark:bg-teal-500/20 text-teal-700 dark:text-teal-300 border-teal-500/30',
+      badgeText: 'Konekto (2024 - 2026)',
+      keyHighlights: isFr
+        ? [
+            'Facturation électronique PEPPOL (format UBL) & validation budgétaire',
+            'Système de pointage RH automatisé avec secrétariat social & exports iText',
+            'Migrations techniques vers Java 21, Spring Boot 4.0.1 et Angular 21',
+            'Intégration d\'IA : computer vision YOLO (seconde main) et ChatGPT (plannings)',
+            'Authentification unifiée et gestion fine des habilitations avec Keycloak'
+          ]
+        : [
+            'Processing of electronic invoices (PEPPOL/UBL) & procurement workflows',
+            'HR time-tracking system and automated payroll provider integration',
+            'Technical migrations to Java 21, Spring Boot 4.0.1, and Angular 21',
+            'AI schedule optimization (ChatGPT) and YOLO computer vision for retail',
+            'Custom authentication and permission management via Keycloak'
+          ],
+      projects: konektoProjects
+    },
+    {
+      slug: 'dstny',
+      name: 'Dstny',
+      fullName: isFr ? 'Dstny (Télécommunications & Cloud)' : 'Dstny (Telecom & Cloud)',
+      position: isFr ? 'Développeur Cloud' : 'Cloud Developer',
+      period: '2021 - 2024',
+      location: isFr ? 'Wavre, Belgique' : 'Wavre, Belgium',
+      websiteUrl: 'https://www.dstny.be',
+      overviewHtml: dstnyExp?.description || '',
+      tagline: isFr
+        ? 'Architecture d\'APIs distribuées Python à haute disponibilité, télécom SIP/PBX, CockroachDB & interfaces d\'administration React.'
+        : 'High-availability distributed Python APIs, SIP/PBX telecom, CockroachDB & React admin interfaces.',
+      accentColor: '#0284c7',
+      badgeBg: 'bg-sky-500/10 dark:bg-sky-500/20 text-sky-700 dark:text-sky-300 border-sky-500/30',
+      badgeText: 'Dstny (2021 - 2024)',
+      keyHighlights: isFr
+        ? [
+            'Serveur de lookup de numéros de téléphone haute performance avec CockroachDB & cache Redis',
+            'APIs Python Tornado pour la gestion des abonnés, clusters, PBX et calendriers',
+            'Plateforme d\'administration React pour relier les abonnés à Teams, Zoom et SIP providers',
+            'Intégration aux serveurs Asterisk via protocoles AMI & ARI',
+            'Observabilité avec OpenTelemetry, tests automatisés Gitlab CI et déploiements Ansible'
+          ]
+        : [
+            'High-performance phone lookup server with CockroachDB & Redis cache',
+            'Python Tornado APIs for managing subscribers, clusters, PBX, and calendars',
+            'React admin platform connecting subscribers to Teams, Zoom, and SIP providers',
+            'Asterisk integration via AMI & ARI protocols',
+            'Observability with OpenTelemetry, automated GitLab CI tests, and Ansible deployments'
+          ],
+      projects: dstnyProjects
+    },
+    {
+      slug: 'mba',
+      name: 'Micro Belgium Application',
+      fullName: isFr ? 'Micro Belgium Application (Fiduciaire & Logiciels de gestion)' : 'Micro Belgium Application (Fiduciary & Management Software)',
+      position: isFr ? 'Développeur Junior' : 'Junior Developer',
+      period: '2017 - 2020',
+      location: isFr ? 'Wavre, Belgique' : 'Wavre, Belgium',
+      websiteUrl: 'https://mba.be/',
+      overviewHtml: mbaExp?.description || '',
+      tagline: isFr
+        ? 'Automatisation de flux comptables, dématérialisation e-fff & CODA, procédures stockées SQL Server complexes et développement .NET.'
+        : 'Accounting automation, Belgian e-fff & CODA electronic invoices, complex SQL Server stored procedures, and .NET development.',
+      accentColor: '#4f46e5',
+      badgeBg: 'bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border-indigo-500/30',
+      badgeText: 'MBA (2017 - 2020)',
+      keyHighlights: isFr
+        ? [
+            'Import automatique des factures électroniques belges (e-fff) dans Winbooks',
+            'Génération automatisée de relevés de compte bancaires CODA en PDF avec wkhtmltopdf',
+            'Générateur de procédures de synchronisation de fichiers .dbf vers SQL Server',
+            'Synchronisation multi-bases de données d\'écoles vers Google Classroom, Groupes et Drupal',
+            'Transcription vocale à la demande avec Google Speech-to-Text intégrée à C# .NET Core MVC'
+          ]
+        : [
+            'Automated import of Belgian electronic invoices (e-fff) directly into Winbooks',
+            'Automated PDF rendering of Belgian coded account statements (CODA) via wkhtmltopdf',
+            'Generic SQL procedure to synchronize .dbf files into SQL Server databases',
+            'School multi-database synchronization with Google Classroom, Groups, and Drupal',
+            'On-demand audio transcription with Google Speech-to-Text in C# .NET Core MVC'
+          ],
+      projects: mbaProjects
+    }
+  ];
 }
 
-export function getNextEmployer(slug: EmployerSlug): EmployerDetails {
-  const currentIndex = employersList.findIndex(e => e.slug === slug);
-  const nextIndex = (currentIndex + 1) % employersList.length;
-  return employersList[nextIndex];
+export const employersList = getEmployersList('fr');
+
+export function getEmployerBySlug(slug: string, lang: 'fr' | 'en' = 'fr'): EmployerDetails | undefined {
+  return getEmployersList(lang).find(e => e.slug === slug.toLowerCase());
 }
 
-export function getPrevEmployer(slug: EmployerSlug): EmployerDetails {
-  const currentIndex = employersList.findIndex(e => e.slug === slug);
-  const prevIndex = (currentIndex - 1 + employersList.length) % employersList.length;
-  return employersList[prevIndex];
+export function getNextEmployer(slug: EmployerSlug, lang: 'fr' | 'en' = 'fr'): EmployerDetails {
+  const list = getEmployersList(lang);
+  const currentIndex = list.findIndex(e => e.slug === slug);
+  const nextIndex = (currentIndex + 1) % list.length;
+  return list[nextIndex];
 }
 
+export function getPrevEmployer(slug: EmployerSlug, lang: 'fr' | 'en' = 'fr'): EmployerDetails {
+  const list = getEmployersList(lang);
+  const currentIndex = list.findIndex(e => e.slug === slug);
+  const prevIndex = (currentIndex - 1 + list.length) % list.length;
+  return list[prevIndex];
+}

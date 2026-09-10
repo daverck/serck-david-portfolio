@@ -1,0 +1,774 @@
+{
+  "picture": {
+    "hidden": false,
+    "fit": "cover",
+    "url": "https://storage.rxresu.me/clrrkerx0001er6718opuoolx/pictures/clrrkerx0001er6718opuoolx.jpg",
+    "size": 64,
+    "rotation": 0,
+    "aspectRatio": 1,
+    "borderRadius": 0,
+    "borderColor": "rgba(0, 0, 0, 0)",
+    "borderWidth": 0,
+    "shadowColor": "rgba(0, 0, 0, 0.5)",
+    "shadowWidth": 0
+  },
+  "basics": {
+    "name": "David SERCK",
+    "headline": "Développeur Full-Stack",
+    "email": "serckdavid@gmail.com",
+    "phone": "+32485056262",
+    "location": "1300 Wavre",
+    "website": {
+      "url": "https://www.linkedin.com/in/serck-david",
+      "label": "LinkedIn"
+    },
+    "customFields": []
+  },
+  "summary": {
+    "title": "En bref",
+    "icon": "",
+    "columns": 1,
+    "hidden": false,
+    "keepTogether": false,
+    "startOnNewPage": false,
+    "content": "<p>6 ans d'expérience dans la conception et l'optimisation d'applications web d'entreprise. <br>Spécialisé sur Angular, Python et Java Spring Boot.</p><p><strong>Disponible immédiatement.</strong></p>"
+  },
+  "sections": {
+    "profiles": {
+      "title": "Profiles",
+      "icon": "",
+      "columns": 1,
+      "hidden": true,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "fb7803krljldu078426mgmzs",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "network": "LinkedIn",
+          "username": "serck-david",
+          "website": {
+            "url": "https://linkedin.com/in/serck-david",
+            "label": "",
+            "inlineLink": false
+          }
+        },
+        {
+          "id": "01a0427c-29fb-7200-892a-08726d4f5b59",
+          "hidden": false,
+          "icon": "acorn",
+          "iconColor": "",
+          "network": "github",
+          "username": "daverck",
+          "website": {
+            "url": "https://github.com/daverck",
+            "label": "",
+            "inlineLink": false
+          }
+        }
+      ]
+    },
+    "experience": {
+      "title": "Expériences",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "q2qde05nsu0p71eb8pdy3vz5",
+          "hidden": false,
+          "company": "Konekto (agence IT)",
+          "position": "Développeur full-stack",
+          "location": "Ottignies",
+          "period": "Mars 2024 - Avril 2026",
+          "website": {
+            "url": "https://konekto.be",
+            "label": "",
+            "inlineLink": true
+          },
+          "description": "<p>Traitement de factures électroniques (PEPPOL/UBL) et flux d'achats.</p><p>Système de pointage RH et intégration automatisée avec les secrétariats sociaux.</p><p>Migrations techniques vers Java 21, Spring Boot 4.0.1 et Angular 21.</p><p>Optimisation de plannings via l'IA (ChatGPT) et tableaux de bord de monitoring d'APIs.</p><p>Personnalisation de l'authentification et gestion des droits via Keycloak.</p>",
+          "roles": []
+        },
+        {
+          "id": "kju3mutjeb164y9zbtxps4uq",
+          "hidden": false,
+          "company": "Dstny (télécommunications)",
+          "position": "Développeur cloud",
+          "location": "Wavre, Belgium",
+          "period": "2021-2024",
+          "website": {
+            "url": "https://www.dstny.be",
+            "label": "",
+            "inlineLink": true
+          },
+          "description": "<p>Serveur de recherche de numéros de téléphone.</p><p>API multiple en python pour la gestion des abonnés et des paramètres PBX.</p><p>Sites Web pour les paramètres des utilisateurs finaux en React et Angular.</p>",
+          "roles": []
+        },
+        {
+          "id": "n5btk8mt1pqxajgq2lek5k67",
+          "hidden": false,
+          "company": "Micro Belgium Application (fiduciaire)",
+          "position": "Développeur junior",
+          "location": "Wavre, Belgium",
+          "period": "2017-2020",
+          "website": {
+            "url": "https://mba.be/",
+            "label": "",
+            "inlineLink": true
+          },
+          "description": "<p>Import de facture électronique (e-fff) directement dans le logiciel de comptabilité.</p><p>Synchronisation des bases de données avec Google Classroom pour une école.</p><p>Rendu PDF du relevé de compte codé belge (CODA).</p><p>Calendrier pour un cabinet d'orthopédie.</p><p>Amélioration de la journalisation des appels téléphoniques dans un tableur google.</p>",
+          "roles": []
+        }
+      ]
+    },
+    "education": {
+      "title": "Études et formations",
+      "icon": "",
+      "columns": 2,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "wozglo1c8db6w48zox34geji",
+          "hidden": false,
+          "school": "IFOSUP, Wavre",
+          "degree": "Bachelier en informatique de gestion",
+          "area": "",
+          "grade": "(grande distinction)",
+          "location": "",
+          "period": "2014-2018",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<p>Bachelier en informatique de gestion</p>"
+        },
+        {
+          "id": "lrx216e049su7ec0v9p3obzc",
+          "hidden": false,
+          "school": "Technobel, Nivelles",
+          "degree": "Formation de développeur front-end",
+          "area": "",
+          "grade": "",
+          "location": "",
+          "period": "Sept 2020 - Dec 2020",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<p>Formation de développeur front-end</p>"
+        },
+        {
+          "id": "01a04279-2684-726a-bdd8-a2b18810883e",
+          "hidden": false,
+          "school": "Technofutur, Louvain-La-Neuve",
+          "degree": "Java full-stack",
+          "area": "",
+          "grade": "",
+          "location": "",
+          "period": "Juin 2024 - Août 2024",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<p>Java full-stack</p>"
+        },
+        {
+          "id": "01a04275-6d9a-70aa-8a35-ddcfd852127f",
+          "hidden": false,
+          "school": "Technofutur TIC, Charleroi",
+          "degree": "Architecte IA/IOT",
+          "area": "",
+          "grade": "",
+          "location": "",
+          "period": "Juillet 2026 - Present",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<p><a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://technofuturtic.be/catalogue/action/architecte-iaiot-developpeur-python-intelligence-artificielle-machine-learning-deep-learning-et-ia-generative-pour-applications-connectees-29-06-2026-10807\">Architecte IA/IOT</a></p>"
+        }
+      ]
+    },
+    "projects": {
+      "title": "Projets chez MBA",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "i9b4j4qktccl60qgv4nia98u",
+          "hidden": false,
+          "name": "Synchronisation des contacts Insightly",
+          "period": "2020 / 2 mois",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>L'IAB est l'association européenne pour l'écosystème du marketing et de la publicité numérique. Ils utilisent la plateforme « Insightly » pour gérer leurs contacts.</p><h4>Réalisation:</h4><p>• Synchronisation entre cette plateforme et Google Groupes</p><p>• Synchronisation entre cette plateforme et Google Sheet</p><h4>Tâches:</h4><p>• Comme il n'est pas possible de récupérer les listes de contacts avec l'API Insightly, un fichier de configuration a été utilisé pour stocker les critères de recherche permettant de créer ces listes. A l'aide de ce fichier de configuration, plusieurs requêtes vers l'API ont été combinées pour filtrer les contacts.</p><p>• La synchronisation était exécutée périodiquement.</p><p>• Au début, la synchronisation avec une liste de feuilles de calcul se faisait dans le même script que celui des groupes Google mais à mesure que le nombre de listes demandées augmentait, un second script a été mis en place pour isoler le traitement.</p><p>• L'API de feuille de calcul Google a été gérée avec des pygsheets auxquels j'ai contribué avec 2 petites pull request.</p><h4>Environnement technique et outils:</h4><p>Python a été utilisé pour ces scripts avec le planificateur de tâches Windows.</p>"
+        },
+        {
+          "id": "ymohgwyuxc48ren0qu8s6sx4",
+          "hidden": false,
+          "name": "Import d'e-fff (facture électronique belge) directement dans Winbooks (logiciel de comptabilité)",
+          "period": "2020 / 2 mois",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Mon entreprise recevait chaque mois de Winbooks un ensemble de factures électroniques sous forme de fichiers e-fff avec des feuilles de calcul .xlsx.</p><h4>Réalisation:</h4><p>• J'ai récupéré ces fichiers de la boîte mail (gmail), les ai analysés et construit un système pour les importer à la demande dans le logiciel de comptabilité.</p><p>• Lors de l'import de ces factures, d'autres ont été générées afin de facturer nos clients avec une marge revendeur.</p><p>• J'ai créé une page sur l'intranet pour configurer la relation entre les licences winbooks et nos clients</p><h4>Tâches:</h4><p>• Un premier script a été créé pour récupérer tous les emails correspondant à certaines regex (google) de Gmail ainsi que les pièces jointes.</p><p>• Un deuxième script a été exécuté pour analyser et importer les factures dans une base de données.</p><p>• Enfin, une procédure SQL a été exécutée à la demande (via un menu du logiciel de logistique Winbooks réalisé par mon collègue) pour générer les factures à importer dans le logiciel de comptabilité.</p><h4>Environnement technique et outils:</h4><p>Python a été utilisé pour ces scripts avec le planificateur de tâches Windows et la base de données SQL Server Express 2016.</p>"
+        },
+        {
+          "id": "eo3zeqty712e0trk7o474dv2",
+          "hidden": false,
+          "name": "Script T-sql pour créer des procédures de synchronisation entre les fichiers Logistics .dbf et le serveur SQL",
+          "period": "2020 / 1 mois",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Micro Belgium Application fonctionne avec la version de bureau (classique) de Winbooks and Logistics qui n'utilisait pas de base de données mais un ensemble de fichiers avec une extension .dbf. Notre entreprise a automatisé de nombreuses opérations à l'aide de procédures SQL, mais la lecture des fichiers .dbf avec la commande SQL « openrowset » était pénible. Création d'une procédure SQL générique pour synchroniser le contenu des fichiers .dbf pertinents dans une base de données.</p><h4>Réalisation:</h4><p>J'ai créé cette procédure SQL générique qui est utilisée pour chaque nouveau client acquis par l'entreprise.</p><h4>Tâches:</h4><p>• J'ai analysé les procédures existantes pour plusieurs de nos gros clients.</p><p>• J'ai réalisé une première procédure SQL pour créer un serveur lié pour un dossier Winbooks spécifique</p><p>• Ensuite, j'ai créé une deuxième procédure SQL en utilisant la première qui, compte tenu de certains paramètres, a généré une base de données ainsi qu'une procédure de synchronisation pour le client donné.</p><h4>Environnement technique et outils:</h4><p>J'ai utilisé les procédures SQL Server 2016</p>"
+        },
+        {
+          "id": "r2zmkrhw5q77109dcu6v6zr2",
+          "hidden": false,
+          "name": "Synchronisation de bases de données avec Google Classroom pour une école",
+          "period": "2020 / 3 mois",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>L'école disposait d'informations sur les étudiants et les professeurs dispersées dans de multiples bases de données (SQL server, InterBase, Access, MySQL), certaines assez mal conçues. Ils souhaitaient utiliser Google Classroom.</p><h4>Réalisation:</h4><p>Chaque année, de nouveaux étudiants/professeurs obtiennent un compte Google et sont ajoutés aux classes adéquates sur Google Classroom, Google Groups, Drupal et le site internet pour louer du matériel.</p><h4>Tâches:</h4><p>• Un script python a d'abord fusionné les utilisateurs dans une base de données SQL Server, puis ils ont été créés en tant qu'utilisateurs Google (avec un e-mail unique et simple) et intégrés aux groupes et salles de classe Google correspondant aux options de l'étudiant.</p><p>• Les anciens professeurs et étudiants sont gardés dans des groupes spéciaux dans l'espoir de pouvoir un jour être contactés pour aider à promouvoir l'école.</p><p>• Les cours sont également synchronisés sur le site de réservation de matériel audiovisuel et sur l'intranet de l'école (Drupal) avec l'avantage d'avoir le même mot de passe que celui créé aléatoirement pour google</p><p>• (J'ai traduit la fonction de hachage de mot de passe PHP en T-SQL).</p><p>• Le mot de passe est envoyé avec un script python.</p><p>• L'année scolaire suivante, j'ai créé un script supplémentaire pour envoyer un nouveau mot de passe à tous les élèves qui ne se sont jamais connectés à leur compte Google.</p><h4>Environnement technique et outils:</h4><p>Python a été utilisé pour ces scripts avec une base de données SQL Server (express 2019) et des procédures de serveur SQL.</p>"
+        },
+        {
+          "id": "m7ska6zzwkap3d3b17kqmuzj",
+          "hidden": false,
+          "name": "Rendu PDF du relevé de compte codé belge (CODA)",
+          "period": "2019 / 2 mois",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Les relevés de compte électroniques sont pratiques à importer dans le logiciel de comptabilité, mais les clients ont manqué une présentation conviviale des opérations. Génération d'un .pdf complet basé sur des fichiers CODA.</p><h4>Réalisation:</h4><p>• Les PDF sont générés chaque matin pour nos clients.</p><h4>Tâches:</h4><p>• J'ai utilisé un outil externe gratuit et open source (wkhtmltopdf) pour restituer rapidement le code HTML généré au format PDF.</p><p>• J'ai réalisé un PDF détaillé avec la pagination et les informations provenant directement du logiciel de comptabilité (par exemple, identifiant client et détails du paiement par carte)</p><h4>Environnement technique et outils:</h4><p>Python a été utilisé pour ces scripts avec le planificateur de tâches Windows.</p>"
+        },
+        {
+          "id": "hi5umenjgqxsknsdbqq4gjj5",
+          "hidden": false,
+          "name": "Transcription audio à la demande de l'enregistrement des appels téléphoniques",
+          "period": "2019 / 1 mois",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Parfois, mes collègues écoutent leur conversation précédente au téléphone pour se rappeler certaines informations qui leur ont manqué. Cependant, ces enregistrements peuvent durer longtemps.</p><h4>Réalisation:</h4><p>• Une page dans l'intranet permet à l'utilisateur de demander une transcription d'un enregistrement d'appel téléphonique spécifique</p><p>• La transcription de la conversation est téléchargée sur Google Drive.</p><h4>Tâches:</h4><p>• J'ai utilisé Google Speech-to-Text et Google Natural Language pour transcrire l'enregistrement audio.</p><p>• J'ai créé une page sur l'intranet pour demander la transcription d'un enregistrement spécifique.</p><p>• J'ai modifié notre logiciel de journalisation des appels (HappyPhone) pour que la feuille de calcul Google renvoie vers la page Web sur l'intranet permettant de demander une transcription.</p><h4>Environnement technique et outils:</h4><p>J'ai utilisé c# .net core mvc 3.1 pour ce projet.</p>"
+        },
+        {
+          "id": "bhef12qizss47poyijx13tkj",
+          "hidden": false,
+          "name": "Intranet",
+          "period": "2018 / 2 mois",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>De multiples outils et services étaient fournis sur le réseau mais n'étaient pas utilisés car l'équipe ne les connaissait pas. J'ai donc tout rassembler sur un intranet.</p><h4>Réalisation:</h4><p>• Le site Web permet aux personnes autorisées de configurer les processus internes et d'accéder à tous les outils.</p><h4>Tâches:</h4><p>• Statistiques avec Google Charts</p><p>• Interface de configuration des processus internes (CODA, EFFF)</p><p>• Interface pour une importation rapide des fichiers coda, les fichiers efff, les fichiers Excel.</p><p>• Raccourci vers les outils et ressources internes</p><p>• Authentification (avec compte Google), autorisations par rôles</p><p>• Traductions avec des fichiers .po.</p><p>• Point de terminaison REST pour les terminaux téléphoniques</p><h4>Environnement technique et outils:</h4><p>.Net MVC Core 3.1 + Jenkins</p>"
+        }
+      ]
+    },
+    "skills": {
+      "title": "Compétences",
+      "icon": "",
+      "columns": 3,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "019df386-3643-7779-8467-d56c93380a36",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "Backend & Architecture",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "Java 21",
+            "Spring Boot (2.x/3.x)",
+            "JPA",
+            "Maven/Gradle",
+            "Python (FastAPI / Tornado)",
+            "C# (.Net Core)"
+          ]
+        },
+        {
+          "id": "enw1cryga2f0c1kqwsk49l7g",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "Frontend",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "Angular (19 à 21)",
+            "React",
+            "TypeScript",
+            "MobX",
+            "Flutter/Dart",
+            "Material Design",
+            "Ant Design"
+          ]
+        },
+        {
+          "id": "a0rgi8cdb1j4v89loakqoef1",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "DevOps, Cloud & Security",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "Ansible",
+            "GitLab CI/CD",
+            "Keycloak (IAM)",
+            "Amazon S3",
+            "Kong API Gateway",
+            "Docker / Docker Compose"
+          ]
+        },
+        {
+          "id": "jeug3mzxw3759ueiaks4kddt",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "Databases",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "T-SQL",
+            "Redis",
+            "CockroachDB",
+            "MariaDB",
+            "PostgreSQL",
+            "MySQL",
+            "H2"
+          ]
+        },
+        {
+          "id": "019e92ed-ff8a-73bb-a7f1-2728e103baef",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "AI",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "YOLO computer vision",
+            "OpenAI API"
+          ]
+        }
+      ],
+      "keywordLayout": "inline",
+      "layout": "default"
+    },
+    "languages": {
+      "title": "Langues",
+      "icon": "",
+      "columns": 4,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "ofeixm7scu0rq33sn3q8rk97",
+          "hidden": false,
+          "language": "Français",
+          "fluency": "Langue maternelle",
+          "level": 5
+        },
+        {
+          "id": "f3klzili1ivm34ve8qd7dxv2",
+          "hidden": false,
+          "language": "Anglais",
+          "fluency": "Professionnel",
+          "level": 4
+        },
+        {
+          "id": "ksroxcls5cov910cdd1ddbj7",
+          "hidden": false,
+          "language": "Espagnol",
+          "fluency": "Notions",
+          "level": 1
+        },
+        {
+          "id": "aucaqozbjesnlww3xtpsdry0",
+          "hidden": false,
+          "language": "Chinois",
+          "fluency": "Notions",
+          "level": 1
+        }
+      ]
+    },
+    "interests": {
+      "title": "Interests",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "rjv85qmr0us5wtf7pnkpf6v6",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "Danse (rock'n'roll, valse, folk, lindy hop)",
+          "keywords": []
+        }
+      ]
+    },
+    "awards": {
+      "title": "Awards",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": []
+    },
+    "certifications": {
+      "title": "Certifications",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": []
+    },
+    "publications": {
+      "title": "Publications",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": []
+    },
+    "volunteer": {
+      "title": "Volunteering",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": []
+    },
+    "references": {
+      "title": "References",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": []
+    }
+  },
+  "customSections": [
+    {
+      "title": "Projets chez Dstny",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "id": "qcsv9azb26fi6yz6rrefha6c",
+      "type": "experience",
+      "items": [
+        {
+          "id": "k6ukyz1ai1irb86x5ujstpnf",
+          "hidden": false,
+          "company": "Interface d'administration pour système de communication externe",
+          "position": "",
+          "location": "",
+          "period": "2023-2024",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Le « Communication System Front End Administration » est une interface web et une API qui permettent (à un locataire) de connecter les abonnés à des plateformes de communication externes (msteams, mobile, zoom, fournisseur sip…) en plus du téléphone fixe.</p><h4>Réalisation:</h4><p>• Création de l'API + tests</p><p>• Contribution au développement d'APIs pour des plateformes spécifiques</p><p>• Parties du frontend React (formulaires, recherche)</p><p>• Outils de simulation et débogage d'acheminement d'appels en React et Python</p><h4>Environnement technique et outils:</h4><p>L'application est en python3 avec le framework web tornado.</p><p>Frontend en React.</p><p>pytest, docker et gitlab CI.</p><p>OpenApi pour la documentation.</p><p>Azure Cloud pour l'environnement de staging.</p>",
+          "roles": []
+        },
+        {
+          "id": "jum0qmum5rlhqt5hw1sdrsg3",
+          "hidden": false,
+          "company": "Application Web pour les paramètres utilisateur du téléphone",
+          "position": "",
+          "location": "",
+          "period": "2023 / 3 mois",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>La Fmu Web App permet au client final de modifier les paramètres utilisateur (mode privé, redirections …) en temps réel.</p><h4>Réalisation:</h4><p>• Aide à la création de l'application Web</p><p>• Migration de la base de données vers PostgreSQL</p><p>• Métriques et traçabilité OpenTelemetry</p><h4>Tâches:</h4><p>• Ajout d'un cadre de traduction</p><p>• Paramètres utilisateur avec Websocket pour être synchronisés</p><p>• Installation et configuration de Kong API Gateway</p><p>• Plugin Kong en python</p><p>• Déploiement avec playbooks Ansible</p><h4>Environnement technique et outils:</h4><p>Application Web avec React + Mobx.</p><p>Passerelle API Kong.</p><p>Keycloak pour la gestion des accès.</p><p>Python 3 avec Tornado, Marshmallow, OpenTelemetry, pytest, Docker.</p>",
+          "roles": []
+        },
+        {
+          "id": "tl0w9oe12xf5gekthfevzz63",
+          "hidden": false,
+          "company": "Serveur de recherche de numéro de téléphone",
+          "position": "",
+          "location": "",
+          "period": "2022 / 5 mois",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Cette API stocke tous les numéros de téléphone et le domaine respectif où ils sont enregistrés.</p><p>Il met également en cache les en-têtes SIP des appels en cours.</p><h4>Réalisation:</h4><p>J'ai réécrit l'API avec mon collègue et l'ai déployée en production.</p><h4>Tâches:</h4><p>• Réécriture de l'API basée sur la spécification de la précédente.</p><p>• Réalisation de la documentation</p><p>• Écriture des tests et créé un docker compose pour exécuter les tests dans gitlab CI.</p><p>• Rédaction d'un script de migration</p><p>• Adaptation du playbook ansible pour installer la nouvelle version de l'API.</p><h4>Environnement technique et outils:</h4><p>Le serveur de recherche est en python3 avec le framework web tornado.</p><p>Communication vers Asterisk avec AMI + ARI.</p><p>Base de données CockroachDB + cache Redis.</p>",
+          "roles": []
+        },
+        {
+          "id": "nz27s9he9en65o36c2w8gtv3",
+          "hidden": false,
+          "company": "API pour gérer les paramètres des clusters, des locataires, des abonnés, du PBX et des calendriers",
+          "position": "",
+          "location": "",
+          "period": "2021 / x mois",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>FMPA gère les paramètres des abonnés téléphoniques pour notre solution « FMU »</p><h4>Réalisation:</h4><p>• Divers travaux sur cette API :</p><p>o Basculement de la base de données vers postgresql</p><p>o Ajout de métriques</p><p>o Journalisation améliorée</p><p>o Nouveaux points de terminaison pour gérer les nouveaux paramètres et les nouveaux cas d'utilisation</p><p>o Gestion de la compatibilité avec plusieurs versions d'API externes</p><h4>Tâches:</h4><p>• Nouvelles versions</p><p>• Déploiement avec le playbook Ansible</p><h4>Environnement technique et outils:</h4><p>FMPA est en python3 avec le webframe tornado.</p><p>Il utilise marsmallow pour l'analyse du schéma json et openAPI pour la documentation.</p><p>Tracing avec opentelemetry.</p><p>Il utilise pytest, docker pour les tests ainsi que VCR pour mettre en cache la réponse des API externes.</p>",
+          "roles": []
+        }
+      ]
+    },
+    {
+      "title": "Projets chez Konekto",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "id": "ucavvtmvs72zt1df8hb4xxg8",
+      "type": "experience",
+      "items": [
+        {
+          "id": "019df336-9ad5-740a-b6c5-a7693b2677c0",
+          "hidden": false,
+          "company": "Digiprocs/Euroports",
+          "position": "",
+          "location": "",
+          "period": "",
+          "website": {
+            "url": "https://konekto.be/projets/euroports/",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Amélioration et maintenance d'un système de gestion de bons de commande et de facturation B2B.</p><h4>Réalisation:</h4><p>Développement de fonctionnalités pour le traitement des factures au format PEPPOL, gestion des flux de validation et mises à jour Spring Boot + Angular.</p><h4>Tâches:</h4><ul><li><p>Traitement des factures/notes de crédit du réseau PEPPOL (format UBL).</p></li><li><p>Création d'une page avec pagination et filtres de recherche pour lister les documents PEPPOL en attente de complétion ou de validation.</p></li><li><p>Mise en place d'un système de validation des factures par service/département, en utilisant les attributs de Keycloak pour gérer les permissions.</p></li><li><p>Gestion des quantités décimales et des montants négatifs sur les bons de commande et de livraison.</p></li><li><p>Modification de la logique métier pour lier plusieurs documents à une facture/commande, de dissocier une facture d'un bon de commande, et de modifier un bon de commande même après réception d'une facture.</p></li><li><p>Filtres dynamiques pour les numéros de journaux afin qu'ils commencent tous par le même numéro dans un bon de commande.</p></li><li><p>Migration de l'application vers Angular 21 (depuis 19) et Spring Boot 4.0.1 (depuis 3.5.x).</p></li></ul><h4>Environnement technique et outils:</h4><p>Angular 21, Java, Spring Boot 4.0.1, Keycloak, PEPPOL (UBL).</p>",
+          "roles": []
+        },
+        {
+          "id": "019df33b-69dd-778a-8514-0a77288b7636",
+          "hidden": false,
+          "company": "Spurado",
+          "position": "",
+          "location": "",
+          "period": "",
+          "website": {
+            "url": "https://konekto.be/projets/spurado/",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Enrichissement d'une application de gestion RH avec des fonctionnalités de suivi du temps de travail et de gestion des congés.</p><h4>Réalisation:</h4><p>Mise en place d'un système complet de \"pointeuse\" pour les employés, avec intégration pour le secrétariat social, et amélioration du système de congés existant.</p><h4>Tâches:</h4><ul><li><p>Développement d'un widget de pointage permettant aux employés d'enregistrer le début/fin de leur journée ainsi que leurs pauses.</p></li><li><p>Création d'une page calendrier pour permettre aux employés de visualiser leurs heures et aux administrateurs de les modifier.</p></li><li><p>Création d'un endpoint sécurisé dédié au secrétariat social pour l'importation automatisée des heures prestées.</p></li><li><p>Mise en place d'un typage des congés avec un système d’approbation et une page calendrier pour visualiser les congés.</p></li></ul><p>Amélioration de la mise en page des rapports PDF générés via iText et des statistiques associées.</p><h4>Environnement technique et outils:</h4><p>Java, Spring, Angular, iText.</p>",
+          "roles": []
+        },
+        {
+          "id": "019ffa42-b166-721e-a59b-a80bbb1b7dbd",
+          "hidden": false,
+          "company": "Loopery",
+          "position": "",
+          "location": "",
+          "period": "",
+          "website": {
+            "url": "https://konekto.be/projets/loopery/",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Solution d'automatisation de la vente au détail pour un magasin de vêtements de seconde main pour enfants, visant à accélérer significativement le catalogage des produits et le traitement des stocks.</p><h4>Réalisation:</h4><p>Intégration de fonctionnalités de vision par ordinateur basées sur l'IA dans une application mobile existante pour automatiser les flux de photographie des produits, et amélioration de la catégorisation des stocks sur la plateforme web.</p><h4>Tâches:</h4><p>Conception et déploiement d'un backend FastAPI intégré à un modèle de détection d'objets YOLO pour détecter automatiquement les vêtements et calculer des zones de recadrage d'image précises.</p><p>Modification de l'application mobile Flutter existante pour afficher des suggestions de recadrage automatisées, simplifiant ainsi le processus de mise en ligne des articles pour le personnel du magasin.</p><p>Implémentation de fonctionnalités de catégorisation de vêtements intuitives sur la plateforme web Angular.</p><h4>Environnement technique et outils:</h4><p>Python, FastAPI, YOLO (Object Detection), Flutter, Dart, Angular</p>",
+          "roles": []
+        },
+        {
+          "id": "019df341-1a06-7354-a9d2-5028c3c27f84",
+          "hidden": false,
+          "company": "Vision",
+          "position": "",
+          "location": "",
+          "period": "",
+          "website": {
+            "url": "https://konekto.be/projets/vision-360/",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Modernisation d'un outil de gestion d'études et de questionnaires.</p><h4>Réalisation:</h4><p>migrations majeures de java + springboot, ajout de fonctionnalités de personnalisation pour les utilisateurs et amélioration 'responsive design'.</p><h4>Tâches:</h4><ul><li><p>Développement d’une fonctionnalité de personnalisation de style pour les questions et groupes de questions.</p></li><li><p>Ajout de filtres dynamiques lors de l'export des données des études.</p></li><li><p>Migration technique complète de l'environnement backend : passage de Gradle à Maven, de Java 11 à Java 21 et de Spring Boot 2 à Spring Boot 3.</p></li><li><p>Stabilisation de l'application (correction de nombreux bugs tel que des dépendances circulaires dans les formules groovy et des erreurs de synchronisation).</p></li></ul><h4>Environnement technique et outils:</h4><p>Java, Springboot, Maven.</p>",
+          "roles": []
+        },
+        {
+          "id": "019df33e-09a0-77e2-a163-683b2a64da6b",
+          "hidden": false,
+          "company": "Event Locator/AtlasControl",
+          "position": "",
+          "location": "",
+          "period": "",
+          "website": {
+            "url": "https://konekto.be/projets/event-locator/",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Modernisation d'une application de gestion d'interventions techniques et ajout d'un prompt à l'integration de l'intelligence artificielle pour optimiser la planification.</p><h4>Réalisation:</h4><p>Migration des données vers le cloud, montée de version de springboot+angular et utilisation de l'API d'OpenAI (ChatGPT) pour l'assistance à la planification.</p><h4>Tâches:</h4><ul><li><p>Migration des pièces jointes stockées sur une base de données MariaDB vers un stockage cloud Amazon S3.</p></li><li><p>Développement d'un menu contextuel interrogeant ChatGPT pour obtenir des recommandations sur l'optimisation de l'agenda journalier des techniciens.</p></li><li><p>Mise à jour de l'application vers Angular 20 et Spring Boot 3.5.x.</p></li></ul><h4>Environnement technique et outils:</h4><p>Java, Spring, Angular, MariaDB, Amazon S3, API OpenAI.</p>",
+          "roles": []
+        },
+        {
+          "id": "019df348-4b28-72ae-a5a2-9024c95696fc",
+          "hidden": false,
+          "company": "Monikonekto",
+          "position": "",
+          "location": "",
+          "period": "",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Besoin d'un outil de supervision interne pour visualiser le bon fonctionnement de l'écosystème d'applications de l'entreprise.</p><h4>Réalisation:</h4><p>Création d'un tableau de bord de monitoring simple.</p><h4>Tâches:</h4><ul><li><p>Développement d'une page web centralisant la visualisation de l'état (statut HTTP) des différentes applications et APIs de Konekto.</p></li><li><p>Mise en place d'un système de récupération et d'affichage détaillé des JSON d'erreur, facilitant ainsi le débogage pour l'équipe technique.</p></li></ul><h4>Environnement technique et outils:</h4><p>vanilla javascript, html, css</p>",
+          "roles": []
+        },
+        {
+          "id": "xmlo279w0kx6rqglb8jwl5ro",
+          "hidden": false,
+          "company": "Page de connexion pour keycloak",
+          "position": "",
+          "location": "",
+          "period": "2024 / 2 semaines",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<h4>Contexte:</h4><p>Konekto souhaitait améliorer sa page de connexion keycloak pour l'un de ses clients et pour lui-même.</p><h4>Réalisation:</h4><p>J'ai conçu plusieurs pages de connexion composées d'une partie avec une illustration et un fond animé et une autre partie avec un formulaire. Entre les deux parties il y a une transition avec un masque svg.</p><h4>Tâches:</h4><p>• Conception de plusieurs pages de connexion au format freemarker.</p><p>• Modification du backend Java Spring Boot pour envoyer des e-mails en utilisant le même modèle freemarker.</p><h4>Environnement technique et outils:</h4><p>J'ai utilisé un docker-compose et un mailhog pour tester la page de connexion.</p>",
+          "roles": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "template": "leafish",
+    "layout": {
+      "sidebarWidth": 42.5,
+      "pages": [
+        {
+          "fullWidth": false,
+          "main": [
+            "profiles",
+            "experience",
+            "volunteer",
+            "references",
+            "certifications",
+            "awards",
+            "publications"
+          ],
+          "sidebar": [
+            "summary",
+            "skills",
+            "education",
+            "interests",
+            "languages"
+          ]
+        },
+        {
+          "fullWidth": true,
+          "main": [
+            "ucavvtmvs72zt1df8hb4xxg8"
+          ],
+          "sidebar": []
+        },
+        {
+          "fullWidth": true,
+          "main": [
+            "qcsv9azb26fi6yz6rrefha6c"
+          ],
+          "sidebar": []
+        },
+        {
+          "fullWidth": true,
+          "main": [
+            "projects"
+          ],
+          "sidebar": []
+        }
+      ]
+    },
+    "page": {
+      "gapX": 4,
+      "gapY": 6,
+      "marginX": 14,
+      "marginY": 14,
+      "format": "a4",
+      "locale": "fr-FR",
+      "hideLinkUnderline": false,
+      "hideIcons": false,
+      "hideSectionIcons": false
+    },
+    "design": {
+      "level": {
+        "icon": "star",
+        "type": "circle"
+      },
+      "colors": {
+        "primary": "rgba(0, 69, 149, 1)",
+        "text": "rgba(16, 15, 15, 1)",
+        "background": "rgba(255, 255, 255, 1)"
+      }
+    },
+    "typography": {
+      "body": {
+        "fontFamily": "Inter",
+        "fontWeights": [
+          "400",
+          "600"
+        ],
+        "fontSize": 11,
+        "lineHeight": 1.1
+      },
+      "heading": {
+        "fontFamily": "Inter",
+        "fontWeights": [
+          "400",
+          "600"
+        ],
+        "fontSize": 14,
+        "lineHeight": 1.1
+      }
+    }
+  }
+}

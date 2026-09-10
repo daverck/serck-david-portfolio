@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { employersList } from '../../data/employers';
+import { useLanguage } from '../../context/LanguageContext';
 import { Briefcase, Calendar, MapPin, ArrowRight, Layers } from 'lucide-react';
 
 export const ExperienceTimeline: React.FC = () => {
+  const { employers, t } = useLanguage();
+
   return (
     <section id="experience-overview" className="py-16 md:py-24 border-t border-slate-200/70 dark:border-slate-800/70 bg-slate-100/40 dark:bg-slate-900/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -11,19 +13,19 @@ export const ExperienceTimeline: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-3 py-1 rounded-full">
-            Parcours Professionnel
+            {t('exp.badge')}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Expériences & Réalisations
+            {t('exp.title')}
           </h2>
           <p className="mt-3 text-slate-600 dark:text-slate-400 text-base">
-            Découvrez le détail des projets techniques menés auprès de chacun de mes employeurs. Cliquez sur une entreprise pour accéder à sa page dédiée.
+            {t('exp.subtitle')}
           </p>
         </div>
 
         {/* 3 Employers Cards Grid */}
         <div className="space-y-8">
-          {employersList.map(emp => (
+          {employers.map(emp => (
             <div
               key={emp.slug}
               className="relative p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800/90 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden"
@@ -43,11 +45,11 @@ export const ExperienceTimeline: React.FC = () => {
                       <Briefcase className="w-3.5 h-3.5" />
                       {emp.badgeText}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
+                    <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 dark:text-slate-400">
                       <Calendar className="w-3.5 h-3.5" />
                       {emp.period}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
+                    <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 dark:text-slate-400">
                       <MapPin className="w-3.5 h-3.5" />
                       {emp.location}
                     </span>
@@ -69,7 +71,7 @@ export const ExperienceTimeline: React.FC = () => {
                   {/* Key achievements preview bullets */}
                   <div className="pt-2">
                     <span className="block text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">
-                      Points d'orgue & Réalisations clés
+                      {t('exp.highlights')}
                     </span>
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-300">
                       {emp.keyHighlights.slice(0, 4).map((h, i) => (
@@ -88,14 +90,14 @@ export const ExperienceTimeline: React.FC = () => {
                     <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
                       <Layers className="w-4 h-4 text-brand-600 dark:text-brand-400" />
                       <span className="text-xs font-semibold uppercase tracking-wider">
-                        Projets documentés
+                        {t('exp.documentedProjects')}
                       </span>
                     </div>
                     <div className="mt-2 text-3xl font-extrabold text-slate-900 dark:text-white">
-                      {emp.projects.length} <span className="text-sm font-medium text-slate-500">projets clés</span>
+                      {emp.projects.length} <span className="text-sm font-medium text-slate-500">{t('exp.keyProjects')}</span>
                     </div>
                     <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                      Architecture, missions, solutions et technologies détaillées.
+                      {t('exp.desc')}
                     </p>
                   </div>
 
@@ -103,7 +105,7 @@ export const ExperienceTimeline: React.FC = () => {
                     to={`/experience/${emp.slug}`}
                     className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-xs uppercase tracking-wider hover:bg-brand-600 dark:hover:bg-brand-400 dark:hover:text-slate-950 transition-colors shadow-sm group-hover:scale-[1.02]"
                   >
-                    <span>Voir la page {emp.name}</span>
+                    <span>{t('exp.viewPage')} {emp.name}</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -117,4 +119,3 @@ export const ExperienceTimeline: React.FC = () => {
     </section>
   );
 };
-

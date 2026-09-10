@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { resumeData } from '../../data/employers';
+import { useLanguage } from '../../context/LanguageContext';
 import { ExternalLink } from '../common/ExternalLink';
 import { RichHtml } from '../common/RichHtml';
 import { GithubIcon, LinkedinIcon } from '../common/Icons';
@@ -7,8 +7,9 @@ import { MapPin, Mail, Phone, ArrowDown, Sparkles } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const [imgError, setImgError] = useState(false);
-  const linkedin = resumeData.sections.profiles.items.find(p => p.network.toLowerCase().includes('linkedin'));
-  const github = resumeData.sections.profiles.items.find(p => p.network.toLowerCase().includes('github'));
+  const { resume, t } = useLanguage();
+  const linkedin = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('linkedin'));
+  const github = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('github'));
 
   return (
     <section className="relative pt-6 pb-16 md:pt-12 md:pb-24 overflow-hidden">
@@ -27,46 +28,46 @@ export const Hero: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>Disponible immédiatement pour de nouveaux défis</span>
+              <span>{t('hero.available')}</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
-              Bonjour, je suis{' '}
+              {t('hero.greeting')}{' '}
               <span className="bg-gradient-to-r from-brand-600 via-teal-500 to-primary-light bg-clip-text text-transparent">
-                {resumeData.basics.name}
+                {resume.basics.name}
               </span>
             </h1>
 
             <p className="mt-3 text-xl sm:text-2xl font-medium text-slate-700 dark:text-slate-300">
-              {resumeData.basics.headline}
+              {resume.basics.headline}
             </p>
 
             <div className="mt-4 max-w-xl text-slate-600 dark:text-slate-300 leading-relaxed">
-              <RichHtml html={resumeData.summary.content} />
+              <RichHtml html={resume.summary.content} />
             </div>
 
             {/* Quick Location & Contact meta */}
             <div className="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-slate-500 dark:text-slate-400">
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" />
-                <span>{resumeData.basics.location}</span>
+                <span>{resume.basics.location}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Mail className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" />
                 <a
-                  href={`mailto:${resumeData.basics.email}`}
+                  href={`mailto:${resume.basics.email}`}
                   className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
                 >
-                  {resumeData.basics.email}
+                  {resume.basics.email}
                 </a>
               </div>
               <div className="flex items-center gap-1.5">
                 <Phone className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" />
                 <a
-                  href={`tel:${resumeData.basics.phone}`}
+                  href={`tel:${resume.basics.phone}`}
                   className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
                 >
-                  {resumeData.basics.phone}
+                  {resume.basics.phone}
                 </a>
               </div>
             </div>
@@ -77,7 +78,7 @@ export const Hero: React.FC = () => {
                 href="#experience-overview"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-teal-600 text-white font-semibold text-sm shadow-md hover:from-brand-700 hover:to-teal-700 transition-all hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
               >
-                <span>Explorer mon parcours</span>
+                <span>{t('hero.explore')}</span>
                 <ArrowDown className="w-4 h-4" />
               </a>
 
@@ -85,7 +86,7 @@ export const Hero: React.FC = () => {
                 href="#contact"
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all shadow-sm"
               >
-                <span>Me contacter</span>
+                <span>{t('hero.contactMe')}</span>
               </a>
 
               {github && (
@@ -116,8 +117,8 @@ export const Hero: React.FC = () => {
               <div className="w-full h-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
                 {!imgError ? (
                   <img
-                    src={resumeData.picture.url}
-                    alt={resumeData.basics.name}
+                    src={resume.picture.url}
+                    alt={resume.basics.name}
                     onError={() => setImgError(true)}
                     className="w-full h-full object-cover"
                     loading="eager"
@@ -136,8 +137,8 @@ export const Hero: React.FC = () => {
                 <Sparkles className="w-4 h-4" />
               </div>
               <div className="text-left">
-                <span className="block text-xs font-bold text-slate-900 dark:text-white">6+ Ans d'exp.</span>
-                <span className="block text-[11px] text-slate-500 dark:text-slate-400 font-medium">Angular • Python • Java</span>
+                <span className="block text-xs font-bold text-slate-900 dark:text-white">{t('hero.expYears')}</span>
+                <span className="block text-[11px] text-slate-500 dark:text-slate-400 font-medium">{t('hero.spec')}</span>
               </div>
             </div>
           </div>
@@ -147,4 +148,3 @@ export const Hero: React.FC = () => {
     </section>
   );
 };
-

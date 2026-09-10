@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router';
 import { ThemeToggle } from '../common/ThemeToggle';
+import { LanguageToggle } from '../common/LanguageToggle';
+import { useLanguage } from '../../context/LanguageContext';
 import { Menu, X, Briefcase, ChevronDown } from 'lucide-react';
-import { employersList } from '../../data/employers';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [experienceDropdownOpen, setExperienceDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { resume, employers, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,10 +47,10 @@ export const Header: React.FC = () => {
           </div>
           <div>
             <span className="block font-bold text-slate-900 dark:text-white tracking-tight leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-              David Serck
+              {resume.basics.name}
             </span>
             <span className="block text-xs text-slate-500 dark:text-slate-400 font-medium">
-              Full-Stack Developer
+              {resume.basics.headline}
             </span>
           </div>
         </Link>
@@ -63,7 +65,7 @@ export const Header: React.FC = () => {
                 : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60'
             }`}
           >
-            Accueil
+            {t('nav.home')}
           </Link>
 
           {/* Expériences Dropdown */}
@@ -82,16 +84,16 @@ export const Header: React.FC = () => {
               }`}
             >
               <Briefcase className="w-4 h-4 mr-0.5" />
-              <span>Expériences</span>
+              <span>{t('nav.experience')}</span>
               <ChevronDown className="w-3.5 h-3.5 opacity-70" />
             </button>
 
             {experienceDropdownOpen && (
               <div className="absolute left-0 mt-1 w-56 rounded-2xl bg-white dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-800 py-2 z-50 animate-fade-in">
                 <div className="px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-                  Détail par employeur
+                  {t('nav.experienceDropdown')}
                 </div>
-                {employersList.map(emp => (
+                {employers.map(emp => (
                   <Link
                     key={emp.slug}
                     to={`/experience/${emp.slug}`}
@@ -116,29 +118,33 @@ export const Header: React.FC = () => {
             href="/#skills"
             className="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
           >
-            Compétences
+            {t('nav.skills')}
           </a>
           <a
             href="/#education"
             className="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
           >
-            Formations
+            {t('nav.education')}
           </a>
           <a
             href="/#contact"
             className="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
           >
-            Contact
+            {t('nav.contact')}
           </a>
 
           <div className="h-5 w-px bg-slate-200 dark:bg-slate-800 mx-1" />
+
+          {/* Language Selector */}
+          <LanguageToggle />
 
           {/* Theme Toggle Button */}
           <ThemeToggle />
         </nav>
 
-        {/* Mobile menu trigger & ThemeToggle */}
+        {/* Mobile menu trigger, LanguageToggle & ThemeToggle */}
         <div className="flex items-center gap-2 md:hidden">
+          <LanguageToggle />
           <ThemeToggle />
           <button
             type="button"
@@ -158,15 +164,15 @@ export const Header: React.FC = () => {
             to="/"
             className="block px-3 py-2 rounded-lg text-base font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
           >
-            Accueil
+            {t('nav.home')}
           </Link>
 
           <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800/60">
             <span className="block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-400">
-              Pages Employeurs
+              {t('nav.mobileTitle')}
             </span>
             <div className="mt-1 space-y-1 pl-2">
-              {employersList.map(emp => (
+              {employers.map(emp => (
                 <Link
                   key={emp.slug}
                   to={`/experience/${emp.slug}`}
@@ -188,21 +194,21 @@ export const Header: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
-              Compétences
+              {t('nav.skills')}
             </a>
             <a
               href="/#education"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
-              Formations
+              {t('nav.education')}
             </a>
             <a
               href="/#contact"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
-              Contact
+              {t('nav.contact')}
             </a>
           </div>
         </div>
@@ -210,4 +216,3 @@ export const Header: React.FC = () => {
     </header>
   );
 };
-

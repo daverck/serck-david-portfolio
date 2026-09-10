@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { resumeData } from '../../data/employers';
+import { useLanguage } from '../../context/LanguageContext';
 import { Server, Layout as LayoutIcon, Cloud, Database, Cpu, Layers } from 'lucide-react';
 
 export const Skills: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
-  const skillsList = resumeData.sections.skills.items;
+  const { resume, t } = useLanguage();
+  const skillsList = resume.sections.skills.items;
 
   const getCategoryIcon = (name: string) => {
     const lower = name.toLowerCase();
     if (lower.includes('backend')) return <Server className="w-5 h-5 text-indigo-500" />;
     if (lower.includes('frontend')) return <LayoutIcon className="w-5 h-5 text-teal-500" />;
     if (lower.includes('devops') || lower.includes('cloud')) return <Cloud className="w-5 h-5 text-sky-500" />;
-    if (lower.includes('database') || lower.includes('données')) return <Database className="w-5 h-5 text-amber-500" />;
+    if (lower.includes('database') || lower.includes('données') || lower === 'db') return <Database className="w-5 h-5 text-amber-500" />;
     if (lower.includes('ai') || lower.includes('intelligence')) return <Cpu className="w-5 h-5 text-purple-500" />;
     return <Layers className="w-5 h-5 text-slate-500" />;
   };
@@ -27,13 +28,13 @@ export const Skills: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-3 py-1 rounded-full">
-            Stack & Compétences
+            {t('skills.badge')}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Technologies & Écosystèmes maîtrisés
+            {t('skills.title')}
           </h2>
           <p className="mt-3 text-slate-600 dark:text-slate-400 text-base">
-            6 années passées à architecturer et fiabiliser des backends robustes, concevoir des interfaces réactives et automatiser les déploiements.
+            {t('skills.subtitle')}
           </p>
 
           {/* Filter Pills */}
@@ -47,7 +48,7 @@ export const Skills: React.FC = () => {
                   : 'bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
               }`}
             >
-              Toutes ({skillsList.reduce((acc, cat) => acc + cat.keywords.length, 0)})
+              {t('skills.all')} ({skillsList.reduce((acc, cat) => acc + cat.keywords.length, 0)})
             </button>
             {skillsList.map(cat => (
               <button
@@ -100,4 +101,3 @@ export const Skills: React.FC = () => {
     </section>
   );
 };
-

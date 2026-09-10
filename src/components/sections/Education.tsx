@@ -1,11 +1,12 @@
 import React from 'react';
-import { resumeData } from '../../data/employers';
+import { useLanguage } from '../../context/LanguageContext';
 import { RichHtml } from '../common/RichHtml';
 import { GraduationCap, Calendar, Languages, Sparkles } from 'lucide-react';
 
 export const Education: React.FC = () => {
-  const educationItems = resumeData.sections.education.items;
-  const languages = resumeData.sections.languages.items;
+  const { resume, lang, t } = useLanguage();
+  const educationItems = resume.sections.education.items;
+  const languages = resume.sections.languages.items;
 
   return (
     <section id="education" className="py-16 md:py-24 border-t border-slate-200/70 dark:border-slate-800/70">
@@ -17,10 +18,10 @@ export const Education: React.FC = () => {
           <div className="lg:col-span-2 space-y-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-3 py-1 rounded-full">
-                Parcours Académique
+                {t('edu.badge')}
               </span>
               <h2 className="mt-3 text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                Diplômes & Formations
+                {t('edu.title')}
               </h2>
             </div>
 
@@ -66,28 +67,36 @@ export const Education: React.FC = () => {
                   <Languages className="w-5 h-5" />
                 </div>
                 <h3 className="font-bold text-slate-900 dark:text-white text-lg">
-                  Langues
+                  {t('edu.languages')}
                 </h3>
               </div>
 
               <div className="space-y-4">
-                {languages.map(lang => {
-                  const percentage = Math.min(100, (lang.level / 5) * 100);
+                {languages.map(langItem => {
+                  const percentage = Math.min(100, (langItem.level / 5) * 100);
                   const getFluencyLabel = (lvl: number) => {
-                    if (lvl >= 5) return 'Langue maternelle';
-                    if (lvl >= 4) return 'Courant / Technique';
-                    if (lvl >= 3) return 'Intermédiaire';
-                    return 'Notions de base';
+                    if (langItem.fluency) return langItem.fluency;
+                    if (lang === 'fr') {
+                      if (lvl >= 5) return 'Langue maternelle';
+                      if (lvl >= 4) return 'Courant / Technique';
+                      if (lvl >= 3) return 'Intermédiaire';
+                      return 'Notions de base';
+                    } else {
+                      if (lvl >= 5) return 'Native';
+                      if (lvl >= 4) return 'Professional / Fluent';
+                      if (lvl >= 3) return 'Intermediate';
+                      return 'Basic notions';
+                    }
                   };
 
                   return (
-                    <div key={lang.id} className="space-y-1.5">
+                    <div key={langItem.id} className="space-y-1.5">
                       <div className="flex justify-between items-center text-xs">
                         <span className="font-semibold text-slate-800 dark:text-slate-200">
-                          {lang.language}
+                          {langItem.language}
                         </span>
                         <span className="text-slate-500 dark:text-slate-400">
-                          {getFluencyLabel(lang.level)}
+                          {getFluencyLabel(langItem.level)}
                         </span>
                       </div>
                       <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
@@ -106,15 +115,15 @@ export const Education: React.FC = () => {
             <div className="p-6 rounded-2xl bg-gradient-to-br from-teal-500/5 to-indigo-500/5 dark:from-teal-950/20 dark:to-indigo-950/20 border border-teal-200/40 dark:border-teal-800/40">
               <div className="flex items-center gap-2 text-brand-700 dark:text-brand-300 font-bold text-sm mb-2">
                 <Sparkles className="w-4 h-4" />
-                <span>Profil & Démarche</span>
+                <span>{t('edu.profile')}</span>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Passionné par le code propre, l'architecture logicielle pérenne, et l'apprentissage continu (IA générative, architectures distribuées, UI moderne).
+                {t('edu.profileDesc')}
               </p>
-              {resumeData.sections.interests?.items?.[0] && (
+              {resume.sections.interests?.items?.[0] && (
                 <div className="mt-3 pt-3 border-t border-slate-200/50 dark:border-slate-800/50 text-xs text-slate-500 dark:text-slate-400">
-                  <span className="font-semibold">Loisirs : </span>
-                  {resumeData.sections.interests.items[0].name}
+                  <span className="font-semibold">{t('edu.hobbies')} </span>
+                  {resume.sections.interests.items[0].name}
                 </div>
               )}
             </div>
@@ -127,4 +136,3 @@ export const Education: React.FC = () => {
     </section>
   );
 };
-

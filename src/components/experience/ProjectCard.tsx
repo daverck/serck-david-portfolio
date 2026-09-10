@@ -1,10 +1,13 @@
 import React from 'react';
 import { ParsedProject } from '../../types/resume';
+import { useLanguage } from '../../context/LanguageContext';
 import { ExternalLink } from '../common/ExternalLink';
 import { RichHtml } from '../common/RichHtml';
 import { Calendar, Code2 } from 'lucide-react';
 
 export const ProjectCard: React.FC<{ project: ParsedProject; index: number }> = ({ project, index }) => {
+  const { t } = useLanguage();
+
   return (
     <article
       className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800/90 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-brand-500/40 group"
@@ -17,7 +20,7 @@ export const ProjectCard: React.FC<{ project: ParsedProject; index: number }> = 
             </span>
             {project.url && (
               <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">
-                En ligne / Référence
+                {t('detail.onlineRef')}
               </span>
             )}
           </div>
@@ -39,7 +42,7 @@ export const ProjectCard: React.FC<{ project: ParsedProject; index: number }> = 
               href={project.url}
               className="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 bg-teal-50 dark:bg-teal-950/40 px-3 py-1 rounded-lg border border-teal-200 dark:border-teal-800/50"
             >
-              <span>Voir le projet</span>
+              <span>{t('detail.viewProject')}</span>
             </ExternalLink>
           )}
         </div>
@@ -67,4 +70,3 @@ export const ProjectCard: React.FC<{ project: ParsedProject; index: number }> = 
     </article>
   );
 };
-
