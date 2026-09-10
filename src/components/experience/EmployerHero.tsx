@@ -58,3 +58,4 @@ export const EmployerHero: React.FC<{ employer: EmployerDetails }> = ({ employer
     </div>
   );
 };
+

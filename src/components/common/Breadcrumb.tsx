@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { ChevronRight, Home } from 'lucide-react';
 
 interface BreadcrumbProps {
@@ -36,3 +36,4 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
     </nav>
   );
 };
+

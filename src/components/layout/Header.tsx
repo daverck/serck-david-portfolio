@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { Menu, X, Briefcase, ChevronDown } from 'lucide-react';
 import { employersList } from '../../data/employers';
@@ -210,3 +210,4 @@ export const Header: React.FC = () => {
     </header>
   );
 };
+

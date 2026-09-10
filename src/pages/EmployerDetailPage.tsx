@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router';
 import { getEmployerBySlug } from '../data/employers';
 import { EmployerHero } from '../components/experience/EmployerHero';
 import { ProjectCard } from '../components/experience/ProjectCard';
@@ -159,3 +159,4 @@ export const EmployerDetailPage: React.FC = () => {
     </div>
   );
 };
+

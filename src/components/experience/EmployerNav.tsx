@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { EmployerSlug } from '../../types/resume';
 import { getNextEmployer, getPrevEmployer } from '../../data/employers';
 import { ArrowLeft, ArrowRight, LayoutGrid } from 'lucide-react';
@@ -60,3 +60,4 @@ export const EmployerNav: React.FC<{ currentSlug: EmployerSlug }> = ({ currentSl
     </nav>
   );
 };
+

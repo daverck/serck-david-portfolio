@@ -124,3 +124,4 @@ export function getPrevEmployer(slug: EmployerSlug): EmployerDetails {
   const prevIndex = (currentIndex - 1 + employersList.length) % employersList.length;
   return employersList[prevIndex];
 }
+

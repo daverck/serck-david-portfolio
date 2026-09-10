@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import { Layout } from './components/layout/Layout';
 import { HomePage } from './pages/HomePage';
 import { EmployerDetailPage } from './pages/EmployerDetailPage';
@@ -19,3 +19,4 @@ export const App: React.FC = () => {
 };
 
 export default App;
+

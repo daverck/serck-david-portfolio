@@ -200,3 +200,4 @@ export interface EmployerDetails {
   projects: ParsedProject[];
   keyHighlights: string[];
 }
+

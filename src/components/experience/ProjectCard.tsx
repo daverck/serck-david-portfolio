@@ -67,3 +67,4 @@ export const ProjectCard: React.FC<{ project: ParsedProject; index: number }> = 
     </article>
   );
 };
+

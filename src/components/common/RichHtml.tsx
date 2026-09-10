@@ -14,3 +14,4 @@ export const RichHtml: React.FC<RichHtmlProps> = ({ html, className = '' }) => {
     />
   );
 };
+

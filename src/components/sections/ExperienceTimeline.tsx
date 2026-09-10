@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { employersList } from '../../data/employers';
 import { Briefcase, Calendar, MapPin, ArrowRight, Layers } from 'lucide-react';
 
@@ -117,3 +117,4 @@ export const ExperienceTimeline: React.FC = () => {
     </section>
   );
 };
+
