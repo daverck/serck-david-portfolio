@@ -8,7 +8,7 @@ import { EmployerDetailPage } from './pages/EmployerDetailPage';
 export const App: React.FC = () => {
   return (
     <LanguageProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
