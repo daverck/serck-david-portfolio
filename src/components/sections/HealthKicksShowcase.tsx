@@ -72,23 +72,23 @@ export const HealthKicksShowcase: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="mb-4 inline-flex items-center justify-center p-3 sm:p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-md ring-4 ring-teal-500/10 hover:scale-105 transition-transform duration-300">
-            <img
-              src={`${import.meta.env.BASE_URL}healthkicks.svg`}
-              alt="HealthKicks Logo"
-              className="w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-sm"
-              loading="lazy"
-            />
-          </div>
 
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-teal-700 dark:text-teal-300 bg-teal-500/10 dark:bg-teal-500/20 border border-teal-500/30 mb-4 shadow-sm">
             <Radio className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400 animate-pulse" />
             <span>{isFr ? 'Projet de fin de formation • Architecte IA/IOT (Technofutur TIC)' : 'Capstone Project • AI & IoT Architect (Technofutur TIC)'}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
-            HealthKicks
-          </h2>
+          <div className="flex items-center justify-center gap-3 sm:gap-4">
+            <img
+              src={`${import.meta.env.BASE_URL}healthkicks.svg`}
+              alt="HealthKicks Logo"
+              className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 object-contain shrink-0"
+              loading="lazy"
+            />
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+              HealthKicks
+            </h2>
+          </div>
           <p className="mt-2 text-lg sm:text-xl font-semibold text-teal-600 dark:text-teal-400">
             {isFr
               ? 'Passerelle Mobile & Télémétrie IoT pour Chaussures Connectées'
