@@ -16,7 +16,7 @@ export const en: Record<TranslationKey, string> = {
   'hero.explore': 'Explore my background',
   'hero.contactMe': 'Get in touch',
   'hero.downloadCv': 'Download CV',
-  'hero.expYears': '6+ Years exp.',
+  'hero.expYears': '6 Years exp.',
   'hero.spec': 'Angular • Python • Java',
 
   // Skills
@@ -80,3 +80,4 @@ export const en: Record<TranslationKey, string> = {
   'detail.onlineRef': 'Live / Reference',
   'detail.viewProject': 'View project',
 };
+

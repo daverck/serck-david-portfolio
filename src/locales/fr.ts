@@ -14,7 +14,7 @@ export const fr = {
   'hero.explore': 'Explorer mon parcours',
   'hero.contactMe': 'Me contacter',
   'hero.downloadCv': 'Télécharger mon CV',
-  'hero.expYears': "6+ Ans d'exp.",
+  'hero.expYears': "6 ans d'exp.",
   'hero.spec': 'Angular • Python • Java',
 
   // Skills
@@ -80,3 +80,4 @@ export const fr = {
 };
 
 export type TranslationKey = keyof typeof fr;
+
