@@ -31,8 +31,7 @@ export const Hero: React.FC = () => {
               <span>{t('hero.available')}</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
-              {t('hero.greeting')}{' '}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15]">
               <span className="bg-gradient-to-r from-brand-600 via-teal-500 to-primary-light bg-clip-text text-transparent">
                 {resume.basics.name}
               </span>

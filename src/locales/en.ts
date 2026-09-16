@@ -12,7 +12,6 @@ export const en: Record<TranslationKey, string> = {
 
   // Hero
   'hero.available': 'Available immediately for new opportunities',
-  'hero.greeting': 'Hello, I am',
   'hero.explore': 'Explore my background',
   'hero.contactMe': 'Get in touch',
   'hero.downloadCv': 'Download CV',

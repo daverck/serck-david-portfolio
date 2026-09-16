@@ -10,7 +10,6 @@ export const fr = {
 
   // Hero
   'hero.available': 'Disponible immédiatement pour de nouveaux défis',
-  'hero.greeting': 'Bonjour, je suis',
   'hero.explore': 'Explorer mon parcours',
   'hero.contactMe': 'Me contacter',
   'hero.downloadCv': 'Télécharger mon CV',
