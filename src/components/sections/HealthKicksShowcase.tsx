@@ -8,9 +8,9 @@ import {
   Radio,
   Activity,
   ShieldCheck,
-  Zap,
   Bluetooth,
-  Wifi
+  Globe,
+  AlertCircle
 } from 'lucide-react';
 
 export const HealthKicksShowcase: React.FC = () => {
@@ -34,7 +34,7 @@ export const HealthKicksShowcase: React.FC = () => {
       badge: isFr ? 'Pont Matériel ↔ Cloud' : 'Hardware ↔ Cloud Bridge',
       title: isFr ? 'Passerelle Mobile (Mobile Gateway)' : 'Mobile Gateway Architecture',
       description: isFr
-        ? 'Conception et développement d\'une passerelle mobile temps réel sous Flutter/Dart servant de pont robuste entre les capteurs embarqués dans les chaussures (footwear devices) et l\'infrastructure AWS.'
+        ? 'Conception et développement d\'une passerelle mobile temps réel sous Flutter/Dart servant de pont robuste entre les capteurs embarqués dans les chaussures connectées et l\'infrastructure AWS.'
         : 'Designed and engineered a robust real-time Flutter/Dart mobile gateway bridging embedded footwear sensors with the AWS cloud infrastructure.'
     },
     {
@@ -95,14 +95,53 @@ export const HealthKicksShowcase: React.FC = () => {
               : 'Mobile Gateway & IoT Telemetry for Smart Footwear'}
           </p>
 
-          <div className="mt-3 inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300">
-            <Zap className="w-3.5 h-3.5 text-amber-500" />
-            <span>{isFr ? 'Rôle : Concepteur & Développeur IoT / Mobile Gateway' : 'Role: IoT & Mobile Gateway Designer / Developer'}</span>
+          {/* Action links: GitHub Repos & Web Demo */}
+          <div className="mt-4 mb-2 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="https://github.com/topics/health-kicks"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-xs sm:text-sm hover:bg-brand-600 hover:text-white dark:hover:bg-brand-400 dark:hover:text-slate-950 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all shadow-md group"
+            >
+              <GithubIcon className="w-4 h-4 text-white dark:text-slate-900 group-hover:text-white dark:group-hover:text-slate-950 transition-colors" />
+              <span>{isFr ? 'Dépôts GitHub HealthKicks' : 'HealthKicks GitHub Repos'}</span>
+            </a>
+
+            <div className="relative group/tooltip">
+              <a
+                href="https://healthkicks.duckdns.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title={isFr ? "Hébergement à la demande (l'instance peut être temporairement hors ligne pour limiter les coûts)" : "On-demand hosting (instance may be temporarily offline to minimize cloud costs)"}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 font-semibold text-xs sm:text-sm hover:border-teal-500/50 hover:text-teal-600 dark:hover:text-teal-400 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 transition-all shadow-sm"
+              >
+                <Globe className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+                <span>{isFr ? 'Interface Web' : 'Web Interface'}</span>
+                <span className="flex items-center gap-1 text-[10px] font-semibold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                  <AlertCircle className="w-3 h-3" />
+                  <span>On-demand</span>
+                </span>
+              </a>
+
+              {/* Tooltip on hover */}
+              <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-64 p-2.5 rounded-xl bg-slate-900/95 dark:bg-slate-800/95 text-white text-[11px] leading-snug text-center shadow-xl border border-slate-700/50 backdrop-blur-md opacity-0 group-hover/tooltip:opacity-100 transition-all duration-200 z-30">
+                <div className="flex items-center justify-center gap-1.5 text-amber-400 font-semibold mb-0.5">
+                  <AlertCircle className="w-3 h-3 shrink-0" />
+                  <span>{isFr ? 'Disponibilité à la demande' : 'On-demand availability'}</span>
+                </div>
+                <p className="text-slate-300">
+                  {isFr
+                    ? "L'instance cloud est démarrée à la demande et peut être temporairement hors-ligne par souci de coût."
+                    : 'Cloud instance is started on demand and may be temporarily offline to minimize hosting costs.'}
+                </p>
+                <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-900/95 dark:border-t-slate-800/95" />
+              </div>
+            </div>
           </div>
 
           <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
             {isFr
-              ? 'Conception complète de la passerelle mobile Flutter assurant l\'interconnexion temps réel entre les capteurs biomécaniques de chaussures connectées (footwear devices) et le cloud AWS IoT Core via MQTT sécurisé SigV4.'
+              ? 'Conception complète de la passerelle mobile Flutter assurant l\'interconnexion temps réel entre les capteurs biomécaniques de chaussures connectées et le cloud AWS IoT Core via MQTT sécurisé SigV4.'
               : 'End-to-end design of the Flutter mobile gateway orchestrating real-time communication between smart footwear biomechanical sensors and AWS IoT Core via SigV4-signed MQTT.'}
           </p>
         </div>
@@ -114,19 +153,13 @@ export const HealthKicksShowcase: React.FC = () => {
           <div className="absolute bottom-0 left-0 -mb-8 -ml-8 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-200 dark:border-slate-800">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">
-                  {isFr ? 'Architecture du Flux Temps Réel' : 'Real-Time Telemetry Pipeline Flow'}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-1">
-                  Footwear Sensors ➔ Mobile Gateway ➔ AWS IoT Core
-                </h3>
-              </div>
-              <div className="flex items-center gap-2 text-xs font-mono text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-200/70 dark:border-slate-700/60 shadow-sm shrink-0">
-                <Wifi className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
-                <span>MQTT / WebSockets + BLE 5.0</span>
-              </div>
+            <div className="mb-8 pb-6 border-b border-slate-200 dark:border-slate-800">
+              <span className="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">
+                {isFr ? 'Architecture du Flux Temps Réel' : 'Real-Time Telemetry Pipeline Flow'}
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-1">
+                Footwear Sensors ➔ Mobile Gateway ➔ AWS IoT Core
+              </h3>
             </div>
 
             {/* 3 Steps Pipeline Visual */}
@@ -245,35 +278,21 @@ export const HealthKicksShowcase: React.FC = () => {
           })}
         </div>
 
-        {/* Stack & Protocols Pills + Action Button */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-slate-100/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-          <div>
-            <span className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
-              {isFr ? 'Stack & Protocoles Employés' : 'Tech Stack & Protocols'}
-            </span>
-            <div className="flex flex-wrap items-center gap-2">
-              {techBadges.map((tItem, i) => (
-                <span
-                  key={i}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700 shadow-sm"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
-                  {tItem.label}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <a
-              href="https://github.com/topics/health-kicks"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-sm hover:bg-brand-600 hover:text-white dark:hover:bg-brand-400 dark:hover:text-slate-950 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all shadow-md group"
-            >
-              <GithubIcon className="w-4 h-4 text-white dark:text-slate-900 group-hover:text-white dark:group-hover:text-slate-950 transition-colors" />
-              <span>{isFr ? 'Dépôts GitHub HealthKicks' : 'HealthKicks GitHub Repos'}</span>
-            </a>
+        {/* Stack & Protocols Pills */}
+        <div className="p-6 sm:p-8 rounded-3xl bg-slate-100/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80">
+          <span className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
+            {isFr ? 'Stack & Protocoles Employés' : 'Tech Stack & Protocols'}
+          </span>
+          <div className="flex flex-wrap items-center gap-2.5">
+            {techBadges.map((tItem, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700 shadow-sm"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
+                {tItem.label}
+              </span>
+            ))}
           </div>
         </div>
 
