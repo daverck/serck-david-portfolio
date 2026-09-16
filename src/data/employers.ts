@@ -1,6 +1,7 @@
 import rawResumeEn from './resume.en.json';
 import rawResumeFr from './resume.fr.json';
 import { ResumeData, EmployerSlug, EmployerDetails, ParsedProject, ResumeProjectItem } from '../types/resume';
+import { translations, TranslationKey } from '../locales';
 
 export const resumeDataEn = rawResumeEn as unknown as ResumeData;
 export const resumeDataFr = rawResumeFr as unknown as ResumeData;
@@ -52,7 +53,7 @@ function parseProject(item: ResumeProjectItem): ParsedProject {
 
 export function getEmployersList(lang: 'fr' | 'en' = 'fr'): EmployerDetails[] {
   const data = lang === 'fr' ? resumeDataFr : resumeDataEn;
-  const isFr = lang === 'fr';
+  const t = (key: TranslationKey): string => translations[lang][key] || translations.fr[key];
 
   const konektoExp = data.sections.experience.items.find(i => i.company.toLowerCase().includes('konekto'));
   const dstnyExp = data.sections.experience.items.find(i => i.company.toLowerCase().includes('dstny'));
@@ -66,97 +67,67 @@ export function getEmployersList(lang: 'fr' | 'en' = 'fr'): EmployerDetails[] {
     {
       slug: 'konekto',
       name: 'Konekto',
-      fullName: isFr ? 'Konekto (Agence IT)' : 'Konekto (IT Agency)',
-      position: isFr ? 'Développeur Full-Stack' : 'Full-Stack Developer',
-      period: isFr ? 'Mars 2024 - Avril 2026' : 'March 2024 - April 2026',
-      location: isFr ? 'Ottignies / Wavre, Belgique' : 'Ottignies / Wavre, Belgium',
+      fullName: t('employer.konekto.fullName'),
+      position: t('employer.konekto.position'),
+      period: t('employer.konekto.period'),
+      location: t('employer.konekto.location'),
       websiteUrl: 'https://konekto.be',
       overviewHtml: konektoExp?.description || '',
-      tagline: isFr
-        ? 'Facturation électronique PEPPOL/UBL, migrations Angular 21 / Spring Boot 4.0.1, et intégrations IA (YOLO & OpenAI).'
-        : 'PEPPOL/UBL e-invoicing, migrations to Angular 21 & Spring Boot 4.0.1, and AI integrations (YOLO & OpenAI).',
+      tagline: t('employer.konekto.tagline'),
       accentColor: '#0d9488',
       badgeBg: 'bg-teal-500/10 dark:bg-teal-500/20 text-teal-700 dark:text-teal-300 border-teal-500/30',
       badgeText: 'Konekto',
-      keyHighlights: isFr
-        ? [
-            'Facturation électronique PEPPOL (format UBL) & validation budgétaire',
-            'Système de pointage RH automatisé avec secrétariat social & exports iText',
-            'Migrations techniques vers Java 21, Spring Boot 4.0.1 et Angular 21',
-            'Intégration d\'IA : computer vision YOLO (seconde main) et ChatGPT (plannings)',
-            'Authentification unifiée et gestion fine des habilitations avec Keycloak'
-          ]
-        : [
-            'Processing of electronic invoices (PEPPOL/UBL) & procurement workflows',
-            'HR time-tracking system and automated payroll provider integration',
-            'Technical migrations to Java 21, Spring Boot 4.0.1, and Angular 21',
-            'AI schedule optimization (ChatGPT) and YOLO computer vision for retail',
-            'Custom authentication and permission management via Keycloak'
-          ],
+      keyHighlights: [
+        t('employer.konekto.highlight1'),
+        t('employer.konekto.highlight2'),
+        t('employer.konekto.highlight3'),
+        t('employer.konekto.highlight4'),
+        t('employer.konekto.highlight5'),
+      ],
       projects: konektoProjects
     },
     {
       slug: 'dstny',
       name: 'Dstny',
-      fullName: isFr ? 'Dstny (Télécommunications & Cloud)' : 'Dstny (Telecom & Cloud)',
-      position: isFr ? 'Développeur Cloud' : 'Cloud Developer',
-      period: '2021 - 2024',
-      location: isFr ? 'Wavre, Belgique' : 'Wavre, Belgium',
+      fullName: t('employer.dstny.fullName'),
+      position: t('employer.dstny.position'),
+      period: t('employer.dstny.period'),
+      location: t('employer.dstny.location'),
       websiteUrl: 'https://www.dstny.be',
       overviewHtml: dstnyExp?.description || '',
-      tagline: isFr
-        ? 'Architecture d\'APIs distribuées Python à haute disponibilité, télécom SIP/PBX, CockroachDB & interfaces d\'administration React.'
-        : 'High-availability distributed Python APIs, SIP/PBX telecom, CockroachDB & React admin interfaces.',
+      tagline: t('employer.dstny.tagline'),
       accentColor: '#0284c7',
       badgeBg: 'bg-sky-500/10 dark:bg-sky-500/20 text-sky-700 dark:text-sky-300 border-sky-500/30',
       badgeText: 'Dstny',
-      keyHighlights: isFr
-        ? [
-            'Serveur de lookup de numéros de téléphone haute performance avec CockroachDB & cache Redis',
-            'APIs Python Tornado pour la gestion des abonnés, clusters, PBX et calendriers',
-            'Plateforme d\'administration React pour relier les abonnés à Teams, Zoom et SIP providers',
-            'Intégration aux serveurs Asterisk via protocoles AMI & ARI',
-            'Observabilité avec OpenTelemetry, tests automatisés Gitlab CI et déploiements Ansible'
-          ]
-        : [
-            'High-performance phone lookup server with CockroachDB & Redis cache',
-            'Python Tornado APIs for managing subscribers, clusters, PBX, and calendars',
-            'React admin platform connecting subscribers to Teams, Zoom, and SIP providers',
-            'Asterisk integration via AMI & ARI protocols',
-            'Observability with OpenTelemetry, automated GitLab CI tests, and Ansible deployments'
-          ],
+      keyHighlights: [
+        t('employer.dstny.highlight1'),
+        t('employer.dstny.highlight2'),
+        t('employer.dstny.highlight3'),
+        t('employer.dstny.highlight4'),
+        t('employer.dstny.highlight5'),
+      ],
       projects: dstnyProjects
     },
     {
       slug: 'mba',
       name: 'Micro Belgium Application',
-      fullName: isFr ? 'Micro Belgium Application (Fiduciaire & Logiciels de gestion)' : 'Micro Belgium Application (Fiduciary & Management Software)',
-      position: isFr ? 'Développeur Junior' : 'Junior Developer',
-      period: '2017 - 2020',
-      location: isFr ? 'Wavre, Belgique' : 'Wavre, Belgium',
+      fullName: t('employer.mba.fullName'),
+      position: t('employer.mba.position'),
+      period: t('employer.mba.period'),
+      location: t('employer.mba.location'),
       websiteUrl: 'https://mba.be/',
       overviewHtml: mbaExp?.description || '',
-      tagline: isFr
-        ? 'Automatisation de flux comptables, dématérialisation e-fff & CODA, procédures stockées SQL Server complexes et développement .NET.'
-        : 'Accounting automation, Belgian e-fff & CODA electronic invoices, complex SQL Server stored procedures, and .NET development.',
+      tagline: t('employer.mba.tagline'),
       accentColor: '#4f46e5',
       badgeBg: 'bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border-indigo-500/30',
       badgeText: 'MBA',
-      keyHighlights: isFr
-        ? [
-            'Import automatique des factures électroniques belges (e-fff) dans Winbooks',
-            'Génération automatisée de relevés de compte bancaires CODA en PDF avec wkhtmltopdf',
-            'Générateur de procédures de synchronisation de fichiers .dbf vers SQL Server',
-            'Synchronisation multi-bases de données d\'écoles vers Google Classroom, Groupes et Drupal',
-            'Transcription vocale à la demande avec Google Speech-to-Text intégrée à C# .NET Core MVC'
-          ]
-        : [
-            'Automated import of Belgian electronic invoices (e-fff) directly into Winbooks',
-            'Automated PDF rendering of Belgian coded account statements (CODA) via wkhtmltopdf',
-            'Generic SQL procedure to synchronize .dbf files into SQL Server databases',
-            'School multi-database synchronization with Google Classroom, Groups, and Drupal',
-            'On-demand audio transcription with Google Speech-to-Text in C# .NET Core MVC'
-          ],
+      keyHighlights: [
+        t('employer.mba.highlight1'),
+        t('employer.mba.highlight2'),
+        t('employer.mba.highlight3'),
+        t('employer.mba.highlight4'),
+        t('employer.mba.highlight5'),
+      ],
       projects: mbaProjects
     }
   ];

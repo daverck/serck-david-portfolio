@@ -73,5 +73,41 @@ export const en: Record<TranslationKey, string> = {
   'detail.backHome': 'Return to home',
   'detail.onlineRef': 'Live / Reference',
   'detail.viewProject': 'View project',
+
+  // Employers - Konekto
+  'employer.konekto.fullName': 'Konekto (IT Agency)',
+  'employer.konekto.position': 'Full-Stack Developer',
+  'employer.konekto.period': 'March 2024 - April 2026',
+  'employer.konekto.location': 'Ottignies / Wavre, Belgium',
+  'employer.konekto.tagline': 'PEPPOL/UBL e-invoicing, migrations to Angular 21 & Spring Boot 4.0.1, and AI integrations (YOLO & OpenAI).',
+  'employer.konekto.highlight1': 'Processing of electronic invoices (PEPPOL/UBL) & procurement workflows',
+  'employer.konekto.highlight2': 'HR time-tracking system and automated payroll provider integration',
+  'employer.konekto.highlight3': 'Technical migrations to Java 21, Spring Boot 4.0.1, and Angular 21',
+  'employer.konekto.highlight4': 'AI schedule optimization (ChatGPT) and YOLO computer vision for retail',
+  'employer.konekto.highlight5': 'Custom authentication and permission management via Keycloak',
+
+  // Employers - Dstny
+  'employer.dstny.fullName': 'Dstny (Telecom & Cloud)',
+  'employer.dstny.position': 'Cloud Developer',
+  'employer.dstny.period': '2021 - 2024',
+  'employer.dstny.location': 'Wavre, Belgium',
+  'employer.dstny.tagline': 'High-availability distributed Python APIs, SIP/PBX telecom, CockroachDB & React admin interfaces.',
+  'employer.dstny.highlight1': 'High-performance phone lookup server with CockroachDB & Redis cache',
+  'employer.dstny.highlight2': 'Python Tornado APIs for managing subscribers, clusters, PBX, and calendars',
+  'employer.dstny.highlight3': 'React admin platform connecting subscribers to Teams, Zoom, and SIP providers',
+  'employer.dstny.highlight4': 'Asterisk integration via AMI & ARI protocols',
+  'employer.dstny.highlight5': 'Observability with OpenTelemetry, automated GitLab CI tests, and Ansible deployments',
+
+  // Employers - MBA
+  'employer.mba.fullName': 'Micro Belgium Application (Fiduciary & Management Software)',
+  'employer.mba.position': 'Junior Developer',
+  'employer.mba.period': '2017 - 2020',
+  'employer.mba.location': 'Wavre, Belgium',
+  'employer.mba.tagline': 'Accounting automation, Belgian e-fff & CODA electronic invoices, complex SQL Server stored procedures, and .NET development.',
+  'employer.mba.highlight1': 'Automated import of Belgian electronic invoices (e-fff) directly into Winbooks',
+  'employer.mba.highlight2': 'Automated PDF rendering of Belgian coded account statements (CODA) via wkhtmltopdf',
+  'employer.mba.highlight3': 'Generic SQL procedure to synchronize .dbf files into SQL Server databases',
+  'employer.mba.highlight4': 'School multi-database synchronization with Google Classroom, Groups, and Drupal',
+  'employer.mba.highlight5': 'On-demand audio transcription with Google Speech-to-Text in C# .NET Core MVC',
 };
 
