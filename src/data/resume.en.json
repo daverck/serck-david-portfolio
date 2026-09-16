@@ -134,36 +134,20 @@
       "startOnNewPage": false,
       "items": [
         {
-          "id": "wozglo1c8db6w48zox34geji",
+          "id": "01a0426b-e853-70bd-9136-e0fdd0d09e7d",
           "hidden": false,
-          "school": "IFOSUP, Wavre",
-          "degree": "Bachelor in Business Informatics",
-          "area": "",
-          "grade": "(magna cum laude)",
-          "location": "",
-          "period": "2014-2018",
-          "website": {
-            "url": "",
-            "label": "",
-            "inlineLink": false
-          },
-          "description": ""
-        },
-        {
-          "id": "lrx216e049su7ec0v9p3obzc",
-          "hidden": false,
-          "school": "Technobel, Nivelles",
-          "degree": "Front-End Developer Training",
+          "school": "Technofutur TIC, Charleroi",
+          "degree": "AI & IoT Architect",
           "area": "",
           "grade": "",
           "location": "",
-          "period": "Sept 2020 - Dec 2020",
+          "period": "Jul 2026 - Present",
           "website": {
-            "url": "",
+            "url": "https://technofuturtic.be/catalogue/action/architecte-iaiot-developpeur-python-intelligence-artificielle-machine-learning-deep-learning-et-ia-generative-pour-applications-connectees-29-06-2026-10807",
             "label": "",
             "inlineLink": false
           },
-          "description": ""
+          "description": "<p><a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://technofuturtic.be/catalogue/action/architecte-iaiot-developpeur-python-intelligence-artificielle-machine-learning-deep-learning-et-ia-generative-pour-applications-connectees-29-06-2026-10807\">AI/IoT Architect Certification Training</a></p><h4>Capstone Project: HealthKicks</h4><p><strong>HealthKicks - Mobile Gateway &amp; IoT Telemetry for Smart Footwear</strong></p><p><strong>Role:</strong> IoT &amp; Mobile Gateway Designer / Developer</p><p><strong>GitHub Repositories:</strong> <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://github.com/topics/health-kicks\">https://github.com/topics/health-kicks</a></p><h4>Key Achievements:</h4><ul><li><p><strong>Mobile Gateway:</strong> Designed a real-time mobile bridge in Flutter/Dart acting between embedded footwear device sensors and the AWS cloud.</p></li><li><p><strong>GATT / BLE Architecture:</strong> Implemented custom services and characteristics for live activity tracking, studio controls, and haptic feedback triggers.</p></li><li><p><strong>Secure Telemetry Pipeline:</strong> Reliable sensor data transmission over MQTT over WebSockets with SigV4 and AWS STS authentication.</p></li><li><p><strong>Command Routing &amp; Studio Presence:</strong> Implementation of remote bidirectional command routing and hybrid studio presence detection.</p></li></ul><h4>Stack &amp; Protocols:</h4><p>Flutter, Dart, Bluetooth Low Energy (BLE / GATT), AWS IoT Core, MQTT over WebSockets, AWS STS / SigV4, Android</p>"
         },
         {
           "id": "01a04279-2684-726a-bdd8-a2b18810883e",
@@ -182,20 +166,36 @@
           "description": "<p><a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://technofuturtic.be/catalogue/action/full-stack-developpeur-java-oriente-cybersecurite-2-17-06-2024-5999\">Full-Stack Java Developer (Cybersecurity Focus) Training</a></p>"
         },
         {
-          "id": "01a0426b-e853-70bd-9136-e0fdd0d09e7d",
+          "id": "lrx216e049su7ec0v9p3obzc",
           "hidden": false,
-          "school": "Technofutur TIC, Charleroi",
-          "degree": "AI & IoT Architect",
+          "school": "Technobel, Nivelles",
+          "degree": "Front-End Developer Training",
           "area": "",
           "grade": "",
           "location": "",
-          "period": "Jul 2026 - Present",
+          "period": "Sept 2020 - Dec 2020",
           "website": {
-            "url": "https://technofuturtic.be/catalogue/action/architecte-iaiot-developpeur-python-intelligence-artificielle-machine-learning-deep-learning-et-ia-generative-pour-applications-connectees-29-06-2026-10807",
+            "url": "",
             "label": "",
             "inlineLink": false
           },
-          "description": "<p><a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://technofuturtic.be/catalogue/action/architecte-iaiot-developpeur-python-intelligence-artificielle-machine-learning-deep-learning-et-ia-generative-pour-applications-connectees-29-06-2026-10807\">AI/IoT Architect Certification Training</a></p><h4>Capstone Project: HealthKicks</h4><p><strong>HealthKicks - Mobile Gateway &amp; IoT Telemetry for Smart Footwear</strong></p><p><strong>Role:</strong> IoT &amp; Mobile Gateway Designer / Developer</p><p><strong>GitHub Repositories:</strong> <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://github.com/topics/health-kicks\">https://github.com/topics/health-kicks</a></p><h4>Key Achievements:</h4><ul><li><p><strong>Mobile Gateway:</strong> Designed a real-time mobile bridge in Flutter/Dart acting between embedded footwear device sensors and the AWS cloud.</p></li><li><p><strong>GATT / BLE Architecture:</strong> Implemented custom services and characteristics for live activity tracking, studio controls, and haptic feedback triggers.</p></li><li><p><strong>Secure Telemetry Pipeline:</strong> Reliable sensor data transmission over MQTT over WebSockets with SigV4 and AWS STS authentication.</p></li><li><p><strong>Command Routing &amp; Studio Presence:</strong> Implementation of remote bidirectional command routing and hybrid studio presence detection.</p></li></ul><h4>Stack &amp; Protocols:</h4><p>Flutter, Dart, Bluetooth Low Energy (BLE / GATT), AWS IoT Core, MQTT over WebSockets, AWS STS / SigV4, Android</p>"
+          "description": ""
+        },
+        {
+          "id": "wozglo1c8db6w48zox34geji",
+          "hidden": false,
+          "school": "IFOSUP, Wavre",
+          "degree": "Bachelor in Business Informatics",
+          "area": "",
+          "grade": "(magna cum laude)",
+          "location": "",
+          "period": "2014-2018",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": ""
         }
       ]
     },
@@ -771,4 +771,3 @@
     }
   }
 }
-
