@@ -36,7 +36,7 @@ export const ExperienceTimeline: React.FC = () => {
                 style={{ backgroundColor: emp.accentColor }}
               />
 
-              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 
                 {/* Left block: Info & overview */}
                 <div className="flex-1 space-y-4">
