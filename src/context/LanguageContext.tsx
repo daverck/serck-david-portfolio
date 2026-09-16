@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { resumeDataFr, resumeDataEn, getEmployersList } from '../data/employers';
 import { ResumeData, EmployerDetails } from '../types/resume';
-import cvFr from '../data/cv-serck-david-francais.pdf';
-import cvEn from '../data/cv-serck-david.pdf';
 
 import { translations, TranslationKey } from '../locales';
 
@@ -49,8 +47,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const resume = lang === 'fr' ? resumeDataFr : resumeDataEn;
   const employers = getEmployersList(lang);
-  const cvUrl = lang === 'fr' ? cvFr : cvEn;
   const cvFileName = lang === 'fr' ? 'cv-serck-david-francais.pdf' : 'cv-serck-david.pdf';
+  const cvUrl = `${import.meta.env.BASE_URL}${cvFileName}`;
 
   const t = (key: TranslationKey): string => {
     return translations[lang][key] || translations.fr[key] || key;

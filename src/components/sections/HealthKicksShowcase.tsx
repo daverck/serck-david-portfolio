@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { GithubIcon } from '../common/Icons';
-import { ExternalLink } from '../common/ExternalLink';
 import {
   Smartphone,
   Cpu,
@@ -10,7 +9,6 @@ import {
   Activity,
   ShieldCheck,
   Zap,
-  ArrowRight,
   Bluetooth,
   Wifi
 } from 'lucide-react';
@@ -74,6 +72,15 @@ export const HealthKicksShowcase: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="mb-4 inline-flex items-center justify-center p-3 sm:p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-md ring-4 ring-teal-500/10 hover:scale-105 transition-transform duration-300">
+            <img
+              src={`${import.meta.env.BASE_URL}healthkicks.svg`}
+              alt="HealthKicks Logo"
+              className="w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-sm"
+              loading="lazy"
+            />
+          </div>
+
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-teal-700 dark:text-teal-300 bg-teal-500/10 dark:bg-teal-500/20 border border-teal-500/30 mb-4 shadow-sm">
             <Radio className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400 animate-pulse" />
             <span>{isFr ? 'Projet de fin de formation • Architecte IA/IOT (Technofutur TIC)' : 'Capstone Project • AI & IoT Architect (Technofutur TIC)'}</span>
@@ -258,21 +265,14 @@ export const HealthKicksShowcase: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <ExternalLink
-              href="https://github.com/topics/health-kicks"
-              showIcon={false}
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-sm hover:bg-brand-600 dark:hover:bg-brand-400 dark:hover:text-slate-950 transition-colors shadow-md group"
-            >
-              <GithubIcon className="w-4 h-4" />
-              <span>{isFr ? 'Dépôts GitHub HealthKicks' : 'HealthKicks GitHub Repos'}</span>
-            </ExternalLink>
-
             <a
-              href="#education"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm group"
+              href="https://github.com/topics/health-kicks"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-sm hover:bg-brand-600 hover:text-white dark:hover:bg-brand-400 dark:hover:text-slate-950 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all shadow-md group"
             >
-              <span>{isFr ? 'Voir le parcours de formation' : 'View education background'}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              <GithubIcon className="w-4 h-4 text-white dark:text-slate-900 group-hover:text-white dark:group-hover:text-slate-950 transition-colors" />
+              <span>{isFr ? 'Dépôts GitHub HealthKicks' : 'HealthKicks GitHub Repos'}</span>
             </a>
           </div>
         </div>

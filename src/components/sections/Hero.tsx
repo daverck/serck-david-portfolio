@@ -83,7 +83,7 @@ export const Hero: React.FC = () => {
 
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all shadow-sm"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-brand-500/50 dark:hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-0.5 hover:shadow-md transition-all shadow-sm active:translate-y-0"
               >
                 <span>{t('hero.contactMe')}</span>
               </a>
@@ -93,7 +93,7 @@ export const Hero: React.FC = () => {
                 download={cvFileName}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-brand-500/50 dark:hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 transition-all shadow-sm"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-brand-500/50 dark:hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-0.5 hover:shadow-md transition-all shadow-sm active:translate-y-0"
               >
                 <FileDown className="w-4 h-4 text-brand-600 dark:text-brand-400" />
                 <span>{t('hero.downloadCv')}</span>
@@ -103,7 +103,7 @@ export const Hero: React.FC = () => {
                 <ExternalLink
                   href={github.website.url}
                   showIcon={false}
-                  className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 transition-all shadow-sm"
+                  className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-0.5 hover:shadow-md transition-all shadow-sm active:translate-y-0"
                 >
                   <GithubIcon className="w-5 h-5" />
                 </ExternalLink>
@@ -113,7 +113,7 @@ export const Hero: React.FC = () => {
                 <ExternalLink
                   href={linkedin.website.url}
                   showIcon={false}
-                  className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 transition-all shadow-sm"
+                  className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-0.5 hover:shadow-md transition-all shadow-sm active:translate-y-0"
                 >
                   <LinkedinIcon className="w-5 h-5" />
                 </ExternalLink>
