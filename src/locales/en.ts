@@ -54,11 +54,6 @@ export const en: Record<TranslationKey, string> = {
   'contact.github': 'GitHub Profile',
   'contact.mailSubject': 'Contact from your portfolio',
 
-  // Footer
-  'footer.rights': 'All rights reserved.',
-  'footer.deployedWith': 'Deployed with',
-  'footer.builtWith': 'Built with React 19 & Vite 8',
-
   // Employer Detail
   'detail.breadcrumbExp': 'Experience',
   'detail.officialSite': 'Official website',

@@ -52,11 +52,6 @@ export const fr = {
   'contact.github': 'Profil GitHub',
   'contact.mailSubject': 'Contact depuis votre portfolio',
 
-  // Footer
-  'footer.rights': 'Tous droits réservés.',
-  'footer.deployedWith': 'Déployé avec',
-  'footer.builtWith': 'Développé avec React 19 & Vite 8',
-
   // Employer Detail
   'detail.breadcrumbExp': 'Expériences',
   'detail.officialSite': 'Site officiel',
