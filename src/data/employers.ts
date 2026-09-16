@@ -77,7 +77,7 @@ export function getEmployersList(lang: 'fr' | 'en' = 'fr'): EmployerDetails[] {
         : 'PEPPOL/UBL e-invoicing, migrations to Angular 21 & Spring Boot 4.0.1, and AI integrations (YOLO & OpenAI).',
       accentColor: '#0d9488',
       badgeBg: 'bg-teal-500/10 dark:bg-teal-500/20 text-teal-700 dark:text-teal-300 border-teal-500/30',
-      badgeText: 'Konekto (2024 - 2026)',
+      badgeText: 'Konekto',
       keyHighlights: isFr
         ? [
             'Facturation électronique PEPPOL (format UBL) & validation budgétaire',
@@ -109,7 +109,7 @@ export function getEmployersList(lang: 'fr' | 'en' = 'fr'): EmployerDetails[] {
         : 'High-availability distributed Python APIs, SIP/PBX telecom, CockroachDB & React admin interfaces.',
       accentColor: '#0284c7',
       badgeBg: 'bg-sky-500/10 dark:bg-sky-500/20 text-sky-700 dark:text-sky-300 border-sky-500/30',
-      badgeText: 'Dstny (2021 - 2024)',
+      badgeText: 'Dstny',
       keyHighlights: isFr
         ? [
             'Serveur de lookup de numéros de téléphone haute performance avec CockroachDB & cache Redis',
@@ -141,7 +141,7 @@ export function getEmployersList(lang: 'fr' | 'en' = 'fr'): EmployerDetails[] {
         : 'Accounting automation, Belgian e-fff & CODA electronic invoices, complex SQL Server stored procedures, and .NET development.',
       accentColor: '#4f46e5',
       badgeBg: 'bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border-indigo-500/30',
-      badgeText: 'MBA (2017 - 2020)',
+      badgeText: 'MBA',
       keyHighlights: isFr
         ? [
             'Import automatique des factures électroniques belges (e-fff) dans Winbooks',
