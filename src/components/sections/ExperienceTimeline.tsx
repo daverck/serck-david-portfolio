@@ -87,16 +87,12 @@ export const ExperienceTimeline: React.FC = () => {
                 {/* Right block: Action card with project count */}
                 <div className="lg:w-72 shrink-0 flex flex-col justify-between p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/60 gap-4">
                   <div>
-                    <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                      <Layers className="w-4 h-4 text-brand-600 dark:text-brand-400" />
-                      <span className="text-xs font-semibold uppercase tracking-wider">
-                        {t('exp.documentedProjects')}
-                      </span>
+                    <div className="flex items-center gap-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+                      <Layers className="w-5 h-5 text-brand-600 dark:text-brand-400 shrink-0" />
+                      <span>{emp.projects.length}</span>
+                      <span className="text-sm font-semibold text-slate-500 dark:text-slate-400">{t('exp.keyProjects')}</span>
                     </div>
-                    <div className="mt-2 text-3xl font-extrabold text-slate-900 dark:text-white">
-                      {emp.projects.length} <span className="text-sm font-medium text-slate-500">{t('exp.keyProjects')}</span>
-                    </div>
-                    <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                    <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                       {t('exp.desc')}
                     </p>
                   </div>
