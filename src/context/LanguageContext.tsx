@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { resumeDataFr, resumeDataEn, getEmployersList } from '../data/employers';
 import { ResumeData, EmployerDetails } from '../types/resume';
+import cvFr from '../data/cv-serck-david-francais.pdf';
+import cvEn from '../data/cv-serck-david.pdf';
 
 export type Language = 'fr' | 'en';
 
@@ -20,6 +22,7 @@ const translations = {
     'hero.greeting': 'Bonjour, je suis',
     'hero.explore': 'Explorer mon parcours',
     'hero.contactMe': 'Me contacter',
+    'hero.downloadCv': 'Télécharger mon CV',
     'hero.expYears': "6+ Ans d'exp.",
     'hero.spec': 'Angular • Python • Java',
 
@@ -99,6 +102,7 @@ const translations = {
     'hero.greeting': 'Hello, I am',
     'hero.explore': 'Explore my background',
     'hero.contactMe': 'Get in touch',
+    'hero.downloadCv': 'Download CV',
     'hero.expYears': '6+ Years exp.',
     'hero.spec': 'Angular • Python • Java',
 
@@ -171,6 +175,8 @@ interface LanguageContextType {
   toggleLang: () => void;
   resume: ResumeData;
   employers: EmployerDetails[];
+  cvUrl: string;
+  cvFileName: string;
   t: (key: keyof typeof translations['fr']) => string;
 }
 
@@ -204,13 +210,15 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const resume = lang === 'fr' ? resumeDataFr : resumeDataEn;
   const employers = getEmployersList(lang);
+  const cvUrl = lang === 'fr' ? cvFr : cvEn;
+  const cvFileName = lang === 'fr' ? 'cv-serck-david-francais.pdf' : 'cv-serck-david.pdf';
 
   const t = (key: keyof typeof translations['fr']): string => {
     return translations[lang][key] || translations['fr'][key] || key;
   };
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, toggleLang, resume, employers, t }}>
+    <LanguageContext.Provider value={{ lang, setLang, toggleLang, resume, employers, cvUrl, cvFileName, t }}>
       {children}
     </LanguageContext.Provider>
   );

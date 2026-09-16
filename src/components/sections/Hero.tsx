@@ -3,11 +3,11 @@ import { useLanguage } from '../../context/LanguageContext';
 import { ExternalLink } from '../common/ExternalLink';
 import { RichHtml } from '../common/RichHtml';
 import { GithubIcon, LinkedinIcon } from '../common/Icons';
-import { MapPin, Mail, Phone, ArrowDown, Sparkles } from 'lucide-react';
+import { MapPin, Mail, Phone, ArrowDown, Sparkles, FileDown } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const [imgError, setImgError] = useState(false);
-  const { resume, t } = useLanguage();
+  const { resume, t, cvUrl, cvFileName } = useLanguage();
   const linkedin = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('linkedin'));
   const github = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('github'));
 
@@ -87,6 +87,17 @@ export const Hero: React.FC = () => {
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all shadow-sm"
               >
                 <span>{t('hero.contactMe')}</span>
+              </a>
+
+              <a
+                href={cvUrl}
+                download={cvFileName}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-brand-500/50 dark:hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 transition-all shadow-sm"
+              >
+                <FileDown className="w-4 h-4 text-brand-600 dark:text-brand-400" />
+                <span>{t('hero.downloadCv')}</span>
               </a>
 
               {github && (
