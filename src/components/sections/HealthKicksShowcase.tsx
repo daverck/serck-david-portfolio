@@ -101,23 +101,23 @@ export const HealthKicksShowcase: React.FC = () => {
         </div>
 
         {/* Interactive Architecture Flow Diagram Card */}
-        <div className="mb-12 p-6 sm:p-8 rounded-3xl bg-slate-900 text-white border border-slate-800 shadow-2xl relative overflow-hidden">
+        <div className="mb-12 p-6 sm:p-8 rounded-3xl bg-slate-100/70 dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-xl relative overflow-hidden transition-colors duration-300">
           {/* Background decorative grid & glow */}
           <div className="absolute top-0 right-0 -mt-8 -mr-8 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 -mb-8 -ml-8 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-800">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-200 dark:border-slate-800">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-teal-400">
+                <span className="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">
                   {isFr ? 'Architecture du Flux Temps Réel' : 'Real-Time Telemetry Pipeline Flow'}
                 </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mt-1">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-1">
                   Footwear Sensors ➔ Mobile Gateway ➔ AWS IoT Core
                 </h3>
               </div>
-              <div className="flex items-center gap-2 text-xs font-mono text-slate-400 bg-slate-800/80 px-3 py-1.5 rounded-lg shrink-0">
-                <Wifi className="w-3.5 h-3.5 text-teal-400" />
+              <div className="flex items-center gap-2 text-xs font-mono text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-200/70 dark:border-slate-700/60 shadow-sm shrink-0">
+                <Wifi className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
                 <span>MQTT / WebSockets + BLE 5.0</span>
               </div>
             </div>
@@ -125,81 +125,81 @@ export const HealthKicksShowcase: React.FC = () => {
             {/* 3 Steps Pipeline Visual */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
               {/* Step 1 : Footwear Devices */}
-              <div className="p-5 rounded-2xl bg-slate-800/70 border border-slate-700/70 hover:border-teal-500/50 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center mb-4">
+              <div className="p-5 rounded-2xl bg-white dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/70 hover:border-teal-500/50 dark:hover:border-teal-500/50 transition-colors shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-sky-500/10 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 flex items-center justify-center mb-4">
                   <Cpu className="w-5 h-5" />
                 </div>
-                <div className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold mb-1">
+                <div className="text-[11px] font-mono uppercase tracking-wider text-sky-600 dark:text-sky-400 font-bold mb-1">
                   {isFr ? 'Étage 1 • Matériel Embarqué' : 'Tier 1 • Embedded Hardware'}
                 </div>
-                <h4 className="text-base font-bold text-white mb-2">
+                <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">
                   Smart Footwear Devices
                 </h4>
-                <ul className="text-xs text-slate-300 space-y-1.5">
+                <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-sky-400" />
                     <span>Capteurs pression & inertiels (IMU)</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-sky-400" />
                     <span>Serveur GATT & Profils personnalisés</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-sky-400" />
                     <span>Déclencheurs de vibration haptiques</span>
                   </li>
                 </ul>
               </div>
 
               {/* Step 2 : Mobile Gateway */}
-              <div className="p-5 rounded-2xl bg-gradient-to-b from-teal-900/40 to-slate-800/70 border border-teal-500/40 shadow-lg relative">
-                <div className="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center mb-4">
+              <div className="p-5 rounded-2xl bg-gradient-to-b from-teal-50/80 to-white dark:from-teal-900/40 dark:to-slate-800/70 border border-teal-500/30 dark:border-teal-500/40 shadow-md relative">
+                <div className="w-10 h-10 rounded-xl bg-teal-500/15 dark:bg-teal-500/20 text-teal-600 dark:text-teal-400 flex items-center justify-center mb-4">
                   <Smartphone className="w-5 h-5" />
                 </div>
-                <div className="text-[11px] font-mono uppercase tracking-wider text-teal-400 font-bold mb-1">
+                <div className="text-[11px] font-mono uppercase tracking-wider text-teal-600 dark:text-teal-400 font-bold mb-1">
                   {isFr ? 'Étage 2 • Passerelle Mobile' : 'Tier 2 • Mobile Gateway'}
                 </div>
-                <h4 className="text-base font-bold text-white mb-2">
+                <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">
                   Flutter / Dart Gateway
                 </h4>
-                <ul className="text-xs text-slate-300 space-y-1.5">
+                <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400" />
                     <span>Gestionnaire BLE / GATT synchrone</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400" />
                     <span>Bufferisation locale & filtrage télémétrie</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400" />
                     <span>Client MQTT over WebSockets + SigV4</span>
                   </li>
                 </ul>
               </div>
 
               {/* Step 3 : AWS Cloud */}
-              <div className="p-5 rounded-2xl bg-slate-800/70 border border-slate-700/70 hover:border-amber-500/50 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-4">
+              <div className="p-5 rounded-2xl bg-white dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/70 hover:border-amber-500/50 dark:hover:border-amber-500/50 transition-colors shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-4">
                   <Cloud className="w-5 h-5" />
                 </div>
-                <div className="text-[11px] font-mono uppercase tracking-wider text-amber-400 font-bold mb-1">
+                <div className="text-[11px] font-mono uppercase tracking-wider text-amber-600 dark:text-amber-400 font-bold mb-1">
                   {isFr ? 'Étage 3 • Cloud Ingestion' : 'Tier 3 • Cloud Ingestion'}
                 </div>
-                <h4 className="text-base font-bold text-white mb-2">
+                <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">
                   AWS IoT Core & Services
                 </h4>
-                <ul className="text-xs text-slate-300 space-y-1.5">
+                <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400" />
                     <span>AWS STS & Signature SigV4</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400" />
                     <span>Broker MQTT & Règles de routage</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400" />
                     <span>Monitoring de présence studio en direct</span>
                   </li>
                 </ul>
