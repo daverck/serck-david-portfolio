@@ -147,7 +147,7 @@
             "label": "",
             "inlineLink": false
           },
-          "description": "<p>Bachelier en informatique de gestion</p>"
+          "description": ""
         },
         {
           "id": "lrx216e049su7ec0v9p3obzc",
@@ -163,7 +163,7 @@
             "label": "",
             "inlineLink": false
           },
-          "description": "<p>Formation de développeur front-end</p>"
+          "description": ""
         },
         {
           "id": "01a04279-2684-726a-bdd8-a2b18810883e",
@@ -175,11 +175,11 @@
           "location": "",
           "period": "Juin 2024 - Août 2024",
           "website": {
-            "url": "",
+            "url": "https://technofuturtic.be/catalogue/action/full-stack-developpeur-java-oriente-cybersecurite-2-17-06-2024-5999",
             "label": "",
             "inlineLink": false
           },
-          "description": "<p>Java full-stack</p>"
+          "description": "<p><a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://technofuturtic.be/catalogue/action/full-stack-developpeur-java-oriente-cybersecurite-2-17-06-2024-5999\">Formation Full-Stack Développeur Java orienté Cybersécurité</a></p>"
         },
         {
           "id": "01a04275-6d9a-70aa-8a35-ddcfd852127f",
@@ -191,11 +191,11 @@
           "location": "",
           "period": "Juillet 2026 - Present",
           "website": {
-            "url": "",
+            "url": "https://technofuturtic.be/catalogue/action/architecte-iaiot-developpeur-python-intelligence-artificielle-machine-learning-deep-learning-et-ia-generative-pour-applications-connectees-29-06-2026-10807",
             "label": "",
             "inlineLink": false
           },
-          "description": "<p><a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://technofuturtic.be/catalogue/action/architecte-iaiot-developpeur-python-intelligence-artificielle-machine-learning-deep-learning-et-ia-generative-pour-applications-connectees-29-06-2026-10807\">Architecte IA/IOT</a></p>"
+          "description": "<p><a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://technofuturtic.be/catalogue/action/architecte-iaiot-developpeur-python-intelligence-artificielle-machine-learning-deep-learning-et-ia-generative-pour-applications-connectees-29-06-2026-10807\">Formation certifiante Architecte IA/IOT</a></p><h4>Projet de fin de formation : HealthKicks</h4><p><strong>HealthKicks - Passerelle Mobile &amp; Télémétrie IoT pour Chaussures Connectées</strong></p><p><strong>Rôle :</strong> Concepteur &amp; Développeur IoT / Mobile Gateway</p><p><strong>Dépôts GitHub :</strong> <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://github.com/topics/health-kicks\">https://github.com/topics/health-kicks</a></p><h4>Réalisations clés :</h4><ul><li><p><strong>Passerelle mobile (Mobile Gateway) :</strong> Conception d'un pont temps réel sous Flutter/Dart entre les capteurs matériels embarqués dans les chaussures (footwear devices) et le cloud AWS.</p></li><li><p><strong>Architecture GATT / BLE :</strong> Services et caractéristiques personnalisés pour la détection d'activité en direct, le contrôle en studio et les déclenchements haptiques.</p></li><li><p><strong>Pipeline de télémétrie sécurisé :</strong> Transmission fiable de données capteurs via MQTT over WebSockets avec authentification SigV4 et AWS STS.</p></li><li><p><strong>Routage &amp; Détection studio :</strong> Implémentation du routage de commandes à distance et détection hybride de présence en studio.</p></li></ul><h4>Stack &amp; Protocoles :</h4><p>Flutter, Dart, Bluetooth Low Energy (BLE / GATT), AWS IoT Core, MQTT over WebSockets, AWS STS / SigV4, Android</p>"
         }
       ]
     },
