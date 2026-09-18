@@ -46,7 +46,7 @@ export const fr = {
   'contact.emailLabel': 'Email',
   'contact.phoneLabel': 'Téléphone',
   'contact.locationLabel': 'Localisation',
-  'contact.sendDirect': 'Envoyer un message direct',
+  'contact.sendDirect': 'Envoyer un e-mail',
   'contact.linkedin': 'Profil LinkedIn',
   'contact.github': 'Profil GitHub',
   'contact.mailSubject': 'Contact depuis votre portfolio',
