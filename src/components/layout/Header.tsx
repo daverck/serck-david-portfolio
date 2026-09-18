@@ -28,6 +28,10 @@ export const Header: React.FC = () => {
 
   const isHome = location.pathname === '/';
 
+  const getSectionHref = (hash: string) => {
+    return isHome ? hash : `${import.meta.env.BASE_URL}${hash}`;
+  };
+
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
@@ -115,26 +119,26 @@ export const Header: React.FC = () => {
 
           {/* Quick links to Home sections */}
           <a
-            href="/#skills"
+            href={getSectionHref('#skills')}
             className="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
           >
             {t('nav.skills')}
           </a>
           <a
-            href="/#education"
+            href={getSectionHref('#education')}
             className="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
           >
             {t('nav.education')}
           </a>
           <a
-            href="/#healthkicks-showcase"
+            href={getSectionHref('#healthkicks-showcase')}
             className="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors flex items-center gap-1.5"
           >
             <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
             <span>HealthKicks IoT</span>
           </a>
           <a
-            href="/#contact"
+            href={getSectionHref('#contact')}
             className="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
           >
             {t('nav.contact')}
@@ -197,21 +201,21 @@ export const Header: React.FC = () => {
 
           <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800/60 space-y-1">
             <a
-              href="/#skills"
+              href={getSectionHref('#skills')}
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               {t('nav.skills')}
             </a>
             <a
-              href="/#education"
+              href={getSectionHref('#education')}
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               {t('nav.education')}
             </a>
             <a
-              href="/#healthkicks-showcase"
+              href={getSectionHref('#healthkicks-showcase')}
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-teal-600 dark:text-teal-400 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
@@ -219,7 +223,7 @@ export const Header: React.FC = () => {
               <span>HealthKicks IoT</span>
             </a>
             <a
-              href="/#contact"
+              href={getSectionHref('#contact')}
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
