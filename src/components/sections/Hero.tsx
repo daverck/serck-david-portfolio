@@ -13,15 +13,14 @@ export const Hero: React.FC = () => {
 
   return (
     <section className="relative pt-6 pb-16 md:pt-12 md:pb-24 overflow-hidden">
-      {/* Subtle background glow effect */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/10 dark:bg-brand-500/15 blur-3xl rounded-full pointer-events-none -z-10" />
-      <div className="absolute top-1/3 right-10 w-72 h-72 bg-blue-500/10 dark:bg-blue-500/10 blur-3xl rounded-full pointer-events-none -z-10" />
-
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-14">
           
           {/* Left Text Column */}
-          <div className="flex-1 text-center md:text-left">
+          <div className="flex-1 text-center md:text-left relative">
+            {/* Halo doux de contraste garantissant une parfaite lisibilité du texte en mode clair */}
+            <div className="absolute -inset-4 sm:-inset-8 bg-white/75 dark:bg-slate-950/40 rounded-3xl blur-2xl -z-10 pointer-events-none" />
+
             {/* Availability Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 mb-6 animate-fade-in shadow-sm">
               <span className="relative flex h-2 w-2">
