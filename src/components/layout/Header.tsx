@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { LanguageToggle } from '../common/LanguageToggle';
@@ -9,6 +9,7 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [experienceDropdownOpen, setExperienceDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const { resume, employers, t } = useLanguage();
 
@@ -20,7 +21,32 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fermer le menu mobile lors du changement de route
+  // Fermer le dropdown lors d'un clic en dehors ou appui sur Échap
+  useEffect(() => {
+    if (!experienceDropdownOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setExperienceDropdownOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setExperienceDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [experienceDropdownOpen]);
+
+  // Fermer les menus lors du changement de route
   useEffect(() => {
     setMobileMenuOpen(false);
     setExperienceDropdownOpen(false);
@@ -73,14 +99,12 @@ export const Header: React.FC = () => {
           </Link>
 
           {/* Expériences Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setExperienceDropdownOpen(true)}
-            onMouseLeave={() => setExperienceDropdownOpen(false)}
-          >
+          <div ref={dropdownRef} className="relative">
             <button
               type="button"
               onClick={() => setExperienceDropdownOpen(prev => !prev)}
+              aria-haspopup="true"
+              aria-expanded={experienceDropdownOpen}
               className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                 location.pathname.startsWith('/experience')
                   ? 'text-brand-600 dark:text-brand-400 bg-teal-50 dark:bg-teal-950/40'
@@ -89,7 +113,7 @@ export const Header: React.FC = () => {
             >
               <Briefcase className="w-4 h-4 mr-0.5" />
               <span>{t('nav.experience')}</span>
-              <ChevronDown className="w-3.5 h-3.5 opacity-70" />
+              <ChevronDown className={`w-3.5 h-3.5 opacity-70 transition-transform duration-200 ${experienceDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {experienceDropdownOpen && (
@@ -101,6 +125,7 @@ export const Header: React.FC = () => {
                   <Link
                     key={emp.slug}
                     to={`/experience/${emp.slug}`}
+                    onClick={() => setExperienceDropdownOpen(false)}
                     className={`block px-4 py-2 text-sm transition-colors ${
                       location.pathname === `/experience/${emp.slug}`
                         ? 'bg-teal-50 dark:bg-teal-950/40 text-brand-600 dark:text-brand-400 font-semibold'
