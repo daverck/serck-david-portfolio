@@ -8,7 +8,7 @@ import { Contact } from '../components/sections/Contact';
 
 export const HomePage: React.FC = () => {
   return (
-    <div className="space-y-4 animate-fade-in">
+    <div className="animate-fade-in">
       <Hero />
       <ExperienceTimeline />
       <Skills />

@@ -67,7 +67,7 @@ export const HealthKicksShowcase: React.FC = () => {
   ];
 
   return (
-    <section id="healthkicks-showcase" className="py-16 md:py-24 bg-gradient-to-b from-transparent via-teal-500/[0.02] to-transparent">
+    <section id="healthkicks-showcase" className="py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
