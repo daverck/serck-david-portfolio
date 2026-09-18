@@ -6,7 +6,7 @@ export const ExperienceTimeline: React.FC = () => {
   const { employers, t } = useLanguage();
 
   return (
-    <section id="experience-overview" className="py-16 md:py-24 border-t border-slate-200/70 dark:border-slate-800/70 bg-slate-100/40 dark:bg-slate-900/30">
+    <section id="experience-overview" className="py-16 md:py-24 bg-slate-100/40 dark:bg-slate-900/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}

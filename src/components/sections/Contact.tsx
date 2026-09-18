@@ -10,7 +10,7 @@ export const Contact: React.FC = () => {
   const github = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('github'));
 
   return (
-    <section id="contact" className="py-16 md:py-24 border-t border-slate-200/70 dark:border-slate-800/70 bg-gradient-to-b from-transparent to-slate-100/50 dark:to-slate-900/40">
+    <section id="contact" className="py-16 md:py-24 bg-gradient-to-b from-transparent to-slate-100/50 dark:to-slate-900/40">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         
         <span className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-3 py-1 rounded-full">
