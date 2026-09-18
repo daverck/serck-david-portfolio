@@ -71,6 +71,9 @@ export const Contact: React.FC = () => {
             <span className="block font-semibold text-slate-900 dark:text-white text-sm mt-0.5">
               {resume.basics.location}
             </span>
+            <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">
+              {t('contact.mobility')}
+            </span>
           </div>
 
         </div>

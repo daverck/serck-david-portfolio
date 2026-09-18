@@ -50,6 +50,9 @@ export const Hero: React.FC = () => {
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" />
                 <span>{resume.basics.location}</span>
+                <span className="text-xs text-slate-400 dark:text-slate-500 font-normal">
+                  ({t('contact.mobility')})
+                </span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Mail className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" />

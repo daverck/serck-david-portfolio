@@ -48,6 +48,7 @@ export const en: Record<TranslationKey, string> = {
   'contact.emailLabel': 'Email',
   'contact.phoneLabel': 'Phone',
   'contact.locationLabel': 'Location',
+  'contact.mobility': "Driver's License B • Own car",
   'contact.sendDirect': 'Send an email',
   'contact.linkedin': 'LinkedIn Profile',
   'contact.github': 'GitHub Profile',
