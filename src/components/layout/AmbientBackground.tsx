@@ -5,6 +5,8 @@ export const AmbientBackground: React.FC = () => {
   const blob2Ref = useRef<HTMLDivElement>(null);
   const blob3Ref = useRef<HTMLDivElement>(null);
   const blob4Ref = useRef<HTMLDivElement>(null);
+  const blob5Ref = useRef<HTMLDivElement>(null);
+  const blob6Ref = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,7 +49,6 @@ export const AmbientBackground: React.FC = () => {
     };
 
     const animate = () => {
-      // Vitesse tempérée : fluide, élégante et parfaitement dosée
       time += 0.0095;
 
       currentX += (targetX - currentX) * 0.07;
@@ -55,36 +56,52 @@ export const AmbientBackground: React.FC = () => {
       currentCursorX += (targetCursorX - currentCursorX) * 0.1;
       currentCursorY += (targetCursorY - currentCursorY) * 0.1;
 
-      // Orbe 1 : Grande dérive fluide + pulsation de taille
-      const autoX1 = Math.sin(time * 0.8) * 150 + Math.cos(time * 0.4) * 80;
-      const autoY1 = Math.cos(time * 0.65) * 120 + Math.sin(time * 0.45) * 70;
+      // Orbe 1 : Hero haut gauche
+      const autoX1 = Math.sin(time * 0.8) * 140 + Math.cos(time * 0.4) * 70;
+      const autoY1 = Math.cos(time * 0.65) * 110 + Math.sin(time * 0.45) * 60;
       const scale1 = 1 + Math.sin(time * 0.9) * 0.10;
       if (blob1Ref.current) {
-        blob1Ref.current.style.transform = `translate3d(${autoX1 + currentX * 100}px, ${autoY1 + currentY * 80}px, 0) scale(${scale1})`;
+        blob1Ref.current.style.transform = `translate3d(${autoX1 + currentX * 90}px, ${autoY1 + currentY * 70}px, 0) scale(${scale1})`;
       }
 
-      // Orbe 2 : Dérive opposée ample + pulsation
-      const autoX2 = Math.cos(time * 0.6) * -160 + Math.sin(time * 1.1) * 80;
-      const autoY2 = Math.sin(time * 0.75) * 140 + Math.cos(time * 0.4) * -90;
+      // Orbe 2 : Hero / Expérience droite
+      const autoX2 = Math.cos(time * 0.6) * -150 + Math.sin(time * 1.1) * 70;
+      const autoY2 = Math.sin(time * 0.75) * 120 + Math.cos(time * 0.4) * -80;
       const scale2 = 1 + Math.cos(time * 0.85) * 0.10;
       if (blob2Ref.current) {
-        blob2Ref.current.style.transform = `translate3d(${autoX2 + currentX * -120}px, ${autoY2 + currentY * -90}px, 0) scale(${scale2})`;
+        blob2Ref.current.style.transform = `translate3d(${autoX2 + currentX * -100}px, ${autoY2 + currentY * -75}px, 0) scale(${scale2})`;
       }
 
-      // Orbe 3 : Amplitude diagonale marquée + pulsation
-      const autoX3 = Math.sin(time * 0.55) * 170 + Math.cos(time * 0.8) * -80;
-      const autoY3 = Math.cos(time * 0.6) * -130 + Math.sin(time * 0.9) * 90;
+      // Orbe 3 : Expérience / Skills gauche
+      const autoX3 = Math.sin(time * 0.55) * 160 + Math.cos(time * 0.8) * -70;
+      const autoY3 = Math.cos(time * 0.6) * -120 + Math.sin(time * 0.9) * 80;
       const scale3 = 1 + Math.sin(time * 1.1) * 0.10;
       if (blob3Ref.current) {
-        blob3Ref.current.style.transform = `translate3d(${autoX3 + currentX * 85}px, ${autoY3 + currentY * -95}px, 0) scale(${scale3})`;
+        blob3Ref.current.style.transform = `translate3d(${autoX3 + currentX * 80}px, ${autoY3 + currentY * -85}px, 0) scale(${scale3})`;
       }
 
-      // Orbe 4 : Flottement ample central/latéral + pulsation
-      const autoX4 = Math.cos(time * 0.7) * 140 + Math.sin(time * 1.2) * -90;
-      const autoY4 = Math.sin(time * 0.6) * -150 + Math.cos(time * 0.5) * 80;
+      // Orbe 4 : Skills / Formations droite
+      const autoX4 = Math.cos(time * 0.7) * 130 + Math.sin(time * 1.2) * -80;
+      const autoY4 = Math.sin(time * 0.6) * -130 + Math.cos(time * 0.5) * 70;
       const scale4 = 1 + Math.cos(time * 0.7) * 0.10;
       if (blob4Ref.current) {
-        blob4Ref.current.style.transform = `translate3d(${autoX4 + currentX * -75}px, ${autoY4 + currentY * 80}px, 0) scale(${scale4})`;
+        blob4Ref.current.style.transform = `translate3d(${autoX4 + currentX * -70}px, ${autoY4 + currentY * 70}px, 0) scale(${scale4})`;
+      }
+
+      // Orbe 5 : HealthKicks gauche
+      const autoX5 = Math.sin(time * 0.65) * 140 + Math.cos(time * 0.85) * 60;
+      const autoY5 = Math.cos(time * 0.5) * 110 + Math.sin(time * 1.0) * -70;
+      const scale5 = 1 + Math.sin(time * 0.8) * 0.10;
+      if (blob5Ref.current) {
+        blob5Ref.current.style.transform = `translate3d(${autoX5 + currentX * 85}px, ${autoY5 + currentY * 65}px, 0) scale(${scale5})`;
+      }
+
+      // Orbe 6 : Contact droite
+      const autoX6 = Math.cos(time * 0.75) * -140 + Math.sin(time * 0.5) * -70;
+      const autoY6 = Math.sin(time * 0.8) * 120 + Math.cos(time * 0.65) * 70;
+      const scale6 = 1 + Math.cos(time * 0.95) * 0.10;
+      if (blob6Ref.current) {
+        blob6Ref.current.style.transform = `translate3d(${autoX6 + currentX * -90}px, ${autoY6 + currentY * -75}px, 0) scale(${scale6})`;
       }
 
       // Halo curseur interactif
@@ -110,49 +127,73 @@ export const AmbientBackground: React.FC = () => {
   }, []);
 
   return (
-    <div
-      aria-hidden="true"
-      className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none"
-    >
-      {/* Orbe 1: Teal / Émeraude (Décalé vers la marge haut gauche) */}
+    <>
+      {/* 1. Orbes d'ambiance en absolute inset-0 : défilent naturellement avec le scroll sur toute la hauteur du document */}
       <div
-        ref={blob1Ref}
-        className="absolute -top-36 -left-36 sm:-top-48 sm:-left-48 w-[520px] h-[520px] sm:w-[680px] sm:h-[680px] lg:w-[840px] lg:h-[840px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
+        aria-hidden="true"
+        className="absolute inset-0 w-full overflow-hidden pointer-events-none z-0 select-none"
       >
-        <div className="w-full h-full rounded-full bg-gradient-to-tr from-teal-500/50 via-brand-600/40 to-emerald-400/35 dark:from-teal-500/30 dark:via-brand-600/25 dark:to-emerald-500/20 blur-[85px]" />
+        {/* Orbe 1: Teal / Émeraude (Zone Hero - Haut gauche) */}
+        <div
+          ref={blob1Ref}
+          className="absolute top-[2%] -left-28 sm:-left-44 w-[520px] h-[520px] sm:w-[680px] sm:h-[680px] lg:w-[840px] lg:h-[840px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
+        >
+          <div className="w-full h-full rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-teal-500/55 via-brand-600/40 to-transparent blur-[50px] dark:from-teal-500/30 dark:via-brand-600/20 dark:to-transparent" />
+        </div>
+
+        {/* Orbe 2: Bleu Primaire Cobalt / Azur (Zone Hero / Expérience - Marge droite) */}
+        <div
+          ref={blob2Ref}
+          className="absolute top-[13%] -right-28 sm:-right-44 w-[480px] h-[480px] sm:w-[620px] sm:h-[620px] lg:w-[780px] lg:h-[780px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
+        >
+          <div className="w-full h-full rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-600/55 via-primary-light/40 to-transparent blur-[50px] dark:from-primary-light/30 dark:via-primary/20 dark:to-transparent" />
+        </div>
+
+        {/* Orbe 3: Cyan & Turquoise vif (Zone Expérience / Compétences - Marge gauche) */}
+        <div
+          ref={blob3Ref}
+          className="absolute top-[30%] -left-28 sm:-left-44 w-[460px] h-[460px] sm:w-[600px] sm:h-[600px] lg:w-[740px] lg:h-[740px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
+        >
+          <div className="w-full h-full rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-500/50 via-teal-400/35 to-transparent blur-[50px] dark:from-cyan-500/25 dark:via-teal-600/20 dark:to-transparent" />
+        </div>
+
+        {/* Orbe 4: Azur / Indigo doux (Zone Compétences / Formations - Marge droite) */}
+        <div
+          ref={blob4Ref}
+          className="absolute top-[48%] -right-24 sm:-right-40 w-[460px] h-[460px] sm:w-[580px] sm:h-[580px] lg:w-[720px] lg:h-[720px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
+        >
+          <div className="w-full h-full rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-sky-500/50 via-indigo-500/35 to-transparent blur-[50px] dark:from-sky-500/25 dark:via-indigo-600/20 dark:to-transparent" />
+        </div>
+
+        {/* Orbe 5: Teal & Émeraude (Zone HealthKicks Showcase - Marge gauche) */}
+        <div
+          ref={blob5Ref}
+          className="absolute top-[68%] -left-24 sm:-left-40 w-[480px] h-[480px] sm:w-[620px] sm:h-[620px] lg:w-[760px] lg:h-[760px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
+        >
+          <div className="w-full h-full rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-teal-500/50 via-emerald-500/35 to-transparent blur-[50px] dark:from-teal-500/25 dark:via-brand-600/20 dark:to-transparent" />
+        </div>
+
+        {/* Orbe 6: Cyan & Bleu ciel (Zone Contact - Marge droite) */}
+        <div
+          ref={blob6Ref}
+          className="absolute top-[88%] -right-24 sm:-right-40 w-[500px] h-[500px] sm:w-[640px] sm:h-[640px] lg:w-[780px] lg:h-[780px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
+        >
+          <div className="w-full h-full rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-400/50 via-blue-500/40 to-transparent blur-[50px] dark:from-cyan-400/25 dark:via-primary/20 dark:to-transparent" />
+        </div>
       </div>
 
-      {/* Orbe 2: Bleu Primaire Cobalt / Azur (Décalé vers la marge droite) */}
+      {/* 2. Halo interactif doux attaché au viewport (suit le curseur avec fluidité partout sur l'écran) */}
       <div
-        ref={blob2Ref}
-        className="absolute top-1/4 -right-32 sm:top-1/3 sm:-right-44 w-[480px] h-[480px] sm:w-[620px] sm:h-[620px] lg:w-[780px] lg:h-[780px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
+        aria-hidden="true"
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none"
       >
-        <div className="w-full h-full rounded-full bg-gradient-to-bl from-blue-600/50 via-primary-light/45 to-teal-400/35 dark:from-primary-light/30 dark:via-primary/25 dark:to-blue-600/20 blur-[85px]" />
+        <div
+          ref={cursorRef}
+          className="absolute top-0 left-0 w-[450px] h-[450px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
+        >
+          <div className="w-full h-full rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-teal-400/50 via-cyan-400/35 to-transparent blur-2xl dark:from-teal-400/25 dark:via-brand-500/15 dark:to-transparent" />
+        </div>
       </div>
-
-      {/* Orbe 3: Cyan & Turquoise vif (Marge bas gauche) */}
-      <div
-        ref={blob3Ref}
-        className="absolute -bottom-28 -left-12 sm:-bottom-36 sm:-left-20 w-[440px] h-[440px] sm:w-[580px] sm:h-[580px] lg:w-[720px] lg:h-[720px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
-      >
-        <div className="w-full h-full rounded-full bg-gradient-to-tr from-cyan-500/45 via-teal-400/40 to-blue-500/35 dark:from-cyan-500/25 dark:via-teal-600/20 dark:to-primary/20 blur-[85px]" />
-      </div>
-
-      {/* Orbe 4: Azur / Indigo doux (Marge bas droite) */}
-      <div
-        ref={blob4Ref}
-        className="absolute top-2/3 -right-16 sm:top-3/4 sm:-right-24 w-[420px] h-[420px] sm:w-[540px] sm:h-[540px] lg:w-[680px] lg:h-[680px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
-      >
-        <div className="w-full h-full rounded-full bg-gradient-to-br from-sky-500/45 via-indigo-500/40 to-teal-400/35 dark:from-sky-500/25 dark:via-indigo-600/20 dark:to-teal-500/20 blur-[85px]" />
-      </div>
-
-      {/* Orbe 5: Halo interactif suivant le curseur */}
-      <div
-        ref={cursorRef}
-        className="absolute top-0 left-0 w-[450px] h-[450px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
-      >
-        <div className="w-full h-full rounded-full bg-gradient-to-r from-teal-400/55 via-cyan-400/50 to-blue-400/45 dark:from-teal-400/25 dark:via-brand-500/20 dark:to-primary-light/20 blur-[75px]" />
-      </div>
-    </div>
+    </>
   );
 };
