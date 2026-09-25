@@ -7,9 +7,13 @@ import { MapPin, Mail, Phone, ArrowDown, Sparkles, FileDown } from 'lucide-react
 
 export const Hero: React.FC = () => {
   const [imgError, setImgError] = useState(false);
-  const { resume, t, cvUrl, cvFileName } = useLanguage();
+  const [isLongHair, setIsLongHair] = useState(false);
+  const { resume, t, cvUrl, cvFileName, lang } = useLanguage();
   const linkedin = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('linkedin'));
   const github = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('github'));
+
+  const shortHairUrl = `${import.meta.env.BASE_URL}avatar_short_hair.png`;
+  const longHairUrl = `${import.meta.env.BASE_URL}avatar_long_hair.png`;
 
   return (
     <section className="relative pt-6 pb-16 md:pt-12 md:pb-24 overflow-hidden">
@@ -135,18 +139,40 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Avatar Photo */}
+          {/* Right Column: Avatar Photo (Pixel Art with hover toggle) */}
           <div className="relative shrink-0">
-            <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-3xl p-2 bg-gradient-to-tr from-brand-600 via-teal-400 to-blue-500 shadow-2xl">
-              <div className="w-full h-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+            <div
+              className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-3xl p-2 bg-gradient-to-tr from-brand-600 via-teal-400 to-blue-500 shadow-2xl group cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
+              onClick={() => setIsLongHair(prev => !prev)}
+              title={lang === 'fr' ? 'Survolez ou cliquez pour basculer la coupe de cheveux !' : 'Hover or click to switch hairstyle!'}
+            >
+              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-200/40 dark:bg-slate-800/50 backdrop-blur-sm flex items-center justify-center">
                 {!imgError ? (
-                  <img
-                    src={resume.picture.url}
-                    alt={resume.basics.name}
-                    onError={() => setImgError(true)}
-                    className="w-full h-full object-cover"
-                    loading="eager"
-                  />
+                  <>
+                    {/* Avatar Cheveux Courts (Base) */}
+                    <img
+                      src={shortHairUrl}
+                      alt={`${resume.basics.name} - Pixel Art`}
+                      onError={() => setImgError(true)}
+                      className={`w-full h-full object-cover select-none transition-opacity duration-200 ${
+                        isLongHair ? 'opacity-0' : 'opacity-100 group-hover:opacity-0'
+                      }`}
+                      style={{ imageRendering: 'pixelated' }}
+                      loading="eager"
+                    />
+
+                    {/* Avatar Cheveux Longs (Survol / Clic) */}
+                    <img
+                      src={longHairUrl}
+                      alt={`${resume.basics.name} - Pixel Art (Cheveux mi-longs)`}
+                      aria-hidden="true"
+                      className={`absolute inset-0 w-full h-full object-cover select-none transition-opacity duration-200 ${
+                        isLongHair ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                      }`}
+                      style={{ imageRendering: 'pixelated' }}
+                      loading="eager"
+                    />
+                  </>
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-brand-700 to-slate-900 text-white font-extrabold text-5xl">
                     DS
