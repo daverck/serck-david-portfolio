@@ -40,6 +40,18 @@ export const Hero: React.FC = () => {
               {resume.basics.headline}
             </p>
 
+            {/* Core Technologies Highlight */}
+            <div className="mt-3.5 flex items-center justify-center md:justify-start">
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
+                <div className="w-6 h-6 rounded-lg bg-teal-500/15 flex items-center justify-center text-brand-600 dark:text-brand-400 shrink-0">
+                  <Sparkles className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 tracking-wide">
+                  {t('hero.spec')}
+                </span>
+              </div>
+            </div>
+
             <div className="mt-4 max-w-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               <RichHtml html={resume.summary.content} />
             </div>
@@ -140,17 +152,6 @@ export const Hero: React.FC = () => {
                     DS
                   </div>
                 )}
-              </div>
-            </div>
-
-            {/* Experience Badge floating */}
-            <div className="absolute -bottom-3 -right-2 sm:-bottom-4 sm:-right-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-lg flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-teal-500/15 flex items-center justify-center text-brand-600 dark:text-brand-400">
-                <Sparkles className="w-4 h-4" />
-              </div>
-              <div className="text-left">
-                <span className="block text-xs font-bold text-slate-900 dark:text-white">{t('hero.expYears')}</span>
-                <span className="block text-[11px] text-slate-500 dark:text-slate-400 font-medium">{t('hero.spec')}</span>
               </div>
             </div>
           </div>
