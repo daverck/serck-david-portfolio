@@ -14,8 +14,7 @@ import {
 } from 'lucide-react';
 
 export const HealthKicksShowcase: React.FC = () => {
-  const { lang } = useLanguage();
-  const isFr = lang === 'fr';
+  const { t } = useLanguage();
 
   const techBadges = [
     { label: 'Flutter', category: 'Mobile' },
@@ -31,38 +30,30 @@ export const HealthKicksShowcase: React.FC = () => {
     {
       icon: Smartphone,
       color: 'from-teal-500 to-emerald-500',
-      badge: isFr ? 'Pont Matériel ↔ Cloud' : 'Hardware ↔ Cloud Bridge',
-      title: isFr ? 'Passerelle Mobile (Mobile Gateway)' : 'Mobile Gateway Architecture',
-      description: isFr
-        ? 'Conception et développement d\'une passerelle mobile temps réel sous Flutter/Dart servant de pont robuste entre les capteurs embarqués dans les chaussures connectées et l\'infrastructure AWS.'
-        : 'Designed and engineered a robust real-time Flutter/Dart mobile gateway bridging embedded footwear sensors with the AWS cloud infrastructure.'
+      badge: t('hk.achieve.bridge.badge'),
+      title: t('hk.achieve.bridge.title'),
+      description: t('hk.achieve.bridge.desc'),
     },
     {
       icon: Bluetooth,
       color: 'from-sky-500 to-blue-600',
-      badge: 'BLE / GATT Profile',
-      title: isFr ? 'Architecture GATT & Capteurs BLE' : 'GATT Architecture & BLE Sensors',
-      description: isFr
-        ? 'Spécification et implémentation de services et caractéristiques GATT personnalisés pour la capture d\'activité en direct, le paramétrage interactif en studio et le déclenchement haptique réactif.'
-        : 'Custom GATT services and characteristics implementation for live activity detection, interactive studio control, and responsive haptic triggers.'
+      badge: t('hk.achieve.ble.badge'),
+      title: t('hk.achieve.ble.title'),
+      description: t('hk.achieve.ble.desc'),
     },
     {
       icon: ShieldCheck,
       color: 'from-amber-500 to-orange-500',
-      badge: 'SigV4 & WebSockets',
-      title: isFr ? 'Pipeline de Télémétrie Sécurisé' : 'Secure Telemetry Pipeline',
-      description: isFr
-        ? 'Acheminement temps réel et sécurisé de flux de données de télémétrie capteurs via MQTT over WebSockets, sécurisé par signature cryptographique AWS STS / SigV4.'
-        : 'Real-time resilient transmission of high-frequency sensor telemetry via MQTT over WebSockets, authenticated through SigV4 and AWS STS token exchange.'
+      badge: t('hk.achieve.sigv4.badge'),
+      title: t('hk.achieve.sigv4.title'),
+      description: t('hk.achieve.sigv4.desc'),
     },
     {
       icon: Activity,
       color: 'from-purple-500 to-indigo-600',
-      badge: isFr ? 'Contrôle & Détection' : 'Control & Proximity',
-      title: isFr ? 'Routage Distant & Détection Studio' : 'Remote Routing & Studio Presence',
-      description: isFr
-        ? 'Implémentation du routage bidirectionnel de commandes à distance et d\'un mécanisme hybride de détection de présence des coureurs/athlètes au sein des studios connectés.'
-        : 'Engineered bidirectional remote command routing and hybrid proximity/presence detection for connected studio training environments.'
+      badge: t('hk.achieve.routing.badge'),
+      title: t('hk.achieve.routing.title'),
+      description: t('hk.achieve.routing.desc'),
     }
   ];
 
@@ -75,7 +66,7 @@ export const HealthKicksShowcase: React.FC = () => {
 
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-teal-700 dark:text-teal-300 bg-teal-500/10 dark:bg-teal-500/20 border border-teal-500/30 mb-4 shadow-sm">
             <Radio className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400 animate-pulse" />
-            <span>{isFr ? 'Projet de fin de formation • Architecte IA/IOT (Technofutur TIC)' : 'Capstone Project • AI & IoT Architect (Technofutur TIC)'}</span>
+            <span>{t('hk.badge')}</span>
           </div>
 
           <div className="flex items-center justify-center gap-3 sm:gap-4">
@@ -90,9 +81,7 @@ export const HealthKicksShowcase: React.FC = () => {
             </h2>
           </div>
           <p className="mt-2 text-lg sm:text-xl font-semibold text-teal-600 dark:text-teal-400">
-            {isFr
-              ? 'Passerelle Mobile & Télémétrie IoT pour Chaussures Connectées'
-              : 'Mobile Gateway & IoT Telemetry for Smart Footwear'}
+            {t('hk.subtitle')}
           </p>
 
           {/* Action links: GitHub Repos & Web Demo */}
@@ -104,7 +93,7 @@ export const HealthKicksShowcase: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-xs sm:text-sm hover:bg-brand-600 hover:text-white dark:hover:bg-brand-400 dark:hover:text-slate-950 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all shadow-md group"
             >
               <GithubIcon className="w-4 h-4 text-white dark:text-slate-900 group-hover:text-white dark:group-hover:text-slate-950 transition-colors" />
-              <span>{isFr ? 'Dépôts GitHub HealthKicks' : 'HealthKicks GitHub Repos'}</span>
+              <span>{t('hk.githubRepos')}</span>
             </a>
 
             <div className="relative group/tooltip">
@@ -112,14 +101,14 @@ export const HealthKicksShowcase: React.FC = () => {
                 href="https://healthkicks.duckdns.org/"
                 target="_blank"
                 rel="noopener noreferrer"
-                title={isFr ? "Hébergement à la demande (l'instance peut être temporairement hors ligne pour limiter les coûts)" : "On-demand hosting (instance may be temporarily offline to minimize cloud costs)"}
+                title={t('hk.webDemoTitle')}
                 className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 font-semibold text-xs sm:text-sm hover:border-teal-500/50 hover:text-teal-600 dark:hover:text-teal-400 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 transition-all shadow-sm"
               >
                 <Globe className="w-4 h-4 text-teal-600 dark:text-teal-400" />
-                <span>{isFr ? 'Interface Web' : 'Web Interface'}</span>
+                <span>{t('hk.webInterface')}</span>
                 <span className="flex items-center gap-1 text-[10px] font-semibold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
                   <AlertCircle className="w-3 h-3" />
-                  <span>On-demand</span>
+                  <span>{t('hk.onDemand')}</span>
                 </span>
               </a>
 
@@ -127,12 +116,10 @@ export const HealthKicksShowcase: React.FC = () => {
               <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-64 p-2.5 rounded-xl bg-slate-900/95 dark:bg-slate-800/95 text-white text-[11px] leading-snug text-center shadow-xl border border-slate-700/50 backdrop-blur-md opacity-0 group-hover/tooltip:opacity-100 transition-all duration-200 z-30">
                 <div className="flex items-center justify-center gap-1.5 text-amber-400 font-semibold mb-0.5">
                   <AlertCircle className="w-3 h-3 shrink-0" />
-                  <span>{isFr ? 'Disponibilité à la demande' : 'On-demand availability'}</span>
+                  <span>{t('hk.onDemandAvailability')}</span>
                 </div>
                 <p className="text-slate-300">
-                  {isFr
-                    ? "L'instance cloud est démarrée à la demande et peut être temporairement hors-ligne par souci de coût."
-                    : 'Cloud instance is started on demand and may be temporarily offline to minimize hosting costs.'}
+                  {t('hk.onDemandTooltip')}
                 </p>
                 <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-900/95 dark:border-t-slate-800/95" />
               </div>
@@ -140,9 +127,7 @@ export const HealthKicksShowcase: React.FC = () => {
           </div>
 
           <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
-            {isFr
-              ? 'Conception complète de la passerelle mobile Flutter assurant l\'interconnexion temps réel entre les capteurs biomécaniques de chaussures connectées et le cloud AWS IoT Core via MQTT sécurisé SigV4.'
-              : 'End-to-end design of the Flutter mobile gateway orchestrating real-time communication between smart footwear biomechanical sensors and AWS IoT Core via SigV4-signed MQTT.'}
+            {t('hk.description')}
           </p>
         </div>
 
@@ -155,10 +140,10 @@ export const HealthKicksShowcase: React.FC = () => {
           <div className="relative z-10">
             <div className="mb-8 pb-6 border-b border-slate-200 dark:border-slate-800">
               <span className="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">
-                {isFr ? 'Architecture du Flux Temps Réel' : 'Real-Time Telemetry Pipeline Flow'}
+                {t('hk.flow.badge')}
               </span>
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-1">
-                Footwear Sensors ➔ Mobile Gateway ➔ AWS IoT Core
+                {t('hk.flow.subtitle')}
               </h3>
             </div>
 
@@ -170,23 +155,23 @@ export const HealthKicksShowcase: React.FC = () => {
                   <Cpu className="w-5 h-5" />
                 </div>
                 <div className="text-[11px] font-mono uppercase tracking-wider text-sky-600 dark:text-sky-400 font-bold mb-1">
-                  {isFr ? 'Étage 1 • Matériel Embarqué' : 'Tier 1 • Embedded Hardware'}
+                  {t('hk.flow.step1.tier')}
                 </div>
                 <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Smart Footwear Devices
+                  {t('hk.flow.step1.title')}
                 </h4>
                 <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-sky-400" />
-                    <span>Capteurs pression & inertiels (IMU)</span>
+                    <span>{t('hk.flow.step1.f1')}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-sky-400" />
-                    <span>Serveur GATT & Profils personnalisés</span>
+                    <span>{t('hk.flow.step1.f2')}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-sky-400" />
-                    <span>Déclencheurs de vibration haptiques</span>
+                    <span>{t('hk.flow.step1.f3')}</span>
                   </li>
                 </ul>
               </div>
@@ -197,23 +182,23 @@ export const HealthKicksShowcase: React.FC = () => {
                   <Smartphone className="w-5 h-5" />
                 </div>
                 <div className="text-[11px] font-mono uppercase tracking-wider text-teal-600 dark:text-teal-400 font-bold mb-1">
-                  {isFr ? 'Étage 2 • Passerelle Mobile' : 'Tier 2 • Mobile Gateway'}
+                  {t('hk.flow.step2.tier')}
                 </div>
                 <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Flutter / Dart Gateway
+                  {t('hk.flow.step2.title')}
                 </h4>
                 <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400" />
-                    <span>Gestionnaire BLE / GATT synchrone</span>
+                    <span>{t('hk.flow.step2.f1')}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400" />
-                    <span>Bufferisation locale & filtrage télémétrie</span>
+                    <span>{t('hk.flow.step2.f2')}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400" />
-                    <span>Client MQTT over WebSockets + SigV4</span>
+                    <span>{t('hk.flow.step2.f3')}</span>
                   </li>
                 </ul>
               </div>
@@ -224,23 +209,23 @@ export const HealthKicksShowcase: React.FC = () => {
                   <Cloud className="w-5 h-5" />
                 </div>
                 <div className="text-[11px] font-mono uppercase tracking-wider text-amber-600 dark:text-amber-400 font-bold mb-1">
-                  {isFr ? 'Étage 3 • Cloud Ingestion' : 'Tier 3 • Cloud Ingestion'}
+                  {t('hk.flow.step3.tier')}
                 </div>
                 <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  AWS IoT Core & Services
+                  {t('hk.flow.step3.title')}
                 </h4>
                 <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400" />
-                    <span>AWS STS & Signature SigV4</span>
+                    <span>{t('hk.flow.step3.f1')}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400" />
-                    <span>Broker MQTT & Règles de routage</span>
+                    <span>{t('hk.flow.step3.f2')}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400" />
-                    <span>Monitoring de présence studio en direct</span>
+                    <span>{t('hk.flow.step3.f3')}</span>
                   </li>
                 </ul>
               </div>
@@ -281,15 +266,14 @@ export const HealthKicksShowcase: React.FC = () => {
         {/* Stack & Protocols Pills */}
         <div className="p-6 sm:p-8 rounded-3xl bg-slate-100/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80">
           <span className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
-            {isFr ? 'Stack & Protocoles Employés' : 'Tech Stack & Protocols'}
+            {t('hk.stack.title')}
           </span>
           <div className="flex flex-wrap items-center gap-2.5">
             {techBadges.map((tItem, i) => (
               <span
                 key={i}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700 shadow-sm"
+                className="inline-flex items-center px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700 shadow-sm"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
                 {tItem.label}
               </span>
             ))}
