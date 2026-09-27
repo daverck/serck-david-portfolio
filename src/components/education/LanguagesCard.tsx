@@ -3,22 +3,15 @@ import { useLanguage } from '../../context/LanguageContext';
 import { Languages as LanguagesIcon } from 'lucide-react';
 
 export const LanguagesCard: React.FC = () => {
-  const { resume, lang, t } = useLanguage();
+  const { resume, t } = useLanguage();
   const languages = resume.sections.languages.items;
 
   const getFluencyLabel = (lvl: number, fluency?: string) => {
     if (fluency) return fluency;
-    if (lang === 'fr') {
-      if (lvl >= 5) return 'Langue maternelle';
-      if (lvl >= 4) return 'Courant / Technique';
-      if (lvl >= 3) return 'Intermédiaire';
-      return 'Notions de base';
-    } else {
-      if (lvl >= 5) return 'Native';
-      if (lvl >= 4) return 'Professional / Fluent';
-      if (lvl >= 3) return 'Intermediate';
-      return 'Basic notions';
-    }
+    if (lvl >= 5) return t('edu.langNative');
+    if (lvl >= 4) return t('edu.langFluent');
+    if (lvl >= 3) return t('edu.langIntermediate');
+    return t('edu.langBasic');
   };
 
   return (

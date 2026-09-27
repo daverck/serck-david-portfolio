@@ -11,7 +11,7 @@ export const EmployerNav: React.FC<{ currentSlug: EmployerSlug }> = ({ currentSl
   const next = getNextEmployer(currentSlug, lang);
 
   return (
-    <nav aria-label="Navigation entre employeurs" className="pt-12 pb-6 border-t border-slate-200/80 dark:border-slate-800/80">
+    <nav aria-label={t('detail.navLabel')} className="pt-12 pb-6 border-t border-slate-200/80 dark:border-slate-800/80">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         
         {/* Previous Employer */}

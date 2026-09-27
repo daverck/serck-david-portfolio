@@ -3,13 +3,13 @@ import { useLanguage } from '../../context/LanguageContext';
 import { Globe } from 'lucide-react';
 
 export const LanguageToggle: React.FC<{ className?: string }> = ({ className = '' }) => {
-  const { lang, setLang } = useLanguage();
+  const { lang, setLang, t } = useLanguage();
 
   return (
     <div
       className={`inline-flex items-center gap-1 rounded-xl p-1 border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-xs font-bold shadow-sm ${className}`}
       role="group"
-      aria-label="Sélection de la langue / Language selection"
+      aria-label={t('common.languageSelect')}
     >
       <div className="pl-1.5 pr-0.5 text-slate-400">
         <Globe className="w-3.5 h-3.5" />

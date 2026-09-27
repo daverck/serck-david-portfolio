@@ -185,7 +185,7 @@ export const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(prev => !prev)}
-            aria-label="Ouvrir le menu de navigation"
+            aria-label={mobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
             className="p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

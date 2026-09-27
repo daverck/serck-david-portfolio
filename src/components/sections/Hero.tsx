@@ -8,7 +8,7 @@ import { MapPin, Mail, Phone, ArrowDown, Sparkles, FileDown } from 'lucide-react
 export const Hero: React.FC = () => {
   const [imgError, setImgError] = useState(false);
   const [isLongHair, setIsLongHair] = useState(false);
-  const { resume, t, cvUrl, cvFileName, lang } = useLanguage();
+  const { resume, t, cvUrl, cvFileName } = useLanguage();
   const linkedin = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('linkedin'));
   const github = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('github'));
 
@@ -144,7 +144,7 @@ export const Hero: React.FC = () => {
             <div
               className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-3xl p-2 bg-gradient-to-tr from-brand-600 via-teal-400 to-blue-500 shadow-2xl group cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
               onClick={() => setIsLongHair(prev => !prev)}
-              title={lang === 'fr' ? 'Survolez ou cliquez pour basculer la coupe de cheveux !' : 'Hover or click to switch hairstyle!'}
+              title={t('hero.avatarTitle')}
             >
               <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-200/40 dark:bg-slate-800/50 backdrop-blur-sm flex items-center justify-center">
                 {!imgError ? (
@@ -152,7 +152,7 @@ export const Hero: React.FC = () => {
                     {/* Avatar Cheveux Courts (Base) */}
                     <img
                       src={shortHairUrl}
-                      alt={`${resume.basics.name} - Pixel Art`}
+                      alt={t('hero.avatarShortAlt')}
                       onError={() => setImgError(true)}
                       className={`w-full h-full object-cover select-none transition-opacity duration-200 ${
                         isLongHair ? 'opacity-0' : 'opacity-100 group-hover:opacity-0'
@@ -164,7 +164,7 @@ export const Hero: React.FC = () => {
                     {/* Avatar Cheveux Longs (Survol / Clic) */}
                     <img
                       src={longHairUrl}
-                      alt={`${resume.basics.name} - Pixel Art (Cheveux mi-longs)`}
+                      alt={t('hero.avatarLongAlt')}
                       aria-hidden="true"
                       className={`absolute inset-0 w-full h-full object-cover select-none transition-opacity duration-200 ${
                         isLongHair ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'

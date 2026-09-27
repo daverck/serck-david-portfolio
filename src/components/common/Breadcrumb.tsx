@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { useLanguage } from '../../context/LanguageContext';
 import { ChevronRight, Home } from 'lucide-react';
 
 interface BreadcrumbProps {
@@ -7,14 +8,16 @@ interface BreadcrumbProps {
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
+  const { t } = useLanguage();
+
   return (
-    <nav aria-label="Fil d'Ariane" className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400 py-3">
+    <nav aria-label={t('common.breadcrumb')} className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400 py-3">
       <Link
         to="/"
         className="inline-flex items-center gap-1.5 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
       >
         <Home className="w-4 h-4" />
-        <span>Accueil</span>
+        <span>{t('nav.home')}</span>
       </Link>
       {items.map((item, idx) => (
         <React.Fragment key={idx}>

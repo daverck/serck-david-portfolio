@@ -9,6 +9,8 @@ export const en: Record<TranslationKey, string> = {
   'nav.education': 'Education',
   'nav.contact': 'Contact',
   'nav.mobileTitle': 'Employer Pages',
+  'nav.openMenu': 'Open navigation menu',
+  'nav.closeMenu': 'Close navigation menu',
 
   // Hero
   'hero.available': 'Available immediately for new opportunities',
@@ -17,6 +19,9 @@ export const en: Record<TranslationKey, string> = {
   'hero.downloadCv': 'Download CV',
   'hero.expYears': '6 Years exp.',
   'hero.spec': 'Angular • Python • Java',
+  'hero.avatarTitle': 'Hover or click to switch hairstyle!',
+  'hero.avatarShortAlt': 'David Serck - Pixel Art',
+  'hero.avatarLongAlt': 'David Serck - Pixel Art (Medium hair)',
 
   // Skills
   'skills.badge': 'Stack & Skills',
@@ -37,6 +42,10 @@ export const en: Record<TranslationKey, string> = {
   'edu.badge': 'Academic Background',
   'edu.title': 'Degrees & Certifications',
   'edu.languages': 'Languages',
+  'edu.langNative': 'Native',
+  'edu.langFluent': 'Professional / Fluent',
+  'edu.langIntermediate': 'Intermediate',
+  'edu.langBasic': 'Basic notions',
   'edu.profile': 'Profile & Mindset',
   'edu.profileDesc': 'Passionate about clean code, sustainable software architecture, and continuous learning (generative AI, distributed systems, modern UI).',
   'edu.hobbies': 'Hobbies:',
@@ -68,12 +77,19 @@ export const en: Record<TranslationKey, string> = {
   'detail.resetFilters': 'Reset filters',
   'detail.prevEmployer': 'Previous employer',
   'detail.nextEmployer': 'Next employer',
+  'detail.navLabel': 'Employer navigation',
   'detail.backToOverview': 'Back to all experiences overview',
   'detail.notFoundTitle': 'Employer not found',
   'detail.notFoundDesc': 'The requested experience does not exist or the link is invalid.',
   'detail.backHome': 'Return to home',
   'detail.onlineRef': 'Live / Reference',
   'detail.viewProject': 'View project',
+
+  // Common & Theme
+  'theme.toggleLight': 'Switch to light mode',
+  'theme.toggleDark': 'Switch to dark mode',
+  'common.breadcrumb': 'Breadcrumb',
+  'common.languageSelect': 'Language selection',
 
   // Employers - Konekto
   'employer.konekto.fullName': 'Konekto (IT Agency)',

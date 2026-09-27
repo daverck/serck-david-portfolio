@@ -7,6 +7,8 @@ export const fr = {
   'nav.education': 'Formations',
   'nav.contact': 'Contact',
   'nav.mobileTitle': 'Pages Employeurs',
+  'nav.openMenu': 'Ouvrir le menu de navigation',
+  'nav.closeMenu': 'Fermer le menu de navigation',
 
   // Hero
   'hero.available': 'Disponible immédiatement pour de nouveaux défis',
@@ -15,6 +17,9 @@ export const fr = {
   'hero.downloadCv': 'Télécharger mon CV',
   'hero.expYears': "6 ans d'exp.",
   'hero.spec': 'Angular • Python • Java',
+  'hero.avatarTitle': 'Survolez ou cliquez pour basculer la coupe de cheveux !',
+  'hero.avatarShortAlt': 'David Serck - Pixel Art',
+  'hero.avatarLongAlt': 'David Serck - Pixel Art (Cheveux mi-longs)',
 
   // Skills
   'skills.badge': 'Stack & Compétences',
@@ -35,6 +40,10 @@ export const fr = {
   'edu.badge': 'Parcours Académique',
   'edu.title': 'Diplômes & Formations',
   'edu.languages': 'Langues',
+  'edu.langNative': 'Langue maternelle',
+  'edu.langFluent': 'Courant / Technique',
+  'edu.langIntermediate': 'Intermédiaire',
+  'edu.langBasic': 'Notions de base',
   'edu.profile': 'Profil & Démarche',
   'edu.profileDesc': "Passionné par le code propre, l'architecture logicielle pérenne, et l'apprentissage continu (IA générative, architectures distribuées, UI moderne).",
   'edu.hobbies': 'Loisirs :',
@@ -66,12 +75,19 @@ export const fr = {
   'detail.resetFilters': 'Réinitialiser les filtres',
   'detail.prevEmployer': 'Employeur précédent',
   'detail.nextEmployer': 'Employeur suivant',
+  'detail.navLabel': 'Navigation entre employeurs',
   'detail.backToOverview': "Retour à la vue d'ensemble de toutes les expériences",
   'detail.notFoundTitle': 'Employeur introuvable',
   'detail.notFoundDesc': "L'expérience demandée n'existe pas ou le lien est erroné.",
   'detail.backHome': "Retourner à l'accueil",
   'detail.onlineRef': 'En ligne / Référence',
   'detail.viewProject': 'Voir le projet',
+
+  // Common & Theme
+  'theme.toggleLight': 'Basculer en mode clair',
+  'theme.toggleDark': 'Basculer en mode sombre',
+  'common.breadcrumb': "Fil d'Ariane",
+  'common.languageSelect': 'Sélection de la langue',
 
   // Employers - Konekto
   'employer.konekto.fullName': 'Konekto (Agence IT)',
