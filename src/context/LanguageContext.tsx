@@ -102,7 +102,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const resume = lang === 'fr' ? resumeDataFr : resumeDataEn;
   const employers = getEmployersList(lang);
-  const cvFileName = lang === 'fr' ? 'cv-serck-david-francais.pdf' : 'cv-serck-david.pdf';
+  const cvFileName = lang === 'fr' ? 'cv-portfolio-serck-david-francais.pdf' : 'cv-portfolio-serck-david.pdf';
   const cvUrl = `${import.meta.env.BASE_URL}${cvFileName}`;
 
   const t = (key: TranslationKey): string => {
