@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { useLocation, useNavigate } from 'react-router';
 import { resumeDataFr, resumeDataEn, getEmployersList } from '../data/employers';
 import { ResumeData, EmployerDetails } from '../types/resume';
 
@@ -19,27 +20,81 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [lang, setLangState] = useState<Language>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('language');
-      if (saved === 'fr' || saved === 'en') return saved;
-      // Préférer le français par défaut ou détection navigateur
-      const browserLang = navigator.language.slice(0, 2);
-      return browserLang === 'en' ? 'en' : 'fr';
+function getInitialLanguage(): Language {
+  if (typeof window !== 'undefined') {
+    // 1. Priorité absolue au query param 'lang' dans l'URL
+    const params = new URLSearchParams(window.location.search);
+    const paramLang = params.get('lang');
+    if (paramLang === 'fr' || paramLang === 'en') {
+      return paramLang;
     }
-    return 'fr';
-  });
 
-  const setLang = (newLang: Language) => {
-    setLangState(newLang);
-    localStorage.setItem('language', newLang);
-    document.documentElement.lang = newLang;
-  };
+    // 2. Préférence sauvegardée en localStorage
+    const saved = localStorage.getItem('language');
+    if (saved === 'fr' || saved === 'en') {
+      return saved;
+    }
 
-  const toggleLang = () => {
+    // 3. Langue préférée du navigateur
+    const browserLang = navigator.language.slice(0, 2);
+    return browserLang === 'en' ? 'en' : 'fr';
+  }
+  return 'fr';
+}
+
+export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [lang, setLangState] = useState<Language>(getInitialLanguage);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Synchronisation bidirectionnelle avec l'URL (liens partagés, boutons précédent/suivant)
+  useEffect(() => {
+    const currentParams = new URLSearchParams(location.search);
+    const urlLang = currentParams.get('lang');
+
+    if (urlLang === 'fr' || urlLang === 'en') {
+      if (urlLang !== lang) {
+        setLangState(urlLang);
+        localStorage.setItem('language', urlLang);
+        document.documentElement.lang = urlLang;
+      }
+    } else {
+      // Si le paramètre ?lang est absent ou non reconnu, l'ajouter à l'URL sans recharger la page
+      currentParams.set('lang', lang);
+      navigate(
+        {
+          pathname: location.pathname,
+          search: `?${currentParams.toString()}`,
+          hash: location.hash,
+        },
+        { replace: true }
+      );
+    }
+  }, [location.search, location.pathname, location.hash, lang, navigate]);
+
+  const setLang = useCallback(
+    (newLang: Language) => {
+      setLangState(newLang);
+      localStorage.setItem('language', newLang);
+      document.documentElement.lang = newLang;
+
+      const currentParams = new URLSearchParams(location.search);
+      currentParams.set('lang', newLang);
+      navigate(
+        {
+          pathname: location.pathname,
+          search: `?${currentParams.toString()}`,
+          hash: location.hash,
+        },
+        { replace: true }
+      );
+    },
+    [location.pathname, location.search, location.hash, navigate]
+  );
+
+  const toggleLang = useCallback(() => {
     setLang(lang === 'fr' ? 'en' : 'fr');
-  };
+  }, [lang, setLang]);
 
   useEffect(() => {
     document.documentElement.lang = lang;

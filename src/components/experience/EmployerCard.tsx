@@ -9,7 +9,7 @@ interface EmployerCardProps {
 }
 
 export const EmployerCard: React.FC<EmployerCardProps> = ({ employer }) => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <div className="relative p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800/90 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden">
@@ -80,7 +80,7 @@ export const EmployerCard: React.FC<EmployerCardProps> = ({ employer }) => {
           </div>
 
           <Link
-            to={`/experience/${employer.slug}`}
+            to={`/experience/${employer.slug}?lang=${lang}`}
             className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-xs uppercase tracking-wider hover:bg-brand-600 dark:hover:bg-brand-400 dark:hover:text-slate-950 transition-colors shadow-sm group-hover:scale-[1.02]"
           >
             <span>{t('exp.viewPage')} {employer.name}</span>

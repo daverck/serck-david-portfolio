@@ -58,7 +58,7 @@ export const EmployerDetailPage: React.FC = () => {
           {t('detail.notFoundDesc')}
         </p>
         <Link
-          to="/"
+          to={`/?lang=${lang}`}
           className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-sm hover:bg-brand-600 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -74,7 +74,7 @@ export const EmployerDetailPage: React.FC = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-4">
         <Breadcrumb
           items={[
-            { label: t('detail.breadcrumbExp'), to: '/#experience-overview' },
+            { label: t('detail.breadcrumbExp'), to: `/?lang=${lang}#experience-overview` },
             { label: employer.name },
           ]}
         />

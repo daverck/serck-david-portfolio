@@ -16,7 +16,7 @@ export const EmployerNav: React.FC<{ currentSlug: EmployerSlug }> = ({ currentSl
         
         {/* Previous Employer */}
         <Link
-          to={`/experience/${prev.slug}`}
+          to={`/experience/${prev.slug}?lang=${lang}`}
           className="group flex flex-col p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500/50 hover:shadow-md transition-all text-left"
         >
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">
@@ -33,7 +33,7 @@ export const EmployerNav: React.FC<{ currentSlug: EmployerSlug }> = ({ currentSl
 
         {/* Next Employer */}
         <Link
-          to={`/experience/${next.slug}`}
+          to={`/experience/${next.slug}?lang=${lang}`}
           className="group flex flex-col items-end p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500/50 hover:shadow-md transition-all text-right"
         >
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">
@@ -52,7 +52,7 @@ export const EmployerNav: React.FC<{ currentSlug: EmployerSlug }> = ({ currentSl
 
       <div className="mt-6 text-center">
         <Link
-          to="/#experience-overview"
+          to={`/?lang=${lang}#experience-overview`}
           className="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
         >
           <LayoutGrid className="w-4 h-4" />

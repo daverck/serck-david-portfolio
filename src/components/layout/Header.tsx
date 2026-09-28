@@ -11,7 +11,7 @@ export const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
-  const { resume, employers, t } = useLanguage();
+  const { resume, employers, t, lang } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +55,7 @@ export const Header: React.FC = () => {
   const isHome = location.pathname === '/';
 
   const getSectionHref = (hash: string) => {
-    return isHome ? hash : `${import.meta.env.BASE_URL}${hash}`;
+    return isHome ? hash : `${import.meta.env.BASE_URL}?lang=${lang}${hash}`;
   };
 
   return (
@@ -69,7 +69,7 @@ export const Header: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Brand / Logo */}
         <Link
-          to="/"
+          to={`/?lang=${lang}`}
           className="group flex items-center gap-3 text-left focus:outline-none"
         >
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-teal-400 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
@@ -88,7 +88,7 @@ export const Header: React.FC = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1 lg:gap-2">
           <Link
-            to="/"
+            to={`/?lang=${lang}`}
             className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
               isHome
                 ? 'text-brand-600 dark:text-brand-400 bg-teal-50 dark:bg-teal-950/40'
@@ -124,7 +124,7 @@ export const Header: React.FC = () => {
                 {employers.map(emp => (
                   <Link
                     key={emp.slug}
-                    to={`/experience/${emp.slug}`}
+                    to={`/experience/${emp.slug}?lang=${lang}`}
                     onClick={() => setExperienceDropdownOpen(false)}
                     className={`block px-4 py-2 text-sm transition-colors ${
                       location.pathname === `/experience/${emp.slug}`
@@ -197,7 +197,7 @@ export const Header: React.FC = () => {
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-3 animate-fade-in shadow-xl">
           <Link
-            to="/"
+            to={`/?lang=${lang}`}
             className="block px-3 py-2 rounded-lg text-base font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
           >
             {t('nav.home')}
@@ -211,7 +211,7 @@ export const Header: React.FC = () => {
               {employers.map(emp => (
                 <Link
                   key={emp.slug}
-                  to={`/experience/${emp.slug}`}
+                  to={`/experience/${emp.slug}?lang=${lang}`}
                   className={`block px-3 py-2 rounded-lg text-sm ${
                     location.pathname === `/experience/${emp.slug}`
                       ? 'bg-teal-50 dark:bg-teal-950/50 text-brand-600 dark:text-brand-400 font-semibold'
