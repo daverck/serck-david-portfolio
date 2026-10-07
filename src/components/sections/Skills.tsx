@@ -12,7 +12,7 @@ export const Skills: React.FC = () => {
     : skillsList.filter(s => s.name.toLowerCase().includes(activeCategory.toLowerCase()));
 
   return (
-    <section id="skills" className="py-16 md:py-24">
+    <section id="skills" className="py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}

@@ -52,7 +52,7 @@ export const EmployerCard: React.FC<EmployerCardProps> = ({ employer }) => {
 
           {/* Key achievements preview bullets */}
           <div className="pt-2">
-            <span className="block text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">
+            <span className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
               {t('exp.highlights')}
             </span>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-300">

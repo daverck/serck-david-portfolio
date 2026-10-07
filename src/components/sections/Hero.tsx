@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import { useToast } from '../../context/ToastContext';
 import { ExternalLink } from '../common/ExternalLink';
 import { RichHtml } from '../common/RichHtml';
 import { GithubIcon, LinkedinIcon } from '../common/Icons';
-import { MapPin, Mail, Phone, ArrowDown, Sparkles, FileDown } from 'lucide-react';
+import { MapPin, Mail, Phone, ArrowDown, Sparkles, FileDown, Check } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const [imgError, setImgError] = useState(false);
   const [isLongHair, setIsLongHair] = useState(false);
   const { resume, t, cvUrl, cvFileName } = useLanguage();
+  const { copyEmail, isEmailCopied } = useToast();
   const linkedin = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('linkedin'));
   const github = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('github'));
 
@@ -63,26 +65,32 @@ export const Hero: React.FC = () => {
             {/* Quick Location & Contact meta */}
             <div className="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-slate-500 dark:text-slate-400">
               <div className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" />
+                <MapPin className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" aria-hidden="true" />
                 <span>{resume.basics.location}</span>
-                <span className="text-xs text-slate-400 dark:text-slate-500 font-normal">
+                <span className="text-xs text-slate-600 dark:text-slate-400 font-normal">
                   ({t('contact.mobility')})
                 </span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Mail className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" />
+                {isEmailCopied ? (
+                  <Check className="w-4 h-4 text-emerald-500 shrink-0" aria-hidden="true" />
+                ) : (
+                  <Mail className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" aria-hidden="true" />
+                )}
                 <a
                   href={`mailto:${resume.basics.email}`}
-                  className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+                  onClick={copyEmail}
+                  title={`${resume.basics.email} (cliquer pour ouvrir et copier)`}
+                  className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
                 >
-                  {resume.basics.email}
+                  {isEmailCopied ? t('contact.copiedInline') : resume.basics.email}
                 </a>
               </div>
               <div className="flex items-center gap-1.5">
-                <Phone className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" />
+                <Phone className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" aria-hidden="true" />
                 <a
                   href={`tel:${resume.basics.phone}`}
-                  className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+                  className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
                 >
                   {resume.basics.phone}
                 </a>
@@ -93,15 +101,15 @@ export const Hero: React.FC = () => {
             <div className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-3.5">
               <a
                 href="#experience-overview"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-teal-600 text-white font-semibold text-sm shadow-md hover:from-brand-700 hover:to-teal-700 transition-all hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-teal-600 text-white font-semibold text-sm shadow-md hover:from-brand-700 hover:to-teal-700 transition-all hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
               >
                 <span>{t('hero.explore')}</span>
-                <ArrowDown className="w-4 h-4" />
+                <ArrowDown className="w-4 h-4" aria-hidden="true" />
               </a>
 
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-brand-500/50 dark:hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-0.5 hover:shadow-md transition-all shadow-sm active:translate-y-0"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-brand-500/50 dark:hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-0.5 hover:shadow-md transition-all shadow-sm active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
               >
                 <span>{t('hero.contactMe')}</span>
               </a>
@@ -111,17 +119,18 @@ export const Hero: React.FC = () => {
                 download={cvFileName}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-brand-500/50 dark:hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-0.5 hover:shadow-md transition-all shadow-sm active:translate-y-0"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-brand-500/50 dark:hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-0.5 hover:shadow-md transition-all shadow-sm active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
               >
-                <FileDown className="w-4 h-4 text-brand-600 dark:text-brand-400" />
+                <FileDown className="w-4 h-4 text-brand-600 dark:text-brand-400" aria-hidden="true" />
                 <span>{t('hero.downloadCv')}</span>
               </a>
 
               {github && (
                 <ExternalLink
                   href={github.website.url}
+                  ariaLabel="Profil GitHub"
                   showIcon={false}
-                  className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-0.5 hover:shadow-md transition-all shadow-sm active:translate-y-0"
+                  className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-0.5 hover:shadow-md transition-all shadow-sm active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                 >
                   <GithubIcon className="w-5 h-5" />
                 </ExternalLink>
@@ -130,8 +139,9 @@ export const Hero: React.FC = () => {
               {linkedin && (
                 <ExternalLink
                   href={linkedin.website.url}
+                  ariaLabel="Profil LinkedIn"
                   showIcon={false}
-                  className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-0.5 hover:shadow-md transition-all shadow-sm active:translate-y-0"
+                  className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 hover:border-brand-500/50 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-0.5 hover:shadow-md transition-all shadow-sm active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                 >
                   <LinkedinIcon className="w-5 h-5" />
                 </ExternalLink>
@@ -139,10 +149,20 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Avatar Photo (Pixel Art with hover toggle) */}
+          {/* Right Column: Avatar Photo (Pixel Art with hover/keyboard toggle) */}
           <div className="relative shrink-0">
             <div
-              className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-3xl p-2 bg-gradient-to-tr from-brand-600 via-teal-400 to-blue-500 shadow-2xl group cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
+              role="button"
+              tabIndex={0}
+              aria-label={t('hero.avatarTitle')}
+              aria-pressed={isLongHair}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setIsLongHair(prev => !prev);
+                }
+              }}
+              className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-3xl p-2 bg-gradient-to-tr from-brand-600 via-teal-400 to-blue-500 shadow-2xl group cursor-pointer transition-transform duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-500/60"
               onClick={() => setIsLongHair(prev => !prev)}
               title={t('hero.avatarTitle')}
             >
@@ -153,18 +173,23 @@ export const Hero: React.FC = () => {
                     <img
                       src={shortHairUrl}
                       alt={t('hero.avatarShortAlt')}
+                      width="256"
+                      height="256"
                       onError={() => setImgError(true)}
                       className={`w-full h-full object-cover select-none transition-opacity duration-200 ${
                         isLongHair ? 'opacity-0' : 'opacity-100 group-hover:opacity-0'
                       }`}
                       style={{ imageRendering: 'pixelated' }}
                       loading="eager"
+                      fetchPriority="high"
                     />
 
                     {/* Avatar Cheveux Longs (Survol / Clic) */}
                     <img
                       src={longHairUrl}
                       alt={t('hero.avatarLongAlt')}
+                      width="256"
+                      height="256"
                       aria-hidden="true"
                       className={`absolute inset-0 w-full h-full object-cover select-none transition-opacity duration-200 ${
                         isLongHair ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'

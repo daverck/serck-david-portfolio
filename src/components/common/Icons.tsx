@@ -3,6 +3,8 @@ import React from 'react';
 export const GithubIcon: React.FC<{ className?: string }> = ({ className = 'w-5 h-5' }) => (
   <svg
     className={className}
+    aria-hidden="true"
+    focusable="false"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -18,6 +20,8 @@ export const GithubIcon: React.FC<{ className?: string }> = ({ className = 'w-5 
 export const LinkedinIcon: React.FC<{ className?: string }> = ({ className = 'w-5 h-5' }) => (
   <svg
     className={className}
+    aria-hidden="true"
+    focusable="false"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"

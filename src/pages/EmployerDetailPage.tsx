@@ -103,12 +103,13 @@ export const EmployerDetailPage: React.FC = () => {
           {/* Search bar */}
           <div className="flex flex-wrap items-center gap-3">
             <div className="relative">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true" />
               <input
                 type="text"
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
                 placeholder={t('detail.searchPlaceholder')}
+                aria-label={t('detail.searchPlaceholder')}
                 className="pl-9 pr-4 py-2 rounded-xl text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/40 w-52 sm:w-60"
               />
             </div>
@@ -119,6 +120,7 @@ export const EmployerDetailPage: React.FC = () => {
                 <select
                   value={selectedTech}
                   onChange={e => setSelectedTech(e.target.value)}
+                  aria-label={t('detail.allTechs')}
                   className="py-2 pl-3 pr-8 rounded-xl text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500/40 appearance-none cursor-pointer"
                 >
                   <option value="all">{t('detail.allTechs')}</option>
@@ -128,7 +130,7 @@ export const EmployerDetailPage: React.FC = () => {
                     </option>
                   ))}
                 </select>
-                <Filter className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Filter className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
               </div>
             )}
           </div>

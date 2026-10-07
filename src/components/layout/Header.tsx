@@ -118,7 +118,7 @@ export const Header: React.FC = () => {
 
             {experienceDropdownOpen && (
               <div className="absolute left-0 mt-1 w-56 rounded-2xl bg-white dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-800 py-2 z-50 animate-fade-in">
-                <div className="px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                <div className="px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
                   {t('nav.experienceDropdown')}
                 </div>
                 {employers.map(emp => (

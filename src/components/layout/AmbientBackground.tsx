@@ -399,12 +399,66 @@ export const AmbientBackground: React.FC = () => {
       rafId = requestAnimationFrame(animate);
     };
 
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let prefersReducedMotion = motionQuery.matches;
+
+    const renderStatic = () => {
+      for (let i = 0; i < FIXED_ORBS.length; i++) {
+        const el = fixedOrbsRef.current[i];
+        if (el) el.style.transform = 'translate3d(0, 0, 0) scale(1)';
+      }
+      for (let i = 0; i < SCROLLING_ORBS.length; i++) {
+        const el = scrollingOrbsRef.current[i];
+        if (el) el.style.transform = 'translate3d(0, 0, 0) scale(1)';
+      }
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = 'translate3d(-225px, -225px, 0) scale(1)';
+      }
+    };
+
+    const startAnimation = () => {
+      if (prefersReducedMotion || document.hidden) return;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(animate);
+    };
+
+    const stopAnimation = () => {
+      cancelAnimationFrame(rafId);
+    };
+
+    const onMotionChange = (e: MediaQueryListEvent) => {
+      prefersReducedMotion = e.matches;
+      if (prefersReducedMotion) {
+        stopAnimation();
+        renderStatic();
+      } else {
+        startAnimation();
+      }
+    };
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        stopAnimation();
+      } else {
+        startAnimation();
+      }
+    };
+
+    motionQuery.addEventListener('change', onMotionChange);
+    document.addEventListener('visibilitychange', onVisibilityChange);
     window.addEventListener('mousemove', onMouseMove, { passive: true });
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     document.addEventListener('mouseleave', onMouseLeave);
-    rafId = requestAnimationFrame(animate);
+
+    if (prefersReducedMotion) {
+      renderStatic();
+    } else {
+      rafId = requestAnimationFrame(animate);
+    }
 
     return () => {
+      motionQuery.removeEventListener('change', onMotionChange);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('pointermove', onPointerMove);
       document.removeEventListener('mouseleave', onMouseLeave);

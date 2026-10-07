@@ -58,7 +58,7 @@ export const HealthKicksShowcase: React.FC = () => {
   ];
 
   return (
-    <section id="healthkicks-showcase" className="py-16 md:py-24">
+    <section id="healthkicks-showcase" className="py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
@@ -73,6 +73,8 @@ export const HealthKicksShowcase: React.FC = () => {
             <img
               src={`${import.meta.env.BASE_URL}healthkicks.svg`}
               alt="HealthKicks Logo"
+              width="48"
+              height="48"
               className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 object-contain shrink-0"
               loading="lazy"
             />

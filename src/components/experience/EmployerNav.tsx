@@ -19,8 +19,8 @@ export const EmployerNav: React.FC<{ currentSlug: EmployerSlug }> = ({ currentSl
           to={`/experience/${prev.slug}?lang=${lang}`}
           className="group flex flex-col p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500/50 hover:shadow-md transition-all text-left"
         >
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">
-            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1">
+            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" aria-hidden="true" />
             <span>{t('detail.prevEmployer')}</span>
           </div>
           <span className="text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
@@ -36,9 +36,9 @@ export const EmployerNav: React.FC<{ currentSlug: EmployerSlug }> = ({ currentSl
           to={`/experience/${next.slug}?lang=${lang}`}
           className="group flex flex-col items-end p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500/50 hover:shadow-md transition-all text-right"
         >
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1">
             <span>{t('detail.nextEmployer')}</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
           </div>
           <span className="text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
             {next.name}

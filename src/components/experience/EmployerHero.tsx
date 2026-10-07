@@ -49,8 +49,8 @@ export const EmployerHero: React.FC<{ employer: EmployerDetails }> = ({ employer
         {/* Missions Overview */}
         {employer.overviewHtml && (
           <div className="mt-6 p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm max-w-3xl">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2.5 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-brand-500" />
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2.5 flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-brand-500" aria-hidden="true" />
               <span>{t('detail.synthesis')}</span>
             </h3>
             <RichHtml html={employer.overviewHtml} />

@@ -30,7 +30,7 @@ export const ThemeToggle: React.FC<{ className?: string }> = ({ className = '' }
       onClick={() => setIsDark(prev => !prev)}
       aria-label={isDark ? t('theme.toggleLight') : t('theme.toggleDark')}
       title={isDark ? t('theme.toggleLight') : t('theme.toggleDark')}
-      className={`p-2 rounded-xl transition-all duration-200 border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-brand-500/50 shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-500/40 ${className}`}
+      className={`min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-xl transition-all duration-200 border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-brand-500/50 shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-500/40 ${className}`}
     >
       {isDark ? (
         <Sun className="w-5 h-5 text-amber-400 transition-transform duration-300 hover:rotate-45" />

@@ -15,7 +15,7 @@ export const ProjectCard: React.FC<{ project: ParsedProject; index: number }> = 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-mono font-bold text-slate-400 dark:text-slate-500">
+            <span className="text-xs font-mono font-bold text-slate-600 dark:text-slate-400">
               #{String(index + 1).padStart(2, '0')}
             </span>
             {project.url && (
