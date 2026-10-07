@@ -3,14 +3,16 @@ import { useLanguage } from '../../context/LanguageContext';
 import { EducationCard } from '../education/EducationCard';
 import { LanguagesCard } from '../education/LanguagesCard';
 import { InterestsCard } from '../education/InterestsCard';
+import { SlantedSectionBackground } from '../common/SlantedSectionBackground';
 
 export const Education: React.FC = () => {
   const { resume, t } = useLanguage();
   const educationItems = resume.sections.education.items;
 
   return (
-    <section id="education" className="py-16 md:py-24 bg-slate-100/40 dark:bg-slate-900/30">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="education" className="relative py-20 md:py-28 overflow-hidden">
+      <SlantedSectionBackground direction="up" />
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           

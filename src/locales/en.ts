@@ -170,5 +170,12 @@ export const en: Record<TranslationKey, string> = {
   'hk.achieve.routing.desc': 'Engineered bidirectional remote command routing and hybrid proximity/presence detection for connected studio training environments.',
 
   'hk.stack.title': 'Tech Stack & Protocols',
+
+  // Accessibility & Footer
+  'common.skipToContent': 'Skip to main content',
+  'common.backToTop': 'Back to top',
+  'common.accessibilityNotice': 'Adheres to WCAG AA accessibility standards.',
+  'common.allRightsReserved': 'All rights reserved.',
+  'common.builtWith': 'Built with React 19, TypeScript & Tailwind CSS.',
 };
 

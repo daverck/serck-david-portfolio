@@ -168,6 +168,13 @@ export const fr = {
   'hk.achieve.routing.desc': "Implémentation du routage bidirectionnel de commandes à distance et d'un mécanisme hybride de détection de présence des coureurs/athlètes au sein des studios connectés.",
 
   'hk.stack.title': 'Stack & Protocoles Employés',
+
+  // Accessibility & Footer
+  'common.skipToContent': 'Aller au contenu principal',
+  'common.backToTop': 'Haut de page',
+  'common.accessibilityNotice': "Conçu dans le respect des normes d'accessibilité WCAG AA.",
+  'common.allRightsReserved': 'Tous droits réservés.',
+  'common.builtWith': 'Développé avec React 19, TypeScript & Tailwind CSS.',
 };
 
 export type TranslationKey = keyof typeof fr;

@@ -1,13 +1,15 @@
 import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { EmployerCard } from '../experience/EmployerCard';
+import { SlantedSectionBackground } from '../common/SlantedSectionBackground';
 
 export const ExperienceTimeline: React.FC = () => {
   const { employers, t } = useLanguage();
 
   return (
-    <section id="experience-overview" className="py-16 md:py-24 bg-slate-100/40 dark:bg-slate-900/30">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="experience-overview" className="relative py-20 md:py-28 overflow-hidden">
+      <SlantedSectionBackground direction="down" />
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">

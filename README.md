@@ -73,11 +73,13 @@ serck-david-portfolio/
 │   │   │   ├── Icons.tsx          # Icônes SVG officielles (GitHub, LinkedIn)
 │   │   │   ├── LanguageToggle.tsx # Commutateur FR / EN
 │   │   │   ├── RichHtml.tsx       # Rendu HTML avec styles typographiques
-│   │   │   └── ThemeToggle.tsx    # Bascule Dark / Light mode
+│   │   │   ├── BackToTop.tsx      # Bouton flottant retour en haut accessible
+│   │   │   ├── SlantedSectionBackground.tsx # Séparations diagonales sans jointure
+│   │   │   ├── ThemeToggle.tsx    # Bascule Dark / Light mode
 │   │   ├── layout/
 │   │   │   ├── Header.tsx         # Navigation sticky responsive
-│   │   │   ├── Footer.tsx         # Pied de page avec réseaux et crédits
-│   │   │   └── Layout.tsx         # Enveloppe avec scroll-to-top
+│   │   │   ├── AmbientBackground.tsx # Fond dynamique animé fluide
+│   │   │   └── Layout.tsx         # Enveloppe avec skip-link et scroll-to-top
 │   │   ├── sections/
 │   │   │   ├── Hero.tsx           # Photo, disponibilité, coordonnées
 │   │   │   ├── Skills.tsx         # Compétences avec filtres
