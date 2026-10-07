@@ -62,6 +62,8 @@ export const en: Record<TranslationKey, string> = {
   'contact.linkedin': 'LinkedIn Profile',
   'contact.github': 'GitHub Profile',
   'contact.mailSubject': 'Contact from your portfolio',
+  'contact.copiedToast': 'Email address copied to clipboard!',
+  'contact.copiedPhoneToast': 'Phone number copied to clipboard!',
 
   // Employer Detail
   'detail.breadcrumbExp': 'Experience',

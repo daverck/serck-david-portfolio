@@ -4,13 +4,13 @@ import { useToast } from '../../context/ToastContext';
 import { ExternalLink } from '../common/ExternalLink';
 import { RichHtml } from '../common/RichHtml';
 import { GithubIcon, LinkedinIcon } from '../common/Icons';
-import { MapPin, Mail, Phone, ArrowDown, Sparkles, FileDown, Check } from 'lucide-react';
+import { MapPin, Mail, Phone, ArrowDown, Sparkles, FileDown } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const [imgError, setImgError] = useState(false);
   const [isLongHair, setIsLongHair] = useState(false);
   const { resume, t, cvUrl, cvFileName } = useLanguage();
-  const { copyEmail, isEmailCopied } = useToast();
+  const { copyEmail, copyPhone } = useToast();
   const linkedin = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('linkedin'));
   const github = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('github'));
 
@@ -72,24 +72,22 @@ export const Hero: React.FC = () => {
                 </span>
               </div>
               <div className="flex items-center gap-1.5">
-                {isEmailCopied ? (
-                  <Check className="w-4 h-4 text-emerald-500 shrink-0" aria-hidden="true" />
-                ) : (
-                  <Mail className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" aria-hidden="true" />
-                )}
+                <Mail className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" aria-hidden="true" />
                 <a
                   href={`mailto:${resume.basics.email}`}
                   onClick={copyEmail}
                   title={`${resume.basics.email} (cliquer pour ouvrir et copier)`}
                   className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
                 >
-                  {isEmailCopied ? t('contact.copiedInline') : resume.basics.email}
+                  {resume.basics.email}
                 </a>
               </div>
               <div className="flex items-center gap-1.5">
                 <Phone className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" aria-hidden="true" />
                 <a
                   href={`tel:${resume.basics.phone}`}
+                  onClick={copyPhone}
+                  title={`${resume.basics.phone} (cliquer pour appeler et copier)`}
                   className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
                 >
                   {resume.basics.phone}

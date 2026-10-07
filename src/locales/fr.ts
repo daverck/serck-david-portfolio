@@ -60,6 +60,8 @@ export const fr = {
   'contact.linkedin': 'Profil LinkedIn',
   'contact.github': 'Profil GitHub',
   'contact.mailSubject': 'Contact depuis votre portfolio',
+  'contact.copiedToast': 'Adresse e-mail copiée dans le presse-papier !',
+  'contact.copiedPhoneToast': 'Numéro de téléphone copié dans le presse-papier !',
 
   // Employer Detail
   'detail.breadcrumbExp': 'Expériences',
