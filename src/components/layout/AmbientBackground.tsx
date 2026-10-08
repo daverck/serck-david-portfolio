@@ -356,8 +356,16 @@ export const AmbientBackground: React.FC = () => {
       targetY = 0;
     };
 
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let prefersReducedMotion = motionQuery.matches;
+
     const animate = () => {
-      time += 0.0095;
+      // Défilement temporel régulier et fluide
+      const timeStep = prefersReducedMotion ? 0.006 : 0.0095;
+      time += timeStep;
+
+      // Parallax adouci si l'utilisateur a configuré une réduction de mouvement au niveau système
+      const parallaxFactor = prefersReducedMotion ? 0.35 : 1;
 
       currentX += (targetX - currentX) * 0.07;
       currentY += (targetY - currentY) * 0.07;
@@ -374,7 +382,7 @@ export const AmbientBackground: React.FC = () => {
         const autoY = Math.cos(time * o.fy1) * o.ay + Math.sin(time * o.fy2) * (o.ay * 0.4);
         const scale = 1 + Math.sin(time * o.fScale) * 0.08;
 
-        el.style.transform = `translate3d(${autoX + currentX * o.parallaxX}px, ${autoY + currentY * o.parallaxY}px, 0) scale(${scale})`;
+        el.style.transform = `translate3d(${autoX + currentX * o.parallaxX * parallaxFactor}px, ${autoY + currentY * o.parallaxY * parallaxFactor}px, 0) scale(${scale})`;
       }
 
       // 2. Animation des orbes qui défilent (document)
@@ -387,7 +395,7 @@ export const AmbientBackground: React.FC = () => {
         const autoY = Math.cos(time * o.fy1) * o.ay + Math.sin(time * o.fy2) * (o.ay * 0.4);
         const scale = 1 + Math.sin(time * o.fScale) * 0.10;
 
-        el.style.transform = `translate3d(${autoX + currentX * o.parallaxX}px, ${autoY + currentY * o.parallaxY}px, 0) scale(${scale})`;
+        el.style.transform = `translate3d(${autoX + currentX * o.parallaxX * parallaxFactor}px, ${autoY + currentY * o.parallaxY * parallaxFactor}px, 0) scale(${scale})`;
       }
 
       // 3. Halo curseur interactif
@@ -399,25 +407,8 @@ export const AmbientBackground: React.FC = () => {
       rafId = requestAnimationFrame(animate);
     };
 
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let prefersReducedMotion = motionQuery.matches;
-
-    const renderStatic = () => {
-      for (let i = 0; i < FIXED_ORBS.length; i++) {
-        const el = fixedOrbsRef.current[i];
-        if (el) el.style.transform = 'translate3d(0, 0, 0) scale(1)';
-      }
-      for (let i = 0; i < SCROLLING_ORBS.length; i++) {
-        const el = scrollingOrbsRef.current[i];
-        if (el) el.style.transform = 'translate3d(0, 0, 0) scale(1)';
-      }
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = 'translate3d(-225px, -225px, 0) scale(1)';
-      }
-    };
-
     const startAnimation = () => {
-      if (prefersReducedMotion || document.hidden) return;
+      if (document.hidden) return;
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(animate);
     };
@@ -428,12 +419,6 @@ export const AmbientBackground: React.FC = () => {
 
     const onMotionChange = (e: MediaQueryListEvent) => {
       prefersReducedMotion = e.matches;
-      if (prefersReducedMotion) {
-        stopAnimation();
-        renderStatic();
-      } else {
-        startAnimation();
-      }
     };
 
     const onVisibilityChange = () => {
@@ -450,11 +435,8 @@ export const AmbientBackground: React.FC = () => {
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     document.addEventListener('mouseleave', onMouseLeave);
 
-    if (prefersReducedMotion) {
-      renderStatic();
-    } else {
-      rafId = requestAnimationFrame(animate);
-    }
+    // Démarre l'animation en continu
+    rafId = requestAnimationFrame(animate);
 
     return () => {
       motionQuery.removeEventListener('change', onMotionChange);
@@ -485,7 +467,7 @@ export const AmbientBackground: React.FC = () => {
             }}
             className={`absolute ${o.size} will-change-transform mix-blend-multiply dark:mix-blend-normal`}
           >
-            <div className={`w-full h-full rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] ${o.gradient}`} />
+            <div className={`w-full h-full rounded-full bg-radial-gradient ${o.gradient}`} />
           </div>
         ))}
 
@@ -494,7 +476,7 @@ export const AmbientBackground: React.FC = () => {
           ref={cursorRef}
           className="absolute top-0 left-0 w-[450px] h-[450px] will-change-transform mix-blend-multiply dark:mix-blend-normal"
         >
-          <div className="w-full h-full rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-teal-400/50 via-cyan-400/35 to-transparent blur-2xl dark:from-teal-400/25 dark:via-brand-500/15 dark:to-transparent" />
+          <div className="w-full h-full rounded-full bg-radial-gradient from-teal-400/50 via-cyan-400/35 to-transparent blur-2xl dark:from-teal-400/25 dark:via-brand-500/15 dark:to-transparent" />
         </div>
       </div>
 
@@ -515,7 +497,7 @@ export const AmbientBackground: React.FC = () => {
             }}
             className={`absolute ${o.size} will-change-transform mix-blend-multiply dark:mix-blend-normal`}
           >
-            <div className={`w-full h-full rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] ${o.gradient}`} />
+            <div className={`w-full h-full rounded-full bg-radial-gradient ${o.gradient}`} />
           </div>
         ))}
       </div>

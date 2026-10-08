@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .bg-radial-gradient {
+    background-image: radial-gradient(circle at center, var(--tw-gradient-stops));
+  }
+}
+
 @layer base {
   :root {
     --accent: #0d9488;
