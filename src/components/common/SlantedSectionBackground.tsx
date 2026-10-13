@@ -51,14 +51,19 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
   const svgTopRef = useRef<SVGSVGElement>(null);
   const svgBotRef = useRef<SVGSVGElement>(null);
 
-  // Paramètres pseudo-aléatoires distincts pour chaque instance de section
-  // Assure une oscillation organique décorrélée entre toutes les séparations
+  // Paramètres pseudo-aléatoires uniques par instance de séparation :
+  // - Conserve une orientation/angle aléatoire même si l'animation est désactivée
+  // - Assure des oscillations décorrélées en mode normal
   const animConfig = useRef({
+    // Hauteurs d'angles aléatoires statiques préservées en mode prefers-reduced-motion
+    staticTopH: BASE_SLANT_HEIGHT + (Math.sin(Math.random() * Math.PI * 2) * 14),
+    staticBotH: BASE_SLANT_HEIGHT + (Math.sin(Math.random() * Math.PI * 2) * 14),
+
     topPhase1: Math.random() * Math.PI * 2,
     topPhase2: Math.random() * Math.PI * 2,
     topSpeed1: 0.0005 + Math.random() * 0.0004,
     topSpeed2: 0.0009 + Math.random() * 0.0005,
-    topAmp: 13 + Math.random() * 6, // Variation d'amplitude entre ~13px et 19px
+    topAmp: 13 + Math.random() * 6,
 
     botPhase1: Math.random() * Math.PI * 2,
     botPhase2: Math.random() * Math.PI * 2,
@@ -71,22 +76,36 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
     let rafId: number;
     const cfg = animConfig.current;
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const speedMultiplier = motionQuery.matches ? 0.35 : 1;
+
+    const applyStaticSlant = () => {
+      if (panelRef.current) {
+        panelRef.current.style.clipPath = computeClipPath(
+          cfg.staticTopH,
+          cfg.staticBotH,
+          direction,
+          hasTopSlant,
+          hasBottomSlant
+        );
+      }
+      if (svgTopRef.current) {
+        svgTopRef.current.style.height = `${cfg.staticTopH.toFixed(2)}px`;
+      }
+      if (svgBotRef.current) {
+        svgBotRef.current.style.height = `${cfg.staticBotH.toFixed(2)}px`;
+      }
+    };
 
     const update = (time: number) => {
-      const adjustedTime = time * speedMultiplier;
-
-      // Somme de deux ondes sinusoïdales à fréquences incommensurables :
-      // produit une dérive continue, fluide et non répétitive
+      // Somme de sinusoïdes à fréquences incommensurables : oscillation continue et fluide
       const topH =
         BASE_SLANT_HEIGHT +
-        Math.sin(adjustedTime * cfg.topSpeed1 + cfg.topPhase1) * (cfg.topAmp * 0.65) +
-        Math.cos(adjustedTime * cfg.topSpeed2 + cfg.topPhase2) * (cfg.topAmp * 0.35);
+        Math.sin(time * cfg.topSpeed1 + cfg.topPhase1) * (cfg.topAmp * 0.65) +
+        Math.cos(time * cfg.topSpeed2 + cfg.topPhase2) * (cfg.topAmp * 0.35);
 
       const botH =
         BASE_SLANT_HEIGHT +
-        Math.sin(adjustedTime * cfg.botSpeed1 + cfg.botPhase1) * (cfg.botAmp * 0.65) +
-        Math.cos(adjustedTime * cfg.botSpeed2 + cfg.botPhase2) * (cfg.botAmp * 0.35);
+        Math.sin(time * cfg.botSpeed1 + cfg.botPhase1) * (cfg.botAmp * 0.65) +
+        Math.cos(time * cfg.botSpeed2 + cfg.botPhase2) * (cfg.botAmp * 0.35);
 
       if (panelRef.current) {
         panelRef.current.style.clipPath = computeClipPath(
@@ -107,27 +126,52 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
       rafId = requestAnimationFrame(update);
     };
 
-    const onVisibilityChange = () => {
-      if (document.hidden) {
-        cancelAnimationFrame(rafId);
+    const startAnimation = () => {
+      if (motionQuery.matches) {
+        applyStaticSlant();
+        return;
+      }
+      if (document.hidden) return;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(update);
+    };
+
+    const stopAnimation = () => {
+      cancelAnimationFrame(rafId);
+    };
+
+    const onMotionChange = () => {
+      if (motionQuery.matches) {
+        stopAnimation();
+        applyStaticSlant();
       } else {
-        cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(update);
+        startAnimation();
       }
     };
 
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        stopAnimation();
+      } else {
+        startAnimation();
+      }
+    };
+
+    motionQuery.addEventListener('change', onMotionChange);
     document.addEventListener('visibilitychange', onVisibilityChange);
-    rafId = requestAnimationFrame(update);
+
+    startAnimation();
 
     return () => {
+      motionQuery.removeEventListener('change', onMotionChange);
       document.removeEventListener('visibilitychange', onVisibilityChange);
       cancelAnimationFrame(rafId);
     };
   }, [direction, hasTopSlant, hasBottomSlant]);
 
   const initialClipPath = computeClipPath(
-    BASE_SLANT_HEIGHT,
-    BASE_SLANT_HEIGHT,
+    animConfig.current.staticTopH,
+    animConfig.current.staticBotH,
     direction,
     hasTopSlant,
     hasBottomSlant
@@ -138,19 +182,19 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
       aria-hidden="true"
       className={`absolute inset-0 -z-10 pointer-events-none select-none overflow-hidden ${className}`}
     >
-      {/* Panneau d'arrière-plan continu avec clip-path animé sans aucune couture subpixel */}
+      {/* Panneau d'arrière-plan continu avec clip-path sans aucune couture subpixel */}
       <div
         ref={panelRef}
         className="w-full h-full bg-slate-100/50 dark:bg-slate-900/35 backdrop-blur-[1px] will-change-[clip-path]"
         style={{ clipPath: initialClipPath }}
       />
 
-      {/* Ligne d'accent lumineuse supérieure dont l'angle oscille en parfaite synchronie avec le panneau */}
+      {/* Ligne d'accent lumineuse supérieure calée au pixel près avec le panneau */}
       {accentLine && hasTopSlant && (
         <svg
           ref={svgTopRef}
           className="absolute top-0 left-0 w-full pointer-events-none overflow-visible will-change-[height]"
-          style={{ height: `${BASE_SLANT_HEIGHT}px` }}
+          style={{ height: `${animConfig.current.staticTopH.toFixed(2)}px` }}
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
         >
@@ -174,12 +218,12 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
         </svg>
       )}
 
-      {/* Ligne d'accent lumineuse inférieure oscillant de manière indépendante */}
+      {/* Ligne d'accent lumineuse inférieure calée au pixel près avec le panneau */}
       {accentLine && hasBottomSlant && (
         <svg
           ref={svgBotRef}
           className="absolute bottom-0 left-0 w-full pointer-events-none overflow-visible will-change-[height]"
-          style={{ height: `${BASE_SLANT_HEIGHT}px` }}
+          style={{ height: `${animConfig.current.staticBotH.toFixed(2)}px` }}
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
         >
