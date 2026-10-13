@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { useId, useEffect, useRef } from 'react';
 
 interface SlantedSectionBackgroundProps {
   /**
@@ -13,7 +13,29 @@ interface SlantedSectionBackgroundProps {
   className?: string;
 }
 
-const SLANT_HEIGHT = 48; // in px
+const BASE_SLANT_HEIGHT = 48; // in px
+
+const computeClipPath = (
+  topH: number,
+  botH: number,
+  direction: 'down' | 'up',
+  hasTopSlant: boolean,
+  hasBottomSlant: boolean
+): string => {
+  if (direction === 'down') {
+    const topLeft = hasTopSlant ? `0px ${topH.toFixed(2)}px` : '0px 0px';
+    const topRight = '100% 0px';
+    const bottomRight = hasBottomSlant ? `100% calc(100% - ${botH.toFixed(2)}px)` : '100% 100%';
+    const bottomLeft = '0px 100%';
+    return `polygon(${topLeft}, ${topRight}, ${bottomRight}, ${bottomLeft})`;
+  } else {
+    const topLeft = '0px 0px';
+    const topRight = hasTopSlant ? `100% ${topH.toFixed(2)}px` : '100% 0px';
+    const bottomRight = '100% 100%';
+    const bottomLeft = hasBottomSlant ? `0px calc(100% - ${botH.toFixed(2)}px)` : '0px 100%';
+    return `polygon(${topLeft}, ${topRight}, ${bottomRight}, ${bottomLeft})`;
+  }
+};
 
 export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> = ({
   direction = 'down',
@@ -25,41 +47,111 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
   const rawId = useId();
   const id = rawId.replace(/:/g, '');
 
-  // Build a single continuous clip-path polygon to completely eradicate horizontal subpixel seams
-  // polygon coordinates: top-left -> top-right -> bottom-right -> bottom-left
-  let clipPath: string;
+  const panelRef = useRef<HTMLDivElement>(null);
+  const svgTopRef = useRef<SVGSVGElement>(null);
+  const svgBotRef = useRef<SVGSVGElement>(null);
 
-  if (direction === 'down') {
-    const topLeft = hasTopSlant ? `0px ${SLANT_HEIGHT}px` : '0px 0px';
-    const topRight = '100% 0px';
-    const bottomRight = hasBottomSlant ? `100% calc(100% - ${SLANT_HEIGHT}px)` : '100% 100%';
-    const bottomLeft = '0px 100%';
-    clipPath = `polygon(${topLeft}, ${topRight}, ${bottomRight}, ${bottomLeft})`;
-  } else {
-    const topLeft = '0px 0px';
-    const topRight = hasTopSlant ? `100% ${SLANT_HEIGHT}px` : '100% 0px';
-    const bottomRight = '100% 100%';
-    const bottomLeft = hasBottomSlant ? `0px calc(100% - ${SLANT_HEIGHT}px)` : '0px 100%';
-    clipPath = `polygon(${topLeft}, ${topRight}, ${bottomRight}, ${bottomLeft})`;
-  }
+  // Paramètres pseudo-aléatoires distincts pour chaque instance de section
+  // Assure une oscillation organique décorrélée entre toutes les séparations
+  const animConfig = useRef({
+    topPhase1: Math.random() * Math.PI * 2,
+    topPhase2: Math.random() * Math.PI * 2,
+    topSpeed1: 0.0005 + Math.random() * 0.0004,
+    topSpeed2: 0.0009 + Math.random() * 0.0005,
+    topAmp: 13 + Math.random() * 6, // Variation d'amplitude entre ~13px et 19px
+
+    botPhase1: Math.random() * Math.PI * 2,
+    botPhase2: Math.random() * Math.PI * 2,
+    botSpeed1: 0.0006 + Math.random() * 0.0004,
+    botSpeed2: 0.0010 + Math.random() * 0.0005,
+    botAmp: 13 + Math.random() * 6,
+  });
+
+  useEffect(() => {
+    let rafId: number;
+    const cfg = animConfig.current;
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const speedMultiplier = motionQuery.matches ? 0.35 : 1;
+
+    const update = (time: number) => {
+      const adjustedTime = time * speedMultiplier;
+
+      // Somme de deux ondes sinusoïdales à fréquences incommensurables :
+      // produit une dérive continue, fluide et non répétitive
+      const topH =
+        BASE_SLANT_HEIGHT +
+        Math.sin(adjustedTime * cfg.topSpeed1 + cfg.topPhase1) * (cfg.topAmp * 0.65) +
+        Math.cos(adjustedTime * cfg.topSpeed2 + cfg.topPhase2) * (cfg.topAmp * 0.35);
+
+      const botH =
+        BASE_SLANT_HEIGHT +
+        Math.sin(adjustedTime * cfg.botSpeed1 + cfg.botPhase1) * (cfg.botAmp * 0.65) +
+        Math.cos(adjustedTime * cfg.botSpeed2 + cfg.botPhase2) * (cfg.botAmp * 0.35);
+
+      if (panelRef.current) {
+        panelRef.current.style.clipPath = computeClipPath(
+          topH,
+          botH,
+          direction,
+          hasTopSlant,
+          hasBottomSlant
+        );
+      }
+      if (svgTopRef.current) {
+        svgTopRef.current.style.height = `${topH.toFixed(2)}px`;
+      }
+      if (svgBotRef.current) {
+        svgBotRef.current.style.height = `${botH.toFixed(2)}px`;
+      }
+
+      rafId = requestAnimationFrame(update);
+    };
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(rafId);
+      } else {
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(update);
+      }
+    };
+
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    rafId = requestAnimationFrame(update);
+
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      cancelAnimationFrame(rafId);
+    };
+  }, [direction, hasTopSlant, hasBottomSlant]);
+
+  const initialClipPath = computeClipPath(
+    BASE_SLANT_HEIGHT,
+    BASE_SLANT_HEIGHT,
+    direction,
+    hasTopSlant,
+    hasBottomSlant
+  );
 
   return (
     <div
       aria-hidden="true"
       className={`absolute inset-0 -z-10 pointer-events-none select-none overflow-hidden ${className}`}
     >
-      {/* Single continuous background panel clipped with CSS clip-path (zero horizontal seams) */}
+      {/* Panneau d'arrière-plan continu avec clip-path animé sans aucune couture subpixel */}
       <div
-        className="w-full h-full bg-slate-100/50 dark:bg-slate-900/35 backdrop-blur-[1px]"
-        style={{ clipPath }}
+        ref={panelRef}
+        className="w-full h-full bg-slate-100/50 dark:bg-slate-900/35 backdrop-blur-[1px] will-change-[clip-path]"
+        style={{ clipPath: initialClipPath }}
       />
 
-      {/* Optional luminous accent line on top diagonal */}
+      {/* Ligne d'accent lumineuse supérieure dont l'angle oscille en parfaite synchronie avec le panneau */}
       {accentLine && hasTopSlant && (
         <svg
-          className="absolute top-0 left-0 w-full pointer-events-none overflow-visible"
-          style={{ height: `${SLANT_HEIGHT}px` }}
-          viewBox={`0 0 1200 ${SLANT_HEIGHT}`}
+          ref={svgTopRef}
+          className="absolute top-0 left-0 w-full pointer-events-none overflow-visible will-change-[height]"
+          style={{ height: `${BASE_SLANT_HEIGHT}px` }}
+          viewBox="0 0 100 100"
           preserveAspectRatio="none"
         >
           <defs>
@@ -72,9 +164,9 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
           </defs>
           <line
             x1="0"
-            y1={direction === 'down' ? SLANT_HEIGHT : 0}
-            x2="1200"
-            y2={direction === 'down' ? 0 : SLANT_HEIGHT}
+            y1={direction === 'down' ? 100 : 0}
+            x2="100"
+            y2={direction === 'down' ? 0 : 100}
             stroke={`url(#slant-grad-top-${id})`}
             strokeWidth="1.5"
             vectorEffect="non-scaling-stroke"
@@ -82,12 +174,13 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
         </svg>
       )}
 
-      {/* Optional luminous accent line on bottom diagonal */}
+      {/* Ligne d'accent lumineuse inférieure oscillant de manière indépendante */}
       {accentLine && hasBottomSlant && (
         <svg
-          className="absolute bottom-0 left-0 w-full pointer-events-none overflow-visible"
-          style={{ height: `${SLANT_HEIGHT}px` }}
-          viewBox={`0 0 1200 ${SLANT_HEIGHT}`}
+          ref={svgBotRef}
+          className="absolute bottom-0 left-0 w-full pointer-events-none overflow-visible will-change-[height]"
+          style={{ height: `${BASE_SLANT_HEIGHT}px` }}
+          viewBox="0 0 100 100"
           preserveAspectRatio="none"
         >
           <defs>
@@ -100,9 +193,9 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
           </defs>
           <line
             x1="0"
-            y1={direction === 'down' ? SLANT_HEIGHT : 0}
-            x2="1200"
-            y2={direction === 'down' ? 0 : SLANT_HEIGHT}
+            y1={direction === 'down' ? 100 : 0}
+            x2="100"
+            y2={direction === 'down' ? 0 : 100}
             stroke={`url(#slant-grad-bot-${id})`}
             strokeWidth="1.5"
             vectorEffect="non-scaling-stroke"
