@@ -34,11 +34,25 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Prepare chatbot API URL
+        id: chatbot_url
+        env:
+          RAW_URL: ${{ vars.VITE_CHATBOT_API_URL || secrets.VITE_CHATBOT_API_URL || 'https://serck-david-chatbot.serckdavid.workers.dev/api/chat' }}
+        run: |
+          CLEAN_URL=$(echo "$RAW_URL" | xargs)
+          if [[ ! "$CLEAN_URL" =~ ^https?:// ]]; then
+            CLEAN_URL="https://$CLEAN_URL"
+          fi
+          if [[ ! "$CLEAN_URL" =~ /api/chat$ ]]; then
+            CLEAN_URL="${CLEAN_URL%/}/api/chat"
+          fi
+          echo "url=$CLEAN_URL" >> "$GITHUB_OUTPUT"
+
       - name: Build project
         run: npm run build
         env:
           VITE_BASE_PATH: '/serck-david-portfolio/'
-          VITE_CHATBOT_API_URL: ${{ vars.VITE_CHATBOT_API_URL }}
+          VITE_CHATBOT_API_URL: ${{ steps.chatbot_url.outputs.url }}
 
       - name: Copy index.html to 404.html for SPA routing
         run: cp dist/index.html dist/404.html

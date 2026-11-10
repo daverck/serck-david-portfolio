@@ -58,9 +58,16 @@ const strings = {
   },
 } as const;
 
-const endpoint = import.meta.env.VITE_CHATBOT_API_URL?.trim();
-const chatUrl = endpoint
-  ? `${endpoint.replace(/\/+$/, '').replace(/\/api\/chat$/, '')}/api/chat`
+const rawEndpoint = (import.meta.env.VITE_CHATBOT_API_URL || '').trim();
+const defaultProductionEndpoint = 'https://serck-david-chatbot.serckdavid.workers.dev/api/chat';
+const endpoint = rawEndpoint || (import.meta.env.PROD ? defaultProductionEndpoint : '');
+const normalizedEndpoint = endpoint
+  ? (/^https?:\/\//i.test(endpoint) || endpoint.startsWith('/')
+      ? endpoint
+      : `https://${endpoint}`)
+  : '';
+const chatUrl = normalizedEndpoint
+  ? `${normalizedEndpoint.replace(/\/+$/, '').replace(/\/api\/chat$/, '')}/api/chat`
   : '';
 
 export const ChatBot: React.FC = () => {

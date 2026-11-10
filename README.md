@@ -190,7 +190,7 @@ npx wrangler@latest dev --config worker/wrangler.jsonc --port 8787
 npm run dev
 ```
 
-Le frontend est accessible sur `http://localhost:3000`. Le Worker autorise les origines localhost pour le développement et `https://daverck.github.io` en production.
+Le frontend est accessible sur `http://localhost:3000`. Le Worker autorise les origines localhost pour le développement ainsi que `https://daverck.github.io` et `https://portfolio.serckdavid.workers.dev` en production.
 
 ### Déploiement du Worker
 
@@ -208,9 +208,10 @@ Pour le déploiement automatique sur **GitHub Pages** :
 
 1. Déployez le Worker et récupérez son URL `workers.dev`.
 2. Dans GitHub, ouvrez **Settings → Secrets and variables → Actions → Variables**, puis créez la variable de dépôt `VITE_CHATBOT_API_URL` avec l'URL complète du Worker, par exemple `https://serck-david-chatbot.<sous-domaine>.workers.dev/api/chat`. Il s'agit d'une variable publique, pas d'un secret.
-3. Le workflow `.github/workflows/deploy.yml` transmet cette variable à Vite au moment du build. Relancez le workflow **Deploy to GitHub Pages** (ou poussez un commit) pour publier le changement.
+3. Le workflow `.github/workflows/deploy.yml` normalise et transmet cette variable à Vite au moment du build (ou utilise l'URL par défaut de `.env.production`).
+4. Relancez le workflow **Deploy to GitHub Pages** (ou poussez un commit) pour publier le changement.
 
-L'origine navigateur du site est `https://daverck.github.io` : le chemin `/serck-david-portfolio/` et le paramètre `?lang=en` ne font pas partie de l'origine CORS. Elle est déjà autorisée par le Worker. N'ajoutez pas l'URL du portfolio avec son chemin à la liste CORS, et ne mettez jamais la clé Gemini dans une variable `VITE_*`.
+Les origines navigateur des sites sont `https://daverck.github.io` et `https://portfolio.serckdavid.workers.dev` : les chemins ou paramètres comme `/serck-david-portfolio/` et `?lang=en` ne font pas partie de l'origine CORS. Elles sont autorisées par le Worker. Ne mettez jamais la clé Gemini dans une variable `VITE_*`.
 
 Le rate limiter utilise le namespace `1001` de `worker/wrangler.jsonc`; remplacez cet identifiant s'il est déjà utilisé par un autre binding de votre compte Cloudflare. Les quotas et conditions des offres gratuites Google et Cloudflare peuvent évoluer.
 
