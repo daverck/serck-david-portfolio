@@ -155,6 +155,67 @@ npm run preview
 
 ---
 
+## 💬 Assistant conversationnel (Cloudflare Workers + Gemini)
+
+Le widget React bilingue utilise un Worker indépendant, dans `worker/`. Le Worker contient son corpus de connaissances, valide les messages, limite chaque adresse IP à 12 requêtes par minute et appelle Gemini côté serveur. Les réponses trop courtes ou interrompues sont régénérées une fois, puis rejetées plutôt que présentées comme complètes. La clé Gemini ne doit jamais être ajoutée au frontend.
+
+Le modèle par défaut est `gemini-3.6-flash`, un modèle Flash stable actuellement documenté par [Google](https://ai.google.dev/gemini-api/docs/models). Gemini 1.5 Flash n'est plus le choix adapté pour un nouveau déploiement. Le modèle peut être modifié dans `worker/wrangler.jsonc`.
+
+### Obtenir une clé Gemini
+
+1. Connectez-vous à [Google AI Studio](https://aistudio.google.com/app/apikey).
+2. Créez une clé API et conservez-la dans un gestionnaire de secrets. Ne la préfixez pas avec `VITE_` et ne la commitez jamais.
+
+### Développement local
+
+Dans `worker/.dev.vars` (fichier ignoré par Git), ajoutez :
+
+```dotenv
+GEMINI_API_KEY=votre_cle_gemini
+```
+
+Dans `.env.local` à la racine du portfolio, ajoutez :
+
+```dotenv
+VITE_CHATBOT_API_URL=http://localhost:8787/api/chat
+```
+
+Dans deux terminaux, lancez le Worker et le frontend :
+
+```bash
+npx wrangler@latest dev --config worker/wrangler.jsonc --port 8787
+```
+
+```bash
+npm run dev
+```
+
+Le frontend est accessible sur `http://localhost:3000`. Le Worker autorise les origines localhost pour le développement et `https://daverck.github.io` en production.
+
+### Déploiement du Worker
+
+Installez et authentifiez Wrangler, puis enregistrez la clé comme secret Cloudflare :
+
+```bash
+npx wrangler@latest login
+npx wrangler@latest secret put GEMINI_API_KEY --config worker/wrangler.jsonc
+npx wrangler@latest deploy --config worker/wrangler.jsonc
+```
+
+Configurez ensuite `VITE_CHATBOT_API_URL` avec l'URL de votre Worker, par exemple `https://serck-david-chatbot.<sous-domaine>.workers.dev/api/chat`, dans l'environnement de build de GitHub Pages, puis reconstruisez et redéployez le site. Cette URL n'est pas secrète. Le Worker refuse les origines autres que le domaine GitHub Pages configuré et localhost.
+
+Pour le déploiement automatique sur **GitHub Pages** :
+
+1. Déployez le Worker et récupérez son URL `workers.dev`.
+2. Dans GitHub, ouvrez **Settings → Secrets and variables → Actions → Variables**, puis créez la variable de dépôt `VITE_CHATBOT_API_URL` avec l'URL complète du Worker, par exemple `https://serck-david-chatbot.<sous-domaine>.workers.dev/api/chat`. Il s'agit d'une variable publique, pas d'un secret.
+3. Le workflow `.github/workflows/deploy.yml` transmet cette variable à Vite au moment du build. Relancez le workflow **Deploy to GitHub Pages** (ou poussez un commit) pour publier le changement.
+
+L'origine navigateur du site est `https://daverck.github.io` : le chemin `/serck-david-portfolio/` et le paramètre `?lang=en` ne font pas partie de l'origine CORS. Elle est déjà autorisée par le Worker. N'ajoutez pas l'URL du portfolio avec son chemin à la liste CORS, et ne mettez jamais la clé Gemini dans une variable `VITE_*`.
+
+Le rate limiter utilise le namespace `1001` de `worker/wrangler.jsonc`; remplacez cet identifiant s'il est déjà utilisé par un autre binding de votre compte Cloudflare. Les quotas et conditions des offres gratuites Google et Cloudflare peuvent évoluer.
+
+---
+
 ## 👤 Contact
 
 - **David Serck** — Développeur Full-Stack
@@ -162,4 +223,3 @@ npm run preview
 - **LinkedIn** : [linkedin.com/in/serck-david](https://linkedin.com/in/serck-david)
 - **GitHub** : [@daverck](https://github.com/daverck)
 - **Localisation** : Wavre, Belgique
-

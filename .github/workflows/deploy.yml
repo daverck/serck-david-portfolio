@@ -38,6 +38,7 @@ jobs:
         run: npm run build
         env:
           VITE_BASE_PATH: '/serck-david-portfolio/'
+          VITE_CHATBOT_API_URL: ${{ vars.VITE_CHATBOT_API_URL }}
 
       - name: Copy index.html to 404.html for SPA routing
         run: cp dist/index.html dist/404.html
@@ -57,4 +58,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

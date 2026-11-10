@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { Header } from './Header';
 import { BackToTop } from '../common/BackToTop';
+import { ChatBot } from '../common/ChatBot';
 import { AmbientBackground } from './AmbientBackground';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -42,7 +43,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         {children}
       </main>
       <BackToTop />
+      <ChatBot />
     </div>
   );
 };
-
