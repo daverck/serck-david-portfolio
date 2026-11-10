@@ -18,7 +18,10 @@ interface GeminiCandidate {
   finishReason: string;
 }
 
-const allowedProductionOrigin = 'https://daverck.github.io';
+const allowedProductionOrigins = new Set([
+  'https://daverck.github.io',
+  'https://portfolio.serckdavid.workers.dev',
+]);
 const maxMessageLength = 1200;
 const maxHistoryLength = 8;
 const maxHistoryMessageLength = 2000;
@@ -79,7 +82,7 @@ GROUNDING RULES
 const jsonHeaders = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' };
 
 function isAllowedOrigin(origin: string | null): origin is string {
-  if (origin === allowedProductionOrigin) return true;
+  if (origin && allowedProductionOrigins.has(origin)) return true;
   if (!origin) return false;
 
   try {
@@ -285,9 +288,13 @@ export default {
                 }],
               },
               contents,
-              generationConfig: { temperature: 0.2, maxOutputTokens },
+              generationConfig: {
+                temperature: 0.2,
+                maxOutputTokens,
+                thinkingConfig: { thinkingBudget: 0 },
+              },
             }),
-            signal: AbortSignal.timeout(20_000),
+            signal: AbortSignal.timeout(30_000),
           },
         );
 
@@ -305,17 +312,16 @@ export default {
       let candidate = await generate(1000);
       if (candidate instanceof Response) return candidate;
       if (candidate && (candidate.finishReason === 'MAX_TOKENS' || !isCompleteAnswer(candidate.reply))) {
-        candidate = await generate(1600, true);
-        if (candidate instanceof Response) return candidate;
+        const retried = await generate(1600, true);
+        if (retried instanceof Response) return retried;
+        if (retried && isCompleteAnswer(retried.reply)) {
+          candidate = retried;
+        }
       }
 
-      if (!candidate) {
+      if (!candidate || !candidate.reply) {
         console.error('Gemini returned an unexpected or empty response.');
         return errorResponse('The assistant could not produce an answer.', 502, origin);
-      }
-      if (candidate.finishReason === 'MAX_TOKENS' || !isCompleteAnswer(candidate.reply)) {
-        console.error('Gemini returned an incomplete response after retry.');
-        return errorResponse('The assistant could not produce a complete answer. Please try again.', 502, origin);
       }
       return jsonResponse({ reply: candidate.reply }, 200, origin);
     } catch (error) {
