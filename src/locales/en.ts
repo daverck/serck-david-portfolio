@@ -13,7 +13,7 @@ export const en: Record<TranslationKey, string> = {
   'nav.closeMenu': 'Close navigation menu',
 
   // Hero
-  'hero.available': 'Available immediately for new opportunities',
+  'hero.available': 'Currently seeking a job or internship',
   'hero.explore': 'Explore my background',
   'hero.contactMe': 'Get in touch',
   'hero.downloadCv': 'Download CV',
@@ -53,7 +53,7 @@ export const en: Record<TranslationKey, string> = {
   // Contact
   'contact.badge': 'Get in Touch',
   'contact.title': "Let's talk about your project or team",
-  'contact.subtitle': 'Currently available immediately for Full-Stack roles (Angular, Python, Java/Spring) for permanent positions or long-term contracts in Belgium or hybrid remote.',
+  'contact.subtitle': 'Currently seeking a Full-Stack job or internship (Angular, Python, Java/Spring) in Belgium or hybrid remote.',
   'contact.emailLabel': 'Email',
   'contact.phoneLabel': 'Phone',
   'contact.locationLabel': 'Location',
@@ -215,4 +215,3 @@ export const en: Record<TranslationKey, string> = {
   'common.allRightsReserved': 'All rights reserved.',
   'common.builtWith': 'Built with React 19, TypeScript & Tailwind CSS.',
 };
-

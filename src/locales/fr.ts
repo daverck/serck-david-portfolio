@@ -11,7 +11,7 @@ export const fr = {
   'nav.closeMenu': 'Fermer le menu de navigation',
 
   // Hero
-  'hero.available': 'Disponible immédiatement pour de nouveaux défis',
+  'hero.available': 'À la recherche d’un emploi ou d’un stage',
   'hero.explore': 'Explorer mon parcours',
   'hero.contactMe': 'Me contacter',
   'hero.downloadCv': 'Télécharger mon CV',
@@ -51,7 +51,7 @@ export const fr = {
   // Contact
   'contact.badge': 'Prise de Contact',
   'contact.title': 'Échangeons sur votre projet ou votre équipe',
-  'contact.subtitle': 'Actuellement disponible immédiatement pour des missions Full-Stack (Angular, Python, Java/Spring) en CDI ou mission longue en Belgique ou en remote partiel.',
+  'contact.subtitle': 'À la recherche d’un emploi ou d’un stage en développement Full-Stack (Angular, Python, Java/Spring), en Belgique ou en mode hybride/remote.',
   'contact.emailLabel': 'Email',
   'contact.phoneLabel': 'Téléphone',
   'contact.locationLabel': 'Localisation',
@@ -215,4 +215,3 @@ export const fr = {
 };
 
 export type TranslationKey = keyof typeof fr;
-
