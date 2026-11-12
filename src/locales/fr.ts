@@ -17,9 +17,7 @@ export const fr = {
   'hero.downloadCv': 'Télécharger mon CV',
   'hero.expYears': "6 ans d'exp.",
   'hero.spec': 'Angular • Python • Java',
-  'hero.avatarTitle': 'Survolez ou cliquez pour basculer la coupe de cheveux !',
-  'hero.avatarShortAlt': 'David Serck - Pixel Art',
-  'hero.avatarLongAlt': 'David Serck - Pixel Art (Cheveux mi-longs)',
+  'hero.avatarAlt': 'David Serck - Pixel Art',
 
   // Skills
   'skills.badge': 'Stack & Compétences',

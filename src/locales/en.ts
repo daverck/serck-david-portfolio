@@ -19,9 +19,7 @@ export const en: Record<TranslationKey, string> = {
   'hero.downloadCv': 'Download CV',
   'hero.expYears': '6 Years exp.',
   'hero.spec': 'Angular • Python • Java',
-  'hero.avatarTitle': 'Hover or click to switch hairstyle!',
-  'hero.avatarShortAlt': 'David Serck - Pixel Art',
-  'hero.avatarLongAlt': 'David Serck - Pixel Art (Medium hair)',
+  'hero.avatarAlt': 'David Serck - Pixel Art',
 
   // Skills
   'skills.badge': 'Stack & Skills',

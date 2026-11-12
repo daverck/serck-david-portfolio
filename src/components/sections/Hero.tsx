@@ -8,14 +8,12 @@ import { MapPin, Mail, Phone, ArrowDown, Sparkles, FileDown } from 'lucide-react
 
 export const Hero: React.FC = () => {
   const [imgError, setImgError] = useState(false);
-  const [isLongHair, setIsLongHair] = useState(false);
   const { resume, t, cvUrl, cvFileName } = useLanguage();
   const { copyEmail, copyPhone } = useToast();
   const linkedin = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('linkedin'));
   const github = resume.sections.profiles.items.find(p => p.network.toLowerCase().includes('github'));
 
-  const shortHairUrl = `${import.meta.env.BASE_URL}avatar_short_hair.png`;
-  const longHairUrl = `${import.meta.env.BASE_URL}avatar_long_hair.png`;
+  const avatarUrl = `${import.meta.env.BASE_URL}avatar_long_hair.png`;
 
   return (
     <section className="relative pt-6 pb-16 md:pt-12 md:pb-24 overflow-hidden">
@@ -147,55 +145,24 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Avatar Photo (Pixel Art with hover/keyboard toggle) */}
+          {/* Right Column: Avatar Photo (Pixel Art) */}
           <div className="relative shrink-0">
             <div
-              role="button"
-              tabIndex={0}
-              aria-label={t('hero.avatarTitle')}
-              aria-pressed={isLongHair}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setIsLongHair(prev => !prev);
-                }
-              }}
-              className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-3xl p-2 bg-gradient-to-tr from-brand-600 via-teal-400 to-blue-500 shadow-2xl group cursor-pointer transition-transform duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-500/60"
-              onClick={() => setIsLongHair(prev => !prev)}
-              title={t('hero.avatarTitle')}
+              className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-3xl p-2 bg-gradient-to-tr from-brand-600 via-teal-400 to-blue-500 shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
             >
               <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-200/40 dark:bg-slate-800/50 backdrop-blur-sm flex items-center justify-center">
                 {!imgError ? (
-                  <>
-                    {/* Avatar Cheveux Courts (Base) */}
-                    <img
-                      src={shortHairUrl}
-                      alt={t('hero.avatarShortAlt')}
-                      width="256"
-                      height="256"
-                      onError={() => setImgError(true)}
-                      className={`w-full h-full object-cover select-none transition-opacity duration-200 ${
-                        isLongHair ? 'opacity-0' : 'opacity-100 group-hover:opacity-0'
-                      }`}
-                      style={{ imageRendering: 'pixelated' }}
-                      loading="eager"
-                      fetchPriority="high"
-                    />
-
-                    {/* Avatar Cheveux Longs (Survol / Clic) */}
-                    <img
-                      src={longHairUrl}
-                      alt={t('hero.avatarLongAlt')}
-                      width="256"
-                      height="256"
-                      aria-hidden="true"
-                      className={`absolute inset-0 w-full h-full object-cover select-none transition-opacity duration-200 ${
-                        isLongHair ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                      }`}
-                      style={{ imageRendering: 'pixelated' }}
-                      loading="eager"
-                    />
-                  </>
+                  <img
+                    src={avatarUrl}
+                    alt={t('hero.avatarAlt')}
+                    width="256"
+                    height="256"
+                    onError={() => setImgError(true)}
+                    className="w-full h-full object-cover select-none"
+                    style={{ imageRendering: 'pixelated' }}
+                    loading="eager"
+                    fetchPriority="high"
+                  />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-brand-700 to-slate-900 text-white font-extrabold text-5xl">
                     DS
