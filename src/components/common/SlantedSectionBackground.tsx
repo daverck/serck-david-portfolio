@@ -54,6 +54,8 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
   const svgBotRef = useRef<SVGSVGElement>(null);
   const lineTopRef = useRef<SVGLineElement>(null);
   const lineBotRef = useRef<SVGLineElement>(null);
+  const pulseTopRef = useRef<SVGLineElement>(null);
+  const pulseBotRef = useRef<SVGLineElement>(null);
 
   // Configuration et états d'animation persistants
   const animConfig = useRef({
@@ -73,8 +75,9 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
     botSpeed2: 0.0010 + Math.random() * 0.0005,
     botAmp: 13 + Math.random() * 6,
 
-    // Harmonique secondaire réactive au survol
-    harmonicPhase: Math.random() * Math.PI * 2,
+    // Progression des impulsions cyber (0..1)
+    topPulsePos: 0.0,
+    botPulsePos: 0.0,
 
     // Facteurs interactifs interpolés (lerp avec inertie)
     currentSpeedFactor: 1.0,
@@ -133,27 +136,28 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
       cfg.topPhase2 += dt * cfg.topSpeed2 * cfg.currentSpeedFactor;
       cfg.botPhase1 += dt * cfg.botSpeed1 * cfg.currentSpeedFactor;
       cfg.botPhase2 += dt * cfg.botSpeed2 * cfg.currentSpeedFactor;
-      cfg.harmonicPhase += dt * 0.0035 * cfg.currentSpeedFactor;
 
-      // Enrichissement de l'onde ("différemment" lors du survol)
-      // Gain d'amplitude + harmonique haute fréquence d'ondulation
-      const topAmpMultiplier = 1 + 0.35 * cfg.currentTopGlow;
-      const topHarmonic = Math.sin(cfg.harmonicPhase * 2.2) * (5.5 * cfg.currentTopGlow);
+      // Déplacement continu du faisceau cyber (accéléré lors de la proximité du survol)
+      const topPulseSpeed = 0.00035 + cfg.currentTopGlow * 0.0016;
+      cfg.topPulsePos = (cfg.topPulsePos + dt * topPulseSpeed) % 1.0;
+
+      const botPulseSpeed = 0.00035 + cfg.currentBotGlow * 0.0016;
+      cfg.botPulsePos = (cfg.botPulsePos + dt * botPulseSpeed) % 1.0;
+
+      // Ondulation naturelle et fluide de la pente (sans harmonique rigide)
+      const topAmpMultiplier = 1 + 0.25 * cfg.currentTopGlow;
       const topH =
         BASE_SLANT_HEIGHT +
         (Math.sin(cfg.topPhase1) * (cfg.topAmp * 0.65) +
           Math.cos(cfg.topPhase2) * (cfg.topAmp * 0.35)) *
-          topAmpMultiplier +
-        topHarmonic;
+          topAmpMultiplier;
 
-      const botAmpMultiplier = 1 + 0.35 * cfg.currentBotGlow;
-      const botHarmonic = Math.cos(cfg.harmonicPhase * 2.0) * (5.5 * cfg.currentBotGlow);
+      const botAmpMultiplier = 1 + 0.25 * cfg.currentBotGlow;
       const botH =
         BASE_SLANT_HEIGHT +
         (Math.sin(cfg.botPhase1) * (cfg.botAmp * 0.65) +
           Math.cos(cfg.botPhase2) * (cfg.botAmp * 0.35)) *
-          botAmpMultiplier +
-        botHarmonic;
+          botAmpMultiplier;
 
       cfg.liveTopH = topH;
       cfg.liveBotH = botH;
@@ -184,6 +188,24 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
         }
       }
 
+      // Mise à jour du faisceau lumineux voyageur supérieur
+      if (pulseTopRef.current) {
+        const pulseLen = 22; // Longueur du segment d'impulsion en pourcentage de la ligne
+        const offset = -cfg.topPulsePos * 100;
+        pulseTopRef.current.setAttribute('stroke-dasharray', `${pulseLen} ${100 - pulseLen}`);
+        pulseTopRef.current.setAttribute('stroke-dashoffset', offset.toFixed(2));
+        const pulseOpacity = 0.2 + cfg.currentTopGlow * 0.8;
+        pulseTopRef.current.style.opacity = pulseOpacity.toFixed(2);
+        const pulseWidth = 2.0 + cfg.currentTopGlow * 2.2;
+        pulseTopRef.current.setAttribute('stroke-width', pulseWidth.toFixed(2));
+        if (cfg.currentTopGlow > 0.02) {
+          const pulseGlow = (cfg.currentTopGlow * 10).toFixed(1);
+          pulseTopRef.current.style.filter = `drop-shadow(0 0 ${pulseGlow}px #38bdf8)`;
+        } else {
+          pulseTopRef.current.style.filter = 'none';
+        }
+      }
+
       // Mise à jour de la ligne d'accent inférieure (hauteur, brillance néon et épaisseur)
       if (svgBotRef.current) {
         svgBotRef.current.style.height = `${botH.toFixed(2)}px`;
@@ -197,6 +219,25 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
           lineBotRef.current.style.filter = `drop-shadow(0 0 ${glowBlur}px rgba(2, 132, 199, ${glowAlpha}))`;
         } else {
           lineBotRef.current.style.filter = 'none';
+        }
+      }
+
+      // Mise à jour du faisceau lumineux voyageur inférieur
+      if (pulseBotRef.current) {
+        const pulseLen = 22;
+        // Direction inversée pour un effet de boucle symétrique harmonieux
+        const offset = (1 - cfg.botPulsePos) * 100;
+        pulseBotRef.current.setAttribute('stroke-dasharray', `${pulseLen} ${100 - pulseLen}`);
+        pulseBotRef.current.setAttribute('stroke-dashoffset', offset.toFixed(2));
+        const pulseOpacity = 0.2 + cfg.currentBotGlow * 0.8;
+        pulseBotRef.current.style.opacity = pulseOpacity.toFixed(2);
+        const pulseWidth = 2.0 + cfg.currentBotGlow * 2.2;
+        pulseBotRef.current.setAttribute('stroke-width', pulseWidth.toFixed(2));
+        if (cfg.currentBotGlow > 0.02) {
+          const pulseGlow = (cfg.currentBotGlow * 10).toFixed(1);
+          pulseBotRef.current.style.filter = `drop-shadow(0 0 ${pulseGlow}px #2dd4bf)`;
+        } else {
+          pulseBotRef.current.style.filter = 'none';
         }
       }
 
@@ -349,7 +390,13 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
               <stop offset="75%" stopColor="#0284c7" stopOpacity="0.5" />
               <stop offset="100%" stopColor="#14b8a6" stopOpacity="0.05" />
             </linearGradient>
+            <linearGradient id={`pulse-grad-top-${id}`} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.1" />
+              <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
+              <stop offset="100%" stopColor="#14b8a6" stopOpacity="0.1" />
+            </linearGradient>
           </defs>
+          {/* Ligne de base */}
           <line
             ref={lineTopRef}
             x1="0"
@@ -360,6 +407,20 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
             strokeWidth="1.5"
             vectorEffect="non-scaling-stroke"
             className="transition-[stroke-width] duration-150 ease-out"
+          />
+          {/* Faisceau cyber / impulsion voyageuse */}
+          <line
+            ref={pulseTopRef}
+            x1="0"
+            y1={direction === 'down' ? 100 : 0}
+            x2="100"
+            y2={direction === 'down' ? 0 : 100}
+            pathLength="100"
+            stroke={`url(#pulse-grad-top-${id})`}
+            strokeWidth="2"
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+            style={{ opacity: 0.2 }}
           />
         </svg>
       )}
@@ -380,7 +441,13 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
               <stop offset="75%" stopColor="#14b8a6" stopOpacity="0.5" />
               <stop offset="100%" stopColor="#0284c7" stopOpacity="0.05" />
             </linearGradient>
+            <linearGradient id={`pulse-grad-bot-${id}`} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#14b8a6" stopOpacity="0.1" />
+              <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
+              <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.1" />
+            </linearGradient>
           </defs>
+          {/* Ligne de base */}
           <line
             ref={lineBotRef}
             x1="0"
@@ -391,6 +458,20 @@ export const SlantedSectionBackground: React.FC<SlantedSectionBackgroundProps> =
             strokeWidth="1.5"
             vectorEffect="non-scaling-stroke"
             className="transition-[stroke-width] duration-150 ease-out"
+          />
+          {/* Faisceau cyber / impulsion voyageuse */}
+          <line
+            ref={pulseBotRef}
+            x1="0"
+            y1={direction === 'down' ? 100 : 0}
+            x2="100"
+            y2={direction === 'down' ? 0 : 100}
+            pathLength="100"
+            stroke={`url(#pulse-grad-bot-${id})`}
+            strokeWidth="2"
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+            style={{ opacity: 0.2 }}
           />
         </svg>
       )}
