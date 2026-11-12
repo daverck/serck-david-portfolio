@@ -148,9 +148,9 @@ export const Hero: React.FC = () => {
           {/* Right Column: Avatar Photo (Pixel Art) */}
           <div className="relative shrink-0">
             <div
-              className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-3xl p-2 bg-gradient-to-tr from-brand-600 via-teal-400 to-blue-500 shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
+              className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-2xl p-[3px] bg-gradient-to-tr from-brand-600 via-teal-400 to-blue-500 shadow-xl transition-transform duration-300 hover:scale-[1.02]"
             >
-              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-200/40 dark:bg-slate-800/50 backdrop-blur-sm flex items-center justify-center">
+              <div className="relative w-full h-full rounded-[13px] overflow-hidden bg-slate-200/40 dark:bg-slate-800/50 backdrop-blur-sm flex items-center justify-center">
                 {!imgError ? (
                   <img
                     src={avatarUrl}
