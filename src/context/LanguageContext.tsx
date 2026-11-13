@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { resumeDataFr, resumeDataEn, getEmployersList } from '../data/employers';
 import { ResumeData, EmployerDetails } from '../types/resume';
@@ -20,70 +20,32 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-function getInitialLanguage(): Language {
-  if (typeof window !== 'undefined') {
-    // 1. Priorité absolue au query param 'lang' dans l'URL
-    const params = new URLSearchParams(window.location.search);
-    const paramLang = params.get('lang');
-    if (paramLang === 'fr' || paramLang === 'en') {
-      return paramLang;
-    }
-
-    // 2. Préférence sauvegardée en localStorage
-    const saved = localStorage.getItem('language');
-    if (saved === 'fr' || saved === 'en') {
-      return saved;
-    }
-
-    // 3. Langue préférée du navigateur
-    const browserLang = navigator.language.slice(0, 2);
-    return browserLang === 'en' ? 'en' : 'fr';
-  }
-  return 'fr';
-}
-
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [lang, setLangState] = useState<Language>(getInitialLanguage);
+export const LanguageProvider: React.FC<{
+  children: React.ReactNode;
+  initialLanguage: Language;
+}> = ({ children, initialLanguage }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const lang = initialLanguage;
 
-  // Synchronisation bidirectionnelle avec l'URL (liens partagés, boutons précédent/suivant)
   useEffect(() => {
-    const currentParams = new URLSearchParams(location.search);
-    const urlLang = currentParams.get('lang');
-
-    if (urlLang === 'fr' || urlLang === 'en') {
-      if (urlLang !== lang) {
-        setLangState(urlLang);
-        localStorage.setItem('language', urlLang);
-        document.documentElement.lang = urlLang;
-      }
-    } else {
-      // Si le paramètre ?lang est absent ou non reconnu, l'ajouter à l'URL sans recharger la page
-      currentParams.set('lang', lang);
-      navigate(
-        {
-          pathname: location.pathname,
-          search: `?${currentParams.toString()}`,
-          hash: location.hash,
-        },
-        { replace: true }
-      );
-    }
-  }, [location.search, location.pathname, location.hash, lang, navigate]);
+    localStorage.setItem('language', lang);
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   const setLang = useCallback(
     (newLang: Language) => {
-      setLangState(newLang);
-      localStorage.setItem('language', newLang);
-      document.documentElement.lang = newLang;
-
       const currentParams = new URLSearchParams(location.search);
-      currentParams.set('lang', newLang);
+      currentParams.delete('lang');
+      const currentPath = location.pathname.replace(/^\/(?:fr|en)(?=\/|$)/, '');
+      const nextPath = currentPath
+        ? `/${newLang}${currentPath.endsWith('/') ? currentPath : `${currentPath}/`}`
+        : `/${newLang}/`;
+
       navigate(
         {
-          pathname: location.pathname,
-          search: `?${currentParams.toString()}`,
+          pathname: nextPath,
+          search: currentParams.toString() ? `?${currentParams.toString()}` : '',
           hash: location.hash,
         },
         { replace: true }
@@ -95,10 +57,6 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const toggleLang = useCallback(() => {
     setLang(lang === 'fr' ? 'en' : 'fr');
   }, [lang, setLang]);
-
-  useEffect(() => {
-    document.documentElement.lang = lang;
-  }, [lang]);
 
   const resume = lang === 'fr' ? resumeDataFr : resumeDataEn;
   const employers = getEmployersList(lang);

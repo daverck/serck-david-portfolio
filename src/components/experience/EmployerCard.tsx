@@ -80,7 +80,7 @@ export const EmployerCard: React.FC<EmployerCardProps> = ({ employer }) => {
           </div>
 
           <Link
-            to={`/experience/${employer.slug}?lang=${lang}`}
+            to={`/${lang}/experience/${employer.slug}/`}
             className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-xs uppercase tracking-wider hover:bg-brand-600 dark:hover:bg-brand-400 dark:hover:text-slate-950 transition-colors shadow-sm group-hover:scale-[1.02]"
           >
             <span>{t('exp.viewPage')} {employer.name}</span>

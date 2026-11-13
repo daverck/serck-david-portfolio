@@ -52,6 +52,7 @@ jobs:
         run: npm run build
         env:
           VITE_BASE_PATH: '/serck-david-portfolio/'
+          VITE_SITE_URL: 'https://daverck.github.io/serck-david-portfolio'
           VITE_CHATBOT_API_URL: ${{ steps.chatbot_url.outputs.url }}
           VITE_CF_BEACON_TOKEN: ${{ vars.VITE_CF_BEACON_TOKEN || secrets.VITE_CF_BEACON_TOKEN || 'd9c21dbc609c453b99e82c60aa979ec4' }}
 
