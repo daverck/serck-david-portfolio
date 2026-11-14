@@ -19,14 +19,19 @@ Ce site est piloté dynamiquement par des données JSON exportées depuis [rxres
   - Commutateur instantané de langue (`FR | EN`) dans le header et le menu mobile.
   - Double dataset dédié : `src/data/resume.fr.json` et `src/data/resume.en.json`.
   - Traduction contextuelle de l'ensemble de l'UI et des données de parcours.
-  - Persistance du choix de langue dans le `localStorage`.
+  - URLs dédiées par langue (`/fr/` et `/en/`), avec mémorisation de la préférence et redirection des anciennes URLs avec `?lang=`.
 
 - **3 Pages Employeurs Dédiées** :
-  - **Konekto** ([`/experience/konekto`](https://daverck.github.io/serck-david-portfolio/experience/konekto)) : 7 projets détaillés (PEPPOL/UBL, migration Angular 21 / Spring Boot 4, pointage RH, IA YOLO & ChatGPT, Keycloak).
-  - **Dstny** ([`/experience/dstny`](https://daverck.github.io/serck-david-portfolio/experience/dstny)) : 4 projets détaillés (lookup serveur haute disponibilité, CockroachDB, Redis, APIs Python Tornado, dashboards React).
-  - **Micro Belgium Application - MBA** ([`/experience/mba`](https://daverck.github.io/serck-david-portfolio/experience/mba)) : 7 projets détaillés (flux de facturation e-fff, synchronisation .dbf via T-SQL, relevés CODA en PDF, synchronisation Google Classroom, transcription vocale .NET).
+  - **Konekto** ([`/fr/experience/konekto/`](https://daverck.github.io/serck-david-portfolio/fr/experience/konekto/)) : 7 projets détaillés (PEPPOL/UBL, migration Angular 21 / Spring Boot 4, pointage RH, IA YOLO & ChatGPT, Keycloak).
+  - **Dstny** ([`/fr/experience/dstny/`](https://daverck.github.io/serck-david-portfolio/fr/experience/dstny/)) : 4 projets détaillés (lookup serveur haute disponibilité, CockroachDB, Redis, APIs Python Tornado, dashboards React).
+  - **Micro Belgium Application - MBA** ([`/fr/experience/mba/`](https://daverck.github.io/serck-david-portfolio/fr/experience/mba/)) : 7 projets détaillés (flux de facturation e-fff, synchronisation .dbf via T-SQL, relevés CODA en PDF, synchronisation Google Classroom, transcription vocale .NET).
   - Recherche et filtrage interactif par technologie sur chaque page entreprise.
   - Navigation rapide précédent/suivant entre les employeurs.
+
+- **SEO** :
+  - Prérendu statique des pages d'accueil et employeurs dans les deux langues.
+  - Titres, descriptions, données structurées, URLs canoniques et liens `hreflang` adaptés à chaque page.
+  - `sitemap.xml` et `robots.txt` générés à chaque build ; `VITE_SITE_URL` définit le domaine canonique.
 
 - **Expérience Utilisateur & Design** :
   - **Dark / Light Mode** : Bascule fluide avec détection de préférence système et persistance `localStorage`.
@@ -35,7 +40,7 @@ Ce site est piloté dynamiquement par des données JSON exportées depuis [rxres
   - **Parcours Académique & Langues** : Diplômes (IFOSUP grande distinction, Technobel, Technofutur, Technofutur TIC IA/IOT) et jauges de maîtrise linguistique.
 
 - **Optimisé pour Cloudflare Pages** :
-  - Règle de réécriture SPA `/* /index.html 200` dans `public/_redirects` pour éviter toute erreur 404 sur les URLs profondes.
+  - Pages localisées prérendues dans `dist/` et routes historiques redirigées côté client.
   - En-têtes HTTP de sécurité (`X-Frame-Options`, `X-Content-Type-Options`) et politique de cache dans `public/_headers`.
   - Build statique rapide produit dans le dossier standard `dist/`.
 
@@ -61,7 +66,7 @@ Ce site est piloté dynamiquement par des données JSON exportées depuis [rxres
 serck-david-portfolio/
 ├── public/
 │   ├── _headers                   # Headers HTTP de sécurité et de mise en cache
-│   ├── _redirects                 # Règle SPA pour Cloudflare Pages
+│   ├── og-preview.png             # Aperçu Open Graph
 │   ├── favicon.svg                # Favicon monogramme 'DS'
 │   └── resume.json                # Données statiques
 ├── src/
@@ -98,7 +103,7 @@ serck-david-portfolio/
 │   │   └── employers.ts           # Logique métier multilingue des 3 employeurs
 │   ├── pages/
 │   │   ├── HomePage.tsx           # Page d'accueil complète
-│   │   └── EmployerDetailPage.tsx # Page employeur dynamique (/experience/:slug)
+│   │   └── EmployerDetailPage.tsx # Page employeur localisée (/fr/ et /en/)
 │   ├── types/
 │   │   └── resume.ts              # Schéma TypeScript exhaustif
 │   ├── App.tsx                    # Configuration des routes
@@ -106,6 +111,8 @@ serck-david-portfolio/
 │   └── index.css                  # Directives Tailwind et scrollbars modernes
 ├── index.html                     # HTML principal avec SEO & OpenGraph
 ├── package.json                   # Dépendances et scripts
+├── scripts/
+│   └── prerender.mjs              # Prérendu des pages, sitemap et robots.txt
 ├── tailwind.config.js             # Configuration Tailwind CSS
 ├── tsconfig.json                  # Configuration TypeScript strict
 └── vite.config.ts                 # Configuration Vite 8
@@ -151,7 +158,7 @@ npm run preview
    - **Build command** : `npm run build`
    - **Build output directory** : `dist`
    - **Variable d'environnement** (optionnel) : `NODE_VERSION = 22` ou `24`
-3. Déployez ! Le fichier `public/_redirects` sera automatiquement copié dans `dist/_redirects` pour garantir le fonctionnement du routage client sans erreur 404.
+3. Déployez ! Les pages `/fr/`, `/en/` et leurs pages employeurs sont prérendues dans `dist/`. Le routage SPA de `wrangler.json` prend en charge les anciennes URLs qui doivent rediriger côté client.
 
 ---
 
