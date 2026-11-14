@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
 
@@ -13,9 +13,16 @@ if (import.meta.env.PROD && cfBeaconToken) {
   document.head.appendChild(script);
 }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const rootElement = document.getElementById('root')!;
+const application = (
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
+
+if (rootElement.dataset.prerendered === 'true') {
+  hydrateRoot(rootElement, application);
+} else {
+  createRoot(rootElement).render(application);
+}
 

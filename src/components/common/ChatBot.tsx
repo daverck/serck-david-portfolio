@@ -79,7 +79,7 @@ export const ChatBot: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [typingJob, setTypingJob] = useState<TypingJob | null>(null);
   const [error, setError] = useState('');
-  const [isOnline, setIsOnline] = useState(() => navigator.onLine);
+  const [isOnline, setIsOnline] = useState(true);
   const panelRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -90,6 +90,7 @@ export const ChatBot: React.FC = () => {
 
   useEffect(() => {
     const updateOnlineStatus = () => setIsOnline(navigator.onLine);
+    updateOnlineStatus();
     window.addEventListener('online', updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
     return () => {
