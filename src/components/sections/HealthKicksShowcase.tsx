@@ -253,7 +253,7 @@ export const HealthKicksShowcase: React.FC = () => {
             {/* Web Clinical Demo */}
             <div className="relative group/tooltip">
               <a
-                href="https://healthkicks.duckdns.org/"
+                href="https://app.healthkicks.eu"
                 target="_blank"
                 rel="noopener noreferrer"
                 title={t('hk.webDemoTitle')}
