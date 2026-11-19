@@ -2,6 +2,7 @@ import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { EmployerCard } from '../experience/EmployerCard';
 import { SlantedSectionBackground } from '../common/SlantedSectionBackground';
+import { ScrollReveal } from '../common/ScrollReveal';
 
 export const ExperienceTimeline: React.FC = () => {
   const { employers, t } = useLanguage();
@@ -12,7 +13,7 @@ export const ExperienceTimeline: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <ScrollReveal direction="down" className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-3 py-1 rounded-full">
             {t('exp.badge')}
           </span>
@@ -22,12 +23,19 @@ export const ExperienceTimeline: React.FC = () => {
           <p className="mt-3 text-slate-600 dark:text-slate-400 text-base">
             {t('exp.subtitle')}
           </p>
-        </div>
+        </ScrollReveal>
 
-        {/* 3 Employers Cards Grid */}
+        {/* 3 Employers Cards Grid with alternating entrance directions */}
         <div className="space-y-8">
-          {employers.map(emp => (
-            <EmployerCard key={emp.slug} employer={emp} />
+          {employers.map((emp, index) => (
+            <ScrollReveal
+              key={emp.slug}
+              direction={index % 2 === 0 ? 'left' : 'right'}
+              delay={index * 120}
+              duration={700}
+            >
+              <EmployerCard employer={emp} />
+            </ScrollReveal>
           ))}
         </div>
 
