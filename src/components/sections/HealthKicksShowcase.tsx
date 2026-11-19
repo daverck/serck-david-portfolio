@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { GithubIcon } from '../common/Icons';
+import { ScrollReveal } from '../common/ScrollReveal';
 import {
   Smartphone,
   Cpu,
@@ -199,7 +200,7 @@ export const HealthKicksShowcase: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <ScrollReveal direction="down" className="text-center max-w-3xl mx-auto mb-14">
 
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-teal-700 dark:text-teal-300 bg-teal-500/10 dark:bg-teal-500/20 border border-teal-500/30 mb-4 shadow-sm">
             <Radio className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400 animate-pulse" aria-hidden="true" />
@@ -285,10 +286,10 @@ export const HealthKicksShowcase: React.FC = () => {
           <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto">
             {t('hk.description')}
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* 4-Tier Interactive Architecture Flow Diagram Card */}
-        <div className="mb-14 p-6 sm:p-8 rounded-3xl bg-slate-100/70 dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-xl relative overflow-hidden transition-colors duration-300">
+        <ScrollReveal direction="down" delay={100} className="mb-14 p-6 sm:p-8 rounded-3xl bg-slate-100/70 dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-xl relative overflow-hidden transition-colors duration-300">
           {/* Background decorative glow */}
           <div className="absolute top-0 right-0 -mt-8 -mr-8 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 -mb-8 -ml-8 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -364,40 +365,45 @@ export const HealthKicksShowcase: React.FC = () => {
               })}
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* 4 Key Pillars & Technical Achievements */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
           {keyAchievements.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <div
+              <ScrollReveal
                 key={idx}
-                className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800/90 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                direction={idx % 2 === 0 ? 'left' : 'right'}
+                delay={idx * 60}
               >
-                <div className="flex items-start gap-4">
-                  <div className={`p-3 rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-md group-hover:scale-105 transition-transform shrink-0`}>
-                    <Icon className="w-6 h-6" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <span className="inline-block text-[11px] font-semibold uppercase tracking-wider text-teal-600 dark:text-teal-400 mb-1">
-                      {item.badge}
-                    </span>
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                      {item.description}
-                    </p>
+                <div
+                  className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800/90 shadow-sm hover:shadow-xl transition-all duration-300 group h-full"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className={`p-3 rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-md group-hover:scale-105 transition-transform shrink-0`}>
+                      <Icon className="w-6 h-6" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <span className="inline-block text-[11px] font-semibold uppercase tracking-wider text-teal-600 dark:text-teal-400 mb-1">
+                        {item.badge}
+                      </span>
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>
 
         {/* Ecosystem Multi-Repositories Explorer */}
-        <div className="mb-14 p-6 sm:p-8 rounded-3xl bg-slate-100/70 dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-md">
+        <ScrollReveal direction="down" className="mb-14 p-6 sm:p-8 rounded-3xl bg-slate-100/70 dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-md">
           <div className="max-w-3xl mb-6">
             <span className="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">
               {t('hk.modules.badge')}
@@ -414,48 +420,53 @@ export const HealthKicksShowcase: React.FC = () => {
             {submodules.map((mod, idx) => {
               const ModIcon = mod.icon;
               return (
-                <a
+                <ScrollReveal
                   key={idx}
-                  href={mod.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-5 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 hover:border-brand-500/50 dark:hover:border-brand-500/50 hover:shadow-lg transition-all group flex flex-col justify-between"
+                  direction="fade"
+                  delay={idx * 60}
                 >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <div className="flex items-center gap-2">
-                        <ModIcon className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" aria-hidden="true" />
-                        <span className="font-mono text-xs font-bold text-slate-900 dark:text-white truncate">
-                          {mod.name}
-                        </span>
+                  <a
+                    href={mod.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-5 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 hover:border-brand-500/50 dark:hover:border-brand-500/50 hover:shadow-lg transition-all group flex flex-col justify-between h-full"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <div className="flex items-center gap-2">
+                          <ModIcon className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" aria-hidden="true" />
+                          <span className="font-mono text-xs font-bold text-slate-900 dark:text-white truncate">
+                            {mod.name}
+                          </span>
+                        </div>
+                        <ExternalLinkIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-500 transition-colors shrink-0" aria-hidden="true" />
                       </div>
-                      <ExternalLinkIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-500 transition-colors shrink-0" aria-hidden="true" />
+
+                      <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-teal-500/10 text-teal-700 dark:text-teal-300 mb-2">
+                        {mod.role}
+                      </span>
+
+                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+                        {mod.desc}
+                      </p>
                     </div>
 
-                    <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-teal-500/10 text-teal-700 dark:text-teal-300 mb-2">
-                      {mod.role}
-                    </span>
-
-                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
-                      {mod.desc}
-                    </p>
-                  </div>
-
-                  <div className="pt-2 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
-                    <span className="font-mono truncate">{mod.tech}</span>
-                    <span className="inline-flex items-center gap-1 font-semibold text-teal-600 dark:text-teal-400 shrink-0 ml-2 group-hover:translate-x-0.5 transition-transform">
-                      <GitBranch className="w-3 h-3" aria-hidden="true" />
-                      <span>Code</span>
-                    </span>
-                  </div>
-                </a>
+                    <div className="pt-2 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+                      <span className="font-mono truncate">{mod.tech}</span>
+                      <span className="inline-flex items-center gap-1 font-semibold text-teal-600 dark:text-teal-400 shrink-0 ml-2 group-hover:translate-x-0.5 transition-transform">
+                        <GitBranch className="w-3 h-3" aria-hidden="true" />
+                        <span>Code</span>
+                      </span>
+                    </div>
+                  </a>
+                </ScrollReveal>
               );
             })}
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Categorized Tech Stack Badges */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-slate-100/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80">
+        <ScrollReveal direction="down" className="p-6 sm:p-8 rounded-3xl bg-slate-100/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80">
           <div className="flex items-center gap-2 mb-6">
             <Zap className="w-4 h-4 text-amber-500" aria-hidden="true" />
             <span className="text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
@@ -482,7 +493,7 @@ export const HealthKicksShowcase: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
 
       </div>
 
