@@ -3,6 +3,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { useToast } from '../../context/ToastContext';
 import { ExternalLink } from '../common/ExternalLink';
 import { RichHtml } from '../common/RichHtml';
+import { ScrollReveal } from '../common/ScrollReveal';
 import { GithubIcon, LinkedinIcon } from '../common/Icons';
 import { MapPin, Mail, Phone, ArrowDown, Sparkles, FileDown } from 'lucide-react';
 
@@ -16,12 +17,12 @@ export const Hero: React.FC = () => {
   const avatarUrl = `${import.meta.env.BASE_URL}avatar_long_hair.png`;
 
   return (
-    <section className="relative pt-6 pb-16 md:pt-12 md:pb-24 overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-14">
+    <section className="relative min-h-[calc(100svh-5rem)] flex flex-col justify-between py-6 sm:py-8 md:py-10 overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 w-full flex-grow flex items-center">
+        <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-14 w-full">
           
           {/* Left Text Column */}
-          <div className="flex-1 text-center md:text-left relative">
+          <ScrollReveal direction="left" duration={700} className="flex-1 text-center md:text-left relative">
             {/* Halo doux de contraste garantissant une parfaite lisibilité du texte en mode clair */}
             <div className="absolute -inset-4 sm:-inset-8 bg-white/75 dark:bg-slate-950/40 rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
@@ -143,10 +144,10 @@ export const Hero: React.FC = () => {
                 </ExternalLink>
               )}
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column: Avatar Photo (Pixel Art) */}
-          <div className="relative shrink-0">
+          <ScrollReveal direction="right" duration={700} delay={150} className="relative shrink-0">
             <div
               className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-2xl p-[3px] bg-gradient-to-tr from-brand-600 via-teal-400 to-blue-500 shadow-xl transition-transform duration-300 hover:scale-[1.02]"
             >
@@ -170,9 +171,22 @@ export const Hero: React.FC = () => {
                 )}
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
+      </div>
+
+      {/* Subtle animated scroll down indicator */}
+      <div className="w-full flex justify-center pt-4 pb-2">
+        <a
+          href="#experience-overview"
+          aria-label={t('hero.explore')}
+          className="group inline-flex flex-col items-center gap-1.5 text-xs text-slate-400 dark:text-slate-500 hover:text-brand-600 dark:hover:text-brand-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-lg p-1"
+        >
+          <div className="w-5 h-8 rounded-full border-2 border-slate-300 dark:border-slate-700 flex items-start justify-center p-1 group-hover:border-brand-500 transition-colors">
+            <span className="w-1 h-2 bg-brand-500 rounded-full animate-bounce" />
+          </div>
+        </a>
       </div>
     </section>
   );
