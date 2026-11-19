@@ -5,6 +5,7 @@ import { ExternalLink } from '../common/ExternalLink';
 import { GithubIcon, LinkedinIcon } from '../common/Icons';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { SlantedSectionBackground } from '../common/SlantedSectionBackground';
+import { ScrollReveal } from '../common/ScrollReveal';
 
 export const Contact: React.FC = () => {
   const { resume, t } = useLanguage();
@@ -17,20 +18,22 @@ export const Contact: React.FC = () => {
       <SlantedSectionBackground direction="down" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
         
-        <span className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-3 py-1 rounded-full">
-          {t('contact.badge')}
-        </span>
+        <ScrollReveal direction="down">
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-3 py-1 rounded-full">
+            {t('contact.badge')}
+          </span>
 
-        <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          {t('contact.title')}
-        </h2>
+          <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            {t('contact.title')}
+          </h2>
 
-        <p className="mt-4 text-base text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
-          {t('contact.subtitle')}
-        </p>
+          <p className="mt-4 text-base text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
+            {t('contact.subtitle')}
+          </p>
+        </ScrollReveal>
 
         {/* Cards Grid for contact methods */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-left">
+        <ScrollReveal direction="down" delay={120} className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-left">
           
           {/* Email (opens mail client + copies to clipboard with floating toast) */}
           <a
@@ -84,10 +87,10 @@ export const Contact: React.FC = () => {
             </span>
           </div>
 
-        </div>
+        </ScrollReveal>
 
         {/* Quick Direct action button */}
-        <div className="mt-8 flex flex-wrap justify-center items-center gap-4">
+        <ScrollReveal direction="fade" delay={200} className="mt-8 flex flex-wrap justify-center items-center gap-4">
           <a
             href={`mailto:${resume.basics.email}?subject=${encodeURIComponent(t('contact.mailSubject'))}`}
             onClick={copyEmail}
@@ -118,7 +121,7 @@ export const Contact: React.FC = () => {
               <span>{t('contact.github')}</span>
             </ExternalLink>
           )}
-        </div>
+        </ScrollReveal>
 
       </div>
     </section>
