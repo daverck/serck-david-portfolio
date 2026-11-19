@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { SkillCategoryCard } from '../skills/SkillCategoryCard';
+import { ScrollReveal } from '../common/ScrollReveal';
 
 export const Skills: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -16,7 +17,7 @@ export const Skills: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <ScrollReveal direction="down" className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-3 py-1 rounded-full">
             {t('skills.badge')}
           </span>
@@ -55,12 +56,19 @@ export const Skills: React.FC = () => {
               </button>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Skills Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map(category => (
-            <SkillCategoryCard key={category.id} category={category} />
+          {filteredSkills.map((category, index) => (
+            <ScrollReveal
+              key={category.id}
+              direction="fade"
+              delay={index * 90}
+              duration={600}
+            >
+              <SkillCategoryCard category={category} />
+            </ScrollReveal>
           ))}
         </div>
 
