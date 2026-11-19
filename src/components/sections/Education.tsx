@@ -4,6 +4,7 @@ import { EducationCard } from '../education/EducationCard';
 import { LanguagesCard } from '../education/LanguagesCard';
 import { InterestsCard } from '../education/InterestsCard';
 import { SlantedSectionBackground } from '../common/SlantedSectionBackground';
+import { ScrollReveal } from '../common/ScrollReveal';
 
 export const Education: React.FC = () => {
   const { resume, t } = useLanguage();
@@ -18,27 +19,31 @@ export const Education: React.FC = () => {
           
           {/* Left Column: Education / Formations (Takes 2 cols on lg) */}
           <div className="lg:col-span-2 space-y-6">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-3 py-1 rounded-full">
-                {t('edu.badge')}
-              </span>
-              <h2 className="mt-3 text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                {t('edu.title')}
-              </h2>
-            </div>
+            <ScrollReveal direction="left">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-3 py-1 rounded-full">
+                  {t('edu.badge')}
+                </span>
+                <h2 className="mt-3 text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                  {t('edu.title')}
+                </h2>
+              </div>
+            </ScrollReveal>
 
             <div className="space-y-4 pt-2">
-              {educationItems.map(item => (
-                <EducationCard key={item.id} item={item} />
+              {educationItems.map((item, index) => (
+                <ScrollReveal key={item.id} direction="left" delay={index * 80} distance={18}>
+                  <EducationCard item={item} />
+                </ScrollReveal>
               ))}
             </div>
           </div>
 
           {/* Right Column: Languages & Profile overview */}
-          <div className="space-y-8">
+          <ScrollReveal direction="right" duration={700} delay={150} className="space-y-8">
             <LanguagesCard />
             <InterestsCard />
-          </div>
+          </ScrollReveal>
 
         </div>
 
