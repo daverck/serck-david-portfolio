@@ -260,12 +260,20 @@ export default {
     }
 
     try {
-      const model = env.GEMINI_MODEL || 'gemini-3.6-flash';
+      const configuredModel = env.GEMINI_MODEL || 'gemini-3-flash-preview';
+      const modelsToTry = [
+        configuredModel,
+        ...(configuredModel !== 'gemini-3-flash-preview' ? ['gemini-3-flash-preview'] : []),
+        ...(configuredModel !== 'gemini-3.5-flash-lite' ? ['gemini-3.5-flash-lite'] : []),
+      ];
+
       const history = validated.history.map(({ role, content }) => ({
         role,
         parts: [{ text: content }],
       }));
+
       const generate = async (
+        targetModel: string,
         maxOutputTokens: number,
         retry = false
       ): Promise<GeminiCandidate | Response | null> => {
@@ -273,8 +281,17 @@ export default {
           retry ? '\n\nWrite the complete answer again from the beginning, and ensure it ends with a complete sentence.' : ''
         }`;
         const contents = [...history, { role: 'user', parts: [{ text: answerPrompt }] }];
+
+        const generationConfig: Record<string, unknown> = {
+          temperature: 0.2,
+          maxOutputTokens,
+        };
+        if (!targetModel.includes('lite')) {
+          generationConfig.thinkingConfig = { thinkingBudget: 0 };
+        }
+
         const response = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
+          `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(targetModel)}:generateContent`,
           {
             method: 'POST',
             headers: {
@@ -288,18 +305,14 @@ export default {
                 }],
               },
               contents,
-              generationConfig: {
-                temperature: 0.2,
-                maxOutputTokens,
-                thinkingConfig: { thinkingBudget: 0 },
-              },
+              generationConfig,
             }),
-            signal: AbortSignal.timeout(30_000),
+            signal: AbortSignal.timeout(12_000),
           },
         );
 
         if (!response.ok) {
-          console.error('Gemini request failed with status:', response.status);
+          console.error(`Gemini model ${targetModel} request failed with status:`, response.status);
           if (response.status === 429) {
             return errorResponse('The assistant is temporarily busy. Please try again shortly.', 503, origin);
           }
@@ -309,21 +322,38 @@ export default {
         return getCandidate(await response.json());
       };
 
-      let candidate = await generate(1000);
-      if (candidate instanceof Response) return candidate;
-      if (candidate && (candidate.finishReason === 'MAX_TOKENS' || !isCompleteAnswer(candidate.reply))) {
-        const retried = await generate(1600, true);
-        if (retried instanceof Response) return retried;
-        if (retried && isCompleteAnswer(retried.reply)) {
-          candidate = retried;
+      let lastError: unknown = null;
+      for (const currentModel of modelsToTry) {
+        try {
+          let candidate = await generate(currentModel, 1000);
+          if (candidate instanceof Response) {
+            if (candidate.status === 502 || candidate.status === 503) {
+              console.warn(`Model ${currentModel} returned ${candidate.status}, falling back...`);
+              continue;
+            }
+            return candidate;
+          }
+          if (candidate && (candidate.finishReason === 'MAX_TOKENS' || !isCompleteAnswer(candidate.reply))) {
+            const retried = await generate(currentModel, 1600, true);
+            if (retried instanceof Response) return retried;
+            if (retried && isCompleteAnswer(retried.reply)) {
+              candidate = retried;
+            }
+          }
+
+          if (candidate && candidate.reply) {
+            return jsonResponse({ reply: candidate.reply }, 200, origin);
+          }
+        } catch (err) {
+          console.warn(`Model ${currentModel} attempt failed:`, err);
+          lastError = err;
         }
       }
 
-      if (!candidate || !candidate.reply) {
-        console.error('Gemini returned an unexpected or empty response.');
-        return errorResponse('The assistant could not produce an answer.', 502, origin);
+      if (lastError instanceof Error && lastError.name === 'TimeoutError') {
+        return errorResponse('The assistant took too long to respond. Please try again.', 504, origin);
       }
-      return jsonResponse({ reply: candidate.reply }, 200, origin);
+      return errorResponse('The assistant could not produce an answer.', 502, origin);
     } catch (error) {
       if (error instanceof Error && error.name === 'TimeoutError') {
         return errorResponse('The assistant took too long to respond. Please try again.', 504, origin);
